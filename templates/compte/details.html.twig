@@ -1,0 +1,159 @@
+{% if compte.type.id == 4%}
+<div class="item-details">
+    <div class="item-details-header">
+        <div class="d-flex align-items-center">
+                    <span class="item-logo">
+                        <img src="{{ asset("uploads/"~ (compte.logo ? compte.logo.filename: 'logo_default.png')) }}" alt="" class="img-fluid">
+                    </span>
+                    <h3 class="item-title">{{ compte.nomCompte }}</h3>
+                    <div class="wrape-open-project">
+                        <div class="item-details-header open-project wrap-btn-open-project">
+                            <div class=" align-items-center pull-right">
+                                <a href="{{ path('partenaire_detail',{'id': compte.id}) }}" class="btn btn-blue open-btn-blue btn-sm" >Ouvrir Partenaire</a>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <div class="item-details-body header-projet">
+        <div class="container-fluid item-details-header-body">
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="nav nav-tabs cs-nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#item-details-project" role="tab" aria-selected="true">Partenaire</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                <div class="wrape-type-project">
+                    <ul class="type-project">
+                        {# <li>
+                            <span {{ (compte.type.id == 1)?'class="active"':''  }} >E</span>
+                        </li>
+                        <li>
+                            <span {{ (compte.type.id == 2)?'class="active"':''  }} >I</span>
+                        </li>
+                        <li>
+                            <span {{ (compte.type.id == 3)?'class="active"':''  }}  >DO</span>
+                        </li> #}
+                    </ul>
+                </div>
+                </div>
+                <div class="col-sm ">
+                    {# <div class="wrape-open-project">
+                        <div class="item-details-header open-project ">
+                            <div class=" align-items-center ">
+                                <a href="{{ path('compte_show',{'id': compte.id}) }}" class="btn btn-blue open-btn-blue btn-sm" >Ouvrir compte</a>
+                            </div>
+                        </div>
+                    </div>  #}
+                </div>
+            </div>
+        </div>
+        <div class="tab-content cs-tab-content">
+            <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                    <div class="col-lg-12 content-info">
+                        {{ form_start(form) }}
+                        <div class="item-details">
+                            <div class="item-details-body">
+                            {% if (compte.type.id == 4) %}
+                             {{ include('compte/type_compte/detail_partenaire.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                             {% else %}
+                            {{ include('compte/type_compte/compte_Investissement.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                            {# {{ include('compte/type_compte/compte_export.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+                            {#  {{ include('compte/type_compte/compte_DO.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+                             {% endif %}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ include('compte/form/hiden.html.twig') }}
+<script>
+    $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display","none");
+</script>
+
+{% else %}
+<div class="item-details">
+    <div class="item-details-header">
+        <div class="d-flex align-items-center">
+                    <span class="item-logo">
+                        <img src="{{ asset("uploads/"~ (compte.logo ? compte.logo.filename: 'logo_default.png')) }}" alt="" class="img-fluid">
+                    </span>
+                    <h3 class="item-title">{{ compte.nomCompte }}</h3>
+                    <div class="wrape-open-project">
+                        <div class="item-details-header open-project wrap-btn-open-project">
+                            <div class=" align-items-center pull-right">
+                                <a href="{{ path('compte_detail',{'id': compte.id}) }}" class="btn btn-blue open-btn-blue btn-sm" >Ouvrir compte</a>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <div class="item-details-body header-projet">
+        <div class="container-fluid item-details-header-body">
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="nav nav-tabs cs-nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#item-details-project" role="tab" aria-selected="true">Compte</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                <div class="wrape-type-project">
+                    <ul class="type-project">
+                        <li>
+                            <span {{ (compte.type.id == 1)?'class="active"':''  }} >E</span>
+                        </li>
+                        <li>
+                            <span {{ (compte.type.id == 2)?'class="active"':''  }} >I</span>
+                        </li>
+                        <li>
+                            <span {{ (compte.type.id == 3)?'class="active"':''  }}  >DO</span>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+                <div class="col-sm ">
+                    {# <div class="wrape-open-project">
+                        <div class="item-details-header open-project ">
+                            <div class=" align-items-center ">
+                                <a href="{{ path('compte_show',{'id': compte.id}) }}" class="btn btn-blue open-btn-blue btn-sm" >Ouvrir compte</a>
+                            </div>
+                        </div>
+                    </div>  #}
+                </div>
+            </div>
+        </div>
+        <div class="tab-content cs-tab-content">
+            <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                    <div class="col-lg-12 content-info">
+                        {{ form_start(form) }}
+                        <div class="item-details">
+                            <div class="item-details-body">
+                            {% if (compte.type.id == 4) %}
+                             {{ include('compte/type_compte/detail_partenaire.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                             {% else %}
+                            {{ include('compte/type_compte/compte_investisement_detail.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                            {# {{ include('compte/type_compte/compte_export.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+                            {#  {{ include('compte/type_compte/compte_DO.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+                             {% endif %}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ include('compte/form/hiden.html.twig') }}
+<script>
+    $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display","none");
+</script>
+
+{% endif %}

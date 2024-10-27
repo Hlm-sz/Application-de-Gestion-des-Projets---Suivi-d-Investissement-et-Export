@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'acces.New_acces'| trans }}
+{% endblock %}
+{% block sous_title %}
+	{{ 'acces.Acces'| trans }}
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="card">
+		<div class="card-header">
+			<a class="btn btn-primary" href="{{ path('acces_index') }}">{{ 'acces.Back_to_list'| trans }}</a>
+			{{ 'acces.New_acces'| trans }}
+		</div>
+		<div class="card-body">
+			{{ include('acces/_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}

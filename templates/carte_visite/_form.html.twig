@@ -1,0 +1,86 @@
+{{ form_start(form,{'attr':{'id':'card_visite'}}) }}
+<div class="row wrapper-g-projet-client ">
+
+	<div class="col-lg-12 content-g-projet">
+
+		<div class="header">
+			<ul>
+				<li class="active title-btn">Cartes visite</li>
+			</ul>
+		</div>
+
+		<div class="item-details">
+			<div class="item-details-body">
+
+				<div class="form-client">
+					<div class="tab-content cs-tab-content">
+						<div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+							<div class="container-fluid">
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											{{ form_row(form.fonction) }}
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											{{ form_row(form.profil) }}
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+
+											{{ form_row(form.tel) }}
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="form-group mb-0">
+
+											{{ form_row(form.tel2) }}
+										</div>
+									</div>
+
+									<div class="col-lg-3">
+										<div class="form-group mb-0">
+											{{ form_row(form.web) }}
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group mb-0">
+											{{ form_row(form.email) }}
+										</div>
+									</div>
+
+								</div>
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-6">
+										<div class="form-group mb-0">
+											{{ form_row(form.adresse) }}
+										</div>
+									</div>
+									<div class="col-lg-6" id="Organgroupe">
+										<label class="cs-label">Organisation</label>
+										<div class="form-group mb-4">
+										<select id="Organz" class="form-control" style="width: 210px !important;height: calc(2.25rem + 2px);" name="carte_visite[organisation]"></select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> <!-- end Form client -->
+
+			</div> {#  End Iteme detail body #}
+		</div> {# End Item detail #}
+
+	</div> {#  End content-g-projet #}
+	
+</div>
+
+		{# <button class="btn btn-btn-blue">{{ button_label|default('carteVisite.Save'| trans) }}</button> #}
+<button type="submit" class="btn btn-success" id="btn-send" value="Edit" style="display: none;">Submit</button>
+
+{{ form_end(form) }}
+
+
+	

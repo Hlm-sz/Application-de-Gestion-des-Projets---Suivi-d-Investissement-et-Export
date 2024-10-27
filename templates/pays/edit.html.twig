@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Pays
+{% endblock %}
+{% block sous_title %}
+	Pays
+{% endblock %}
+
+{% block body %}
+
+	<div class="card">
+		<div class="card-header">
+			<a class="btn btn-primary" href="{{ path('pays_index') }}">back to list</a>
+			Modifier Pays
+		</div>
+		<div class="card-body">
+			{{ include('pays/_form.html.twig', {'button_label': 'Update'}) }}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,219 @@
+<div class="item-details">
+    <div class="item-details-header">
+        <div class="d-flex align-items-center">
+            <span class="item-logo">
+                <div class="eventname">{{ event.nom|upper}}</div>
+            </span>
+            <div class="item-title align-items-center">
+                <span> {{ event.nom|capitalize }} </span> <span> &nbsp; /{{ event.annee }}</span>
+            </div>
+            <div class="wrape-open-project">
+                <div class="item-details-header open-project wrap-btn-open-project">
+                    <div class=" align-items-center pull-right">
+                        <a href="{{ path('events_detail',{'id': event.id}) }}"
+                            class="btn btn-blue open-btn-blue btn-sm">Ouvrir event</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-details-body ">
+        <div class="container-fluid item-details-header-body item-contact-header">
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="nav nav-tabs cs-nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#item-details-project" role="tab"
+                                aria-selected="true">Informations primaires</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <div class="wrape-type-project">
+                    </div>
+                </div>
+                <div class="col-sm ">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 content-info">
+                <div class="item-details">
+                    <div class="item-details-body container-fluid">
+                        {{ form_start(form, {'attr': {'id': 'form_event'}}) }}
+                        <div class="row align-items-start mb-4">
+                            <div class="col-lg-6">
+
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block required" for="event_nom">Nom de
+                                        l’événement</label>
+                                    {{ form_widget(form.nom,{'attr':{'disabled':'disabled'}}) }}
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block required" for="event_mois">Mois</label>
+
+                                    {{ form_widget(form.mois,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block required" for="event_annee">Année</label>
+
+                                    {{ form_widget(form.annee,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block  required" for="event_pays">Pays</label>
+
+                                    {{ form_widget(form.pays,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4  required" for="event_secteur">
+                                    <label class="cs-label d-block">Secteur</label>
+
+                                    {{ form_widget(form.secteur,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4  required" for="event_formatParticipation">
+                                    <label class="cs-label d-block">Format de participation</label>
+
+                                    {{ form_widget(form.formatParticipation,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4  required" for="event_Organisateur">
+                                    <label class="cs-label d-block">Organisateur</label>
+
+                                    {{ form_widget(form.Organisateur,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group mb-4  required" for="event_partenaires">
+                                    <label class="cs-label d-block">Partenaires</label>
+
+                                    {{ form_widget(form.partenaires,{'attr':{'disabled':'disabled'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group mb-4  required" for="event_typeEvenement">
+                                    <label class="cs-label d-block">Type d’événement</label>
+                                    <div class="radio-holder">
+                                        {{ form_widget(form.typeEvenement,{'attr':{'disabled':'disabled'}}) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">listeExportateur</label>
+                                    {{ form_widget(form.listeExportateurs,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">listeDo</label>
+                                    {{ form_widget(form.listeDO,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Liste Investisseurs</label>
+                                    {{ form_widget(form.listeInvestisseurs,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">DescripNombre Procpects Invesstisseurtion</label>
+                                    {{ form_widget(form.nombre_procpects_invesstisseur,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Nombre de BtoB (Business Dev – Investisseur)</label>
+                                    {{ form_widget(form.nombre_business_dev_investisseur,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Nombre de prospects DO</label>
+                                    {{ form_widget(form.nombre_prospects_do,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Nombre d’entreprises accompagnées</label>
+                                    {{ form_widget(form.nombre_entreprises_accompagnees,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Nombre de BtoB (Business Dev – DO)</label>
+                                    {{ form_widget(form.nombre_business_dev_do,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Nombre de BtoB (Exportateur – DO)</label>
+                                    {{ form_widget(form.nombre_exportateur_do,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label d-block">Description</label>
+
+                                    {{ form_widget(form.description,{attr: {rows: '10'},'attr':{'disabled':'disabled'} }) }}
+
+                                </div>
+                            </div>
+                        </div>
+                       {# <div style="display: none;">#}
+                            {#{{ form_widget(form.comptes) }}#}
+                        {#</div>#}
+                        
+                        {#<div style="display: none;">
+                            {{ form_widget(form.listeDo) }}
+                        </div>
+                        <div style="display: none;">
+                            {{ form_widget(form.listeInvestisseur) }}
+                        </div>#}
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display", "none");
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+    $('.eventname').nameBadge({
+        // boder options
+        border: {
+            color: '#ddd',
+            width: 1
+        },
+        // an array of background colors.
+        colors: ['#c5c5c5'],
+        // text color
+        text: '#fff',
+        // avatar size
+        size: 45,
+        // avatar margin
+        margin: 5,
+        // disable middle name
+        middlename: true,
+        // force uppercase
+        uppercase: false
+
+    });
+</script>

@@ -1,0 +1,354 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'projet.listes_projet'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('projets_dashbord') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'projet.titre_projet'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block header_search %}
+{% if secteur_active %}
+
+<form class="form-inline" action="{{ path('projets_filtre',{'id':secteur_active.id}) }}" method="get">
+	{% else %}
+	<form class="form-inline" action="{{ path('projets_filtre') }}" method="get">
+		{% endif %}
+		{# <input class="form-control mr-sm-2" name="search" type="search" placeholder="Chercher" aria-label="Chercher"> #}
+	</form>
+	{% endblock %}
+	{% block stylesheets %}
+	<style type="text/css">
+		/** Twitter Typeahead **/
+		.twitter-typeahead,
+		.typeahead,
+		.empty-message {
+			width: 100%;
+		}
+		.tt-menu {
+			background: white;
+			width: 100%;
+		}
+		.tt-suggestion {
+			overflow: hidden;
+			display: table;
+			width: 100%;
+			padding: 10px 10px;
+			border-bottom: 1px solid #e9ecf2;
+		}
+		/** Movie Card (Movie Suggestions) **/
+		.movie-card {
+			position: relative;
+			padding: 8px;
+		}
+		.movie-card-poster {
+			position: absolute;
+			top: 8px;
+			left: 8px;
+			width: 52px;
+			height: 52px;
+			border: 2px solid #ccd6dd;
+			border-radius: 5px;
+		}
+		.movie-card:hover .movie-card-poster {
+			border-color: #f5f8fa;
+		}
+		.movie-card-details {
+			min-height: 60px;
+			padding-left: 60px;
+		}
+		.movie-card-name,
+		.movie-card-year {
+			display: inline-block;
+		}
+		.movie-card-name {
+			font-weight: 700;
+		}
+		.movie-card-year {
+			color: #8899a6;
+		}
+
+		.movie-card:hover .movie-card-year {
+			color: #fff;
+		}
+
+		.movie-card-plot {
+			margin-top: 5px;
+			font-size: 14px;
+			line-height: 18px;
+		}
+
+		.movie-card:hover,
+		.movie-card.is-active {
+			color: #fff;
+			background: #0088CC;
+			cursor: pointer;
+		}
+		.empty-message {
+			position: relative;
+			padding: 10px;
+			font-size: 16px;
+			line-height: 30px;
+			text-align: center;
+		}
+	</style>
+	{% endblock %}
+	{% block navbar_right %}
+	<li class="nav-item">
+		<div class="dropdown">
+			<button class="btn btn-blue " type="button" id="dropdownMenuButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				<i class="fa fa-plus"></i>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			{% if app.user.groupe.nom == "Directeur Secteur Invest" %}
+                <a class="dropdown-item" href="{{ path('projets_new',{id : 1 }) }}">Projet investissement</a>
+            {% elseif app.user.groupe.nom == "Directeur Secteur Export et sourcing" %}
+            <a class="dropdown-item" href="{{ path('projets_new',{id : 2 }) }}">Projet sourcing</a>
+			    <a class="dropdown-item" href="{{ path('projets_new',{id : 3 }) }}">Projet export</a>
+            {% else %}
+                <a class="dropdown-item" href="{{ path('projets_new',{id : 1 }) }}">Projet investissement</a>
+			    <a class="dropdown-item" href="{{ path('projets_new',{id : 2 }) }}">Projet sourcing</a>
+			    <a class="dropdown-item" href="{{ path('projets_new',{id : 3 }) }}">Projet export</a>
+            {% endif %}
+			</div>
+		</div>
+	</li>
+	{% if is_granted('EXTRACTIONS_PROJETS', type_projet) %}
+		<a class="btn btn-blue" href="{{ path('projets_export') }}"> <i class="fa fa-download"></i> </a> 
+    {% endif %}
+
+	{% endblock %}
+	{% block navbar_left %}
+	<li class="nav-item nav-item-secteur">
+		<div class="dropdown">
+			<button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				<span
+					style="border-bottom: 3px solid {{ secteur_active ? secteur_active.color : '#fff' }}">{{ secteur_active ? secteur_active.nom : 'Secteurs' }}</span>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				{% if secteur_active %}
+				<a class="dropdown-item list-secteurs" href="#" data-secteur="">Secteurs</a>
+				{% endif %}
+
+				{% for secteur in listeSecteurs %}
+
+				{% if secteur_active and secteur_active.id == secteur.id %}
+				<a class="dropdown-item d-none list-secteurs" data-secteur="{{ secteur.id }}"
+					href="#">{{ secteur.nom }}</a>
+				{% else %}
+				<a class="dropdown-item list-secteurs" data-secteur="{{ secteur.id }}" href="#">{{ secteur.nom }}</a>
+				{% endif %}
+				{% endfor %}
+				{# {% for type in type_projet %}
+					<a class="dropdown-item" href="{{ path('projets_new',{id : type.id }) }}">{{ type.nom }}</a>
+				{% endfor %} #}
+			</div>
+		</div>
+	</li>
+	{% endblock %}
+	{% block body %}
+
+	<div class="row main main-dashboard">
+		<div class="col-md-1  wrape-filter-project">
+			<div class="filter-project">
+				<a class="btn-filtre" onclick="document.querySelector('.main-projects').style.transition='all .3s'; document.querySelector('.main-projects').style.transform == 'translateX(0px)' || !document.querySelector('.main-projects').style.transform ? (document.querySelector('.main-projects').style.transform = 'translateX(310px)') : (document.querySelector('.main-projects').style.transform = 'translateX(0)')">
+					<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+				</a>
+				<div class="sidebare-filter ">
+					{{ form_start(form,{'attr':{'id':'form_filtre'}}) }}
+					{{ form_widget(form) }}
+					<button style="width: 100%" class="btn btn-btn-blue" id="filtre">Filtre</button>
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-11 main-projects dash">
+				<div class="row wrapper">
+					{% set countProjet = 0  %}
+					{% for secteur in secteurs %}
+					{% if secteur.projets %}
+					{% set countProjet = 1  %}
+					<div class="col-lg-3  wrape-project">
+						<div class="header project-topsection" style="border-bottom: 6px solid {{ secteur.color }}">
+							<h1>{{ secteur.nom }} ({{ secteur.projets |length }})</h1>
+						</div>
+						<div class="content parent-ajax">
+							<ul class="list-group " id="list-project">
+								{% for projet in secteur.projets %}
+								<li class="list-group-item itm scroll-dashbord" data-source="{{ path('projets_show', {'id': projet.id }) }}">
+									<span class="random-color" id="random-color"></span> {{ projet.titre }}
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+				{% if countProjet == 0 %}
+				<div>
+					<div class="col-lg-12  body-container">
+						<div class="container">
+							<div class="item-details-empty">
+								<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+								<h3>Aucun projet trouvé</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% else %}
+				<div class="detail-projects   ">
+					<div id="item-details-wrapper" >
+
+					</div>
+				</div>
+				{% endif %}
+
+		</div >
+	</div>
+	<button class="scroltop" >
+	<i class="fa fa-angle-double-up"></i>
+	</button>
+	{% block javascripts %}{% endblock %}
+	<script>
+		jQuery(document).ready(function ($) {
+			$(document).on('click', '.list-secteurs', function (e) {
+				e.preventDefault();
+				var secteur = $(this).data('secteur');
+				$('#secteur').val(secteur);
+				//console.log(source);
+				$("#telecharger").remove();
+				$('#form_filtre').submit();
+			})
+			$(document).on('click', '.download', function (e) {
+				e.preventDefault();
+				$('#form_filtre').append(
+					'<input type="hidden" id="telecharger" name="telecharger" value="1">');
+				$('#form_filtre').submit();
+			})
+			$(document).on('click', '.tri', function (e) {
+				e.preventDefault();
+				var tri = $(this).data('tri');
+				$('#tri').val(tri);
+				$("#telecharger").remove();
+				// console.log(tri);
+				$('#form_filtre').submit();
+			})
+			$("#filtre").click(function (e) {
+				e.preventDefault();
+				$("#telecharger").remove();
+				changeAutocomplate();
+				$("#form_filtre").submit();
+
+			});
+
+			function changeAutocomplate() {
+				if ($('#compte_filtre').val() == '') {
+					//alert($('#compte_filtre').val());
+					$('#compte').val('');
+				}
+				if ($('#user_filtre').val() == '') {
+					//alert($('#user_filtre').val());
+					$('#gerePar').val('');
+				}
+
+			}
+
+		})
+	</script>
+	<script type="text/javascript" src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/typeahead.jquery.min.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var states = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.whitespace,
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: {
+					url: "{{ path('handle_search_compte') }}/%QUERY%",
+					wildcard: '%QUERY%',
+					filter: function (states) {
+						return $.map(states, function (state) {
+							return {
+								state_id: state.id,
+								nomCompte: state.nomCompte,
+							}
+						})
+					}
+				}
+			})
+			states.initialize();
+
+			$('#compte_filtre').typeahead({
+				hint: true
+			}, {
+				name: 'states',
+				source: states.ttAdapter(),
+				display: 'nomCompte',
+				templates: {
+					suggestion: function (data) {
+						return `
+                                <div>
+                                    <strong>` + data.nomCompte + `</strong>
+                                </div>
+                       `
+					}
+				}
+			})
+			$('#compte_filtre').bind('typeahead:select', function (ev, suggestion) {
+				$("#compte").val(suggestion.state_id);
+			});
+		})
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var users = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.whitespace,
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: {
+					url: "{{ path('handle_search_users') }}/%QUERY%",
+					wildcard: '%QUERY%',
+					filter: function (users) {
+						return $.map(users, function (user) {
+							return {
+								user_id: user.id,
+								nomUser: user.prenom + ' ' + user.nom,
+							}
+						})
+					}
+				}
+			})
+			users.initialize();
+
+			$('#user_filtre').typeahead({
+				hint: true
+			}, {
+				name: 'users',
+				source: users.ttAdapter(),
+				display: 'nomUser',
+				templates: {
+					suggestion: function (data) {
+						return `
+                                <div>
+                                    <strong>` + data.nomUser + `</strong>
+                                </div>
+                            `
+					}
+				}
+			})
+			$('#user_filtre').bind('typeahead:select', function (ev, suggestion) {
+				//console.table( suggestion.state_id);
+				$("#gerePar").val(suggestion.user_id);
+			});
+		})
+	</script>
+
+	{% endblock %}

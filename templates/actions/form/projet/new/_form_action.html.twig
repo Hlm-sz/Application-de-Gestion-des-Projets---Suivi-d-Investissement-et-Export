@@ -1,0 +1,127 @@
+<div class="col-lg-12 content-info">
+
+
+    <div class="item-details">
+        <div class="row">
+            <div class="col-lg-12 content-info content-info-contact ">
+                <div class="header">
+                    <ul>
+                        <li class="title-btn linkInfo capitalize active" id="#info-parte"
+                            onclick="openInfo(event, 'info-parte')">Action Partenaire</li>
+                        {# <li class="title-btn linkInfo capitalize" id="#info-action"
+                            onclick="openInfo(event, 'info-action')">Action Réalisée</li> #}
+                    </ul>
+                </div>
+                <div class="item-details">
+
+                    <div class="item-details-body item-details-contact item-bg-none">
+                        <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed"
+                            id="info-parte">
+                            <div class="tab-pane fade show active" id="item-details" role="tabpanel">
+                                <div class="container-fluid">
+                                    <div class="row align-items-end mb-4">
+                                    <div class="col-lg-3">
+                                        <div class="form-group mb-2">
+                                    <label class="cs-label">{{ form_label(form.compte) }}</label>
+                                    {{ form_widget(form.compte) }}
+                                    </div>
+                                    </div>
+                                      
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Nom de l’action</label>
+
+                                                {{ form_widget(form.Nomaction) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Responsable de l’Action (AMDIE)</label>
+                                                {{ form_widget(form.ResponsableAction,{'value' : app.user.nomcomplet}) }}
+                                            </div>
+                                        </div>
+                                        {# <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Nom Partenaire</label>
+                                                {{ form_widget(form.PartenaireAction) }}
+                                            </div>
+                                        </div> #}
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Interlocuteur Principal (Partenaire)</label>
+                                                {{ form_widget(form.InterlocuteurPrincipal) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-4">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Date</label>
+                                                {{ form_widget(form.Date_interaction) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Action</label>
+                                                {{ form_widget(form.Action_interaction) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Objet</label>
+                                                {{ form_widget(form.Objet_interaction) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Détails</label>
+                                                {{ form_widget(form.Detail_interaction) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#  End tab-content One #}
+{# 
+                        <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed"
+                            id="info-action" style="display: none;">
+                            <div class="tab-pane fade show active" id="item-details" role="tabpanel">
+                                <div class="container-fluid">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-4">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Date</label>
+                                                {{ form_widget(form.Date_reali) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Action</label>
+                                                {{ form_widget(form.Action_realise) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Objet</label>
+                                                {{ form_widget(form.ObjetComptes) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Détails</label>
+                                                {{ form_widget(form.detail_libre_realise) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> #}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<div style="display: none;">
+{{ form_widget(form.gere_par) }}
+{{ form_widget(form.etatProjet) }}
+{{ form_widget(form.GPAC) }}
+{{ form_widget(form.compte) }}
+{{ form_widget(form.compte) }}
+
+</div>

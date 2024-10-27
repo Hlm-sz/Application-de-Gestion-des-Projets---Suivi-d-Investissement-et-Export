@@ -1,0 +1,216 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Event;
+use App\Repository\CompteRepository;
+use App\Repository\SecteurRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityManagerInterface;
+
+
+
+class EventType extends AbstractType
+{
+
+    private $entityManager;
+    private $compteRepository;
+
+
+    public function __construct(EntityManagerInterface $entityManager,CompteRepository $compteRepository,SecteurRepository $secteurRepository)
+    {
+        $this->entityManager = $entityManager;
+        $this->compteRepository = $compteRepository;
+        $this->secteurRepository = $secteurRepository;
+
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('nom',null,['label_format' => 'event.Nom_event',
+            'required'   => true])
+            ->add('mois',ChoiceType::class,[
+                'choices' => [
+                    'Janvier' => 'Janvier',
+                    'Février' => 'Février',
+                    'Mars' => 'Mars',
+                    'Avril' => 'Avril',
+                    'Mai' => 'Mai',
+                    'juin' => 'Juin',
+                    'Juillet' => 'Juillet',
+                    'Août' => 'Août',
+                    'Septembre' => 'Septembre',
+                    'Octobre' => 'Octobre',
+                    'Novembre' => 'Novembre',
+                    'Décembre' => 'Décembre'
+                ],
+                'label_format' => 'event.Mois',
+            ])
+            ->add('annee',ChoiceType::class,[
+                'choices' => [
+                    '2020' => '2020',
+                    '2021' => '2021',
+                    '2022' => '2022',
+                    '2023' => '2023',
+                    '2024' => '2024',
+                    '2025' => '2025',
+                    '2026' => '2026',
+                    '2027' => '2027',
+                    '2028' => '2028',
+                    '2029' => '2029',
+                    '2030' => '2030',
+                ],
+                'label_format' => 'event.Annee',
+            ])
+            ->add(
+                'pays',
+                EntityType::class,
+                [
+                    'label_format' => 'event.Pays',
+                    'class' => 'App\Entity\Pays',
+                    'choice_label' => 'nom',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('p')
+                            ->andWhere('p.isDeleted NOT IN (:isDeleted)')
+                            ->setParameter('isDeleted', true);
+                    }
+                ]
+
+            )->add('documet', FileType::class,array('data_class' => null,'required' => false))
+
+            // ->add('secteur',
+            //     EntityType::class,
+            //     [
+            //         'label_format' => 'event.Secteur',
+            //         'class' => 'App\Entity\Secteur',
+            //         'choice_label' => 'nom',
+            //         'query_builder' => function (EntityRepository $er) {
+            //             return $er->createQueryBuilder('s')
+            //                 ->andWhere('s.isDeleted NOT IN (:isDeleted)')
+            //                 ->setParameter('isDeleted', true);
+            //         },
+                    
+            //     ]
+            // )
+            ->add("secteur", ChoiceType::class,
+                [
+                    "label" => "event.Secteur",
+                    "choices" => $this->getSecteurs(),
+                    "attr" => array("class" => "form-control"), 
+                    'multiple' => true
+                    // 'data' => $this->getSecteurs()
+                ]
+            )
+            ->add('formatParticipation',ChoiceType::class,[
+                'choices'=>[
+                    'Salon spécialisé'=>'Salon spécialisé',
+                    'Foire et exposition internationale'=>'Foire et exposition internationale',
+                    'institutionnel (Forum; conférence)'=>'institutionnel (Forum; conférence)',
+                    'Convention d’affaire'=>'Convention d’affaire',
+                    'Suppliers days'=>'Suppliers days',
+                    'Incoming Visit'=>'Incoming Visit',
+                    'Road Show'=>'Road Show',
+                    'BtoB'=>'BtoB',
+                ],
+                'label_format' => 'event.Format_participation',
+            ])
+            ->add('Organisateur',ChoiceType::class,
+
+                [
+                    'choices'=> [
+                        'AMDIE'=>'AMDIE',
+                        'Partenaire'=>'Partenaire',
+                        'Autre'=>'Autre'
+                    ],
+                    'label_format' => 'event.Organisateur',
+                ]
+
+            )
+            // ->add('partenaires',
+            //     EntityType::class,
+            //     [
+            //         'label_format' => 'event.Comptes',
+            //         'class' => 'App\Entity\Compte',
+            //         'choice_label' => 'nomCompte',
+            //         'multiple' => true,
+            //         'query_builder' => function (EntityRepository $er) {
+            //             return $er->createQueryBuilder('c')
+            //                 ->andWhere('c.type in (:type)')
+            //                 ->setParameter('type',4)
+            //                 ->andWhere('c.isDeleted NOT IN (:isDeleted)')
+            //                 ->setParameter('isDeleted', true);
+            //         }
+            //     ]
+            // )
+            ->add("partenaires", ChoiceType::class,
+                    ["label" => "partenaires",
+                    "choices" => $this->getPartenaires(),
+                    "attr" => array("class" => "form-control"), 
+                    'multiple' => true,
+                    ])
+            
+            ->add('nom',null,[
+                'label_format' => 'event.Nom_event',])
+            ->add('typeEvenement', ChoiceType::class, [
+                'choices'  => [
+                    'Investissement' => 'Investissement',
+                    'Export' => 'Export',
+                    'Institutionnel' => 'Institutionnel'
+                ],
+                'multiple'=> true,
+            ])
+            
+            ->add('description')
+
+            ->add('comptes',
+                EntityType::class,
+                [
+                    'label_format' => 'event.Comptes',
+                    'class' => 'App\Entity\Compte',
+                    'choice_label' => 'nomCompte',
+                    'multiple' => true,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                            ->andWhere('c.type in (:type)')
+                            ->setParameter('type',array(1,2,3))
+                            ->andWhere('c.isDeleted NOT IN (:isDeleted)')
+                            ->setParameter('isDeleted', true);
+                    }
+                ]
+            )
+        ;
+    }
+    private function getPartenaires() {
+    $results = $this->compteRepository->getListsPartenairesEve();
+        $PartUnit = array();
+        $PartUnits = array();
+        foreach($results as $part){
+            $PartUnit[$part->getNomCompte()] = $part->getNomCompte();
+         }
+        return $PartUnit;
+    }
+    private function getSecteurs() {
+        $results = $this->secteurRepository->ListsSecteurs();
+            $PartUnit = array();
+            $PartUnits = array();
+            foreach($results as $part){
+                $PartUnit[$part->getNom()] = $part->getNom();
+            }
+            return $PartUnit;
+    }
+
+    
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Event::class,
+        ]);
+    }
+}

@@ -1,0 +1,41 @@
+{# Start header third #}
+<div class="third-header col-md-12">
+	<div class="row">
+		<div class="col-md-7">
+			<ul class="etapes steps">
+
+				<li id="prioritaire-btn">
+					<a href="#" class="active">
+						<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+					</a>
+					<label class="active" for="">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						Partenaire
+					</label>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<ul class="GPAC">
+				<li></li>
+			</ul>
+		</div>
+		<div class="col-md-2 mt100">
+
+			<ul class="img-profil">
+				<li>
+					<img src="{{ partenaire.responsableContact ? (partenaire.responsableContact.photo ? asset('uploads/'~partenaire.responsableContact.photo) : asset('images/image-profile.png') ) : asset('images/image-profile.png') }}" alt="">
+					<div class="info-profil">
+						<strong>Géré par :</strong><br>
+						<span>{{ form_widget(form.responsableContact,{option:partenaire.responsableContact}) }}</span>
+					</div>
+					<div class="param-profil">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- End Profil -->
+	</div>
+</div>
+{# Enddddd #}

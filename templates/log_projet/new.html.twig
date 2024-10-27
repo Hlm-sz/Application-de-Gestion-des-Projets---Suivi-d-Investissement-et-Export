@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'projet.listes_projet'| trans }}
+{% endblock %}
+{% block sous_title %}
+    {{ 'projet.titre_projet'| trans | upper }}
+{% endblock %}
+{% block navbar_right %}
+
+    <a class="btn btn-blue" id="btn_submit" href="#">
+        <i class="fa  fa-save"></i>
+    </a>
+{% endblock %}
+{% block navbar_left %}
+
+    <a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="card">
+		<div class="card-body new-activite">
+			<div class="conatiner">
+				<div class="row">
+
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						{{ include('log_projet/_form.html.twig') }}
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    {% block javascripts %}
+        <script>
+            $("#btn_submit").click(function (){
+
+                $( "#form_projet_activite" ).submit();
+            });
+        </script>
+
+    {% endblock %}
+{% endblock %}
+

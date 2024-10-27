@@ -1,0 +1,135 @@
+framework:
+    workflows:
+        status_projet: 
+            type: 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'multiple_state'
+                arguments:
+                    - 'status'
+            supports:
+                - App\Entity\Projets
+            initial_marking: create
+            places:
+                - create
+                - Intérêt
+                - Décision
+                - Fermé
+            transitions:
+                Intérêt:
+                    from: [create,Décision,Fermé]
+                    to: Intérêt
+                Décision:
+                    from: [create,Intérêt,Fermé]
+                    to: Décision
+                Fermé:
+                    from: [create,Décision,Intérêt]
+                    to: Fermé
+
+
+        status_compte:
+            type: 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'multiple_state'
+                arguments:
+                    - 'status'
+            supports:
+                - App\Entity\Compte
+            initial_marking: create
+            places:
+                - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+            transitions:
+                !php/const App\Workflow\Transition\CompteTransitions::TO_IDENTIFIER:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER
+                
+                !php/const App\Workflow\Transition\CompteTransitions::TO_CONSIDERATON:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON
+
+                !php/const App\Workflow\Transition\CompteTransitions::TO_PROSPECTION:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::PROSPECTION
+
+                !php/const App\Workflow\Transition\CompteTransitions::TO_INTERET:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::INTERET
+
+                !php/const App\Workflow\Transition\CompteTransitions::TO_DECISION:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::DECISION
+
+                !php/const App\Workflow\Transition\CompteTransitions::TO_SUIVI:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+                    to: !php/const App\Workflow\Status\CompteStatuses::SUIVI
+
+                !php/const App\Workflow\Transition\CompteTransitions::TO_FERME:
+                    from:
+                        - !php/const App\Workflow\Status\CompteStatuses::CREATE #create
+                        - !php/const App\Workflow\Status\CompteStatuses::IDENTIFIER #identifier
+                        - !php/const App\Workflow\Status\CompteStatuses::CONSIDERATON #consideration
+                        - !php/const App\Workflow\Status\CompteStatuses::PROSPECTION #prospection
+                        - !php/const App\Workflow\Status\CompteStatuses::INTERET #interet
+                        - !php/const App\Workflow\Status\CompteStatuses::DECISION #decision
+                        - !php/const App\Workflow\Status\CompteStatuses::SUIVI #suivi
+                        - !php/const App\Workflow\Status\CompteStatuses::FERME #ferme
+
+                    to: !php/const App\Workflow\Status\CompteStatuses::FERME #ferme

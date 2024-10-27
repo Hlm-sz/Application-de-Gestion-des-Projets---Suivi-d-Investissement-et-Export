@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+<div class="permission">
+{{ form_widget(form) }}
+</div>
+<button class="btn btn-btn-blue">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+<script>
+$(document).ready(function() {
+ 	$('#groupe_roles').select2();
+});
+</script>

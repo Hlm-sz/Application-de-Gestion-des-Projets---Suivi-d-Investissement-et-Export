@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{'contact.listes_contact'| trans}}
+{% endblock %}
+
+{% block sous_title %}
+	{{'contact.Contacts'| trans | upper }}
+{% endblock %}
+
+{% block header_search %}
+	{% if secteur_active %}
+		<form class="form-inline" action="{{ path('contact_site_amdie',{'id':secteur_active.id}) }}" method="get">
+	{% else %}
+			<form class="form-inline" action="{{ path('contact_site_amdie') }}" method="get">
+	{% endif %}
+		{# <input class="form-control mr-sm-2" name="search" type="search" placeholder="Chercher" aria-label="Chercher"> #}
+	</form>
+{% endblock %}
+{% block navbar_right %}
+
+{% endblock %}
+{% block navbar_left %}
+
+	<li class="nav-item nav-item-secteur">
+		<div class="dropdown">
+			<button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span style="border-bottom: 3px solid {{ secteur_active ? secteur_active.color : 'red' }}">{{ secteur_active ? secteur_active.nom : 'Tous' }}</span>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				{% if secteur_active %}
+					<a class="dropdown-item list-secteurs" href="{{ path('contact_site_amdie') }}" data-secteur="">Tous</a>
+				{% endif %}
+
+				{% for secteur in listeSecteurs %}
+
+					{% if secteur_active and secteur_active.id == secteur.id %}
+						<a class="dropdown-item d-none list-secteurs" data-secteur="{{ secteur.id }}" href="{{ path('contact_site_amdie',{'id':secteur.id}) }}">{{ secteur.nom }}</a>
+					{% else %}
+						<a class="dropdown-item list-secteurs" data-secteur="{{ secteur.id }}" href="{{ path('contact_site_amdie',{'id':secteur.id}) }}">{{ secteur.nom }}</a>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</li>
+{% endblock %}
+{% block body %}
+
+
+	<div style="margin-left: 5px;">
+
+		{% set countProjet = 0  %}
+
+		{% for secteur in secteurs %}
+			{% if secteur.contacts %}
+				{% set countProjet = 1  %}
+				<div class="col-lg-3 notification" style="float:left;margin-left: 5px">
+					<div class="row">
+						<div class="col-lg-12 wrape-list-project">
+
+					<div class="items-container items-container-project ">
+						<div class="items-container-header" style="background-color: {{ secteur.color }}">
+							<h3>{{ secteur.nom }} | {{ secteur.contacts |length }}</h3>
+						</div>
+						<div class="scroll_container_project">
+							<div class="scroll_content_project parent-ajax">
+								<ul class="list-group">
+
+									{% for contact in secteur.contacts %}
+										<li class="list-group-item scroll-btn" data-source="{{ path('contact_show', {'id': contact.id }) }}" >{{ contact["prenom"] ~' '~ contact["nom"] }}</li>
+									{% endfor %}
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+						</div>
+
+						</div>
+			{% endif %}
+		{% endfor %}
+
+		{% if countProjet == 0 %}
+			<div>
+				<div class="col-lg-12 offset-4 body-container">
+					<div id="item-details-wrapper" style="margin-left: 15px;">
+						<div class="item-details-empty" style="margin: 0px !important;">
+							<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+							<h3>Aucun projet trouvé</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="col-lg-9 offset-3 body-container">
+					<div id="item-details-wrapper" style="margin-left: 15px;">
+
+					</div>
+			</div>
+		{% endif %}
+	</div>
+
+
+	{% block javascripts %}{% endblock %}
+
+{% endblock %}

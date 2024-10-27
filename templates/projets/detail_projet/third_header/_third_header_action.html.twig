@@ -1,0 +1,92 @@
+
+	{# Start header third #}
+	<div class="third-header projets col-lg-12">
+		<div class="row">
+			<div class="col-lg-8">
+			{% if is_granted('CHANGER_LE_STATUT_PROJET', projet) %}
+
+				<ul class="etapes steps block-status" style="display: none">
+					{% for status in list_status %} 
+						<li>
+							{% if status.id == projet.etatProjet.id %}
+								<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}" class="active">
+									<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+								</a>
+									<label class="active" for="{{ status.nom }}">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								{{ status.nom }}
+							</label>
+							{% else %}
+								<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}"></a>
+									<label for="{{ status.nom }}">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								{{ status.nom }}
+							</label>
+							{% endif %}
+
+
+						</li>
+					{% endfor %}
+
+					<div class="last-step pull-right">
+					<li style="display: none">
+
+						{% if projet.gpac %}
+							<a href="{{ path('projet_change_gpac',{'isgpac':0,'projet':projet.id}) }}" class="active">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label class="active" for="">
+							<i class="fa fa-sort-asc" aria-hidden="true"></i>
+							GPAC
+							</label>
+						{% else %}
+							<a href="{{ path('projet_change_gpac',{'isgpac':1,'projet':projet.id}) }}"></a>
+							<label for="">
+							<i class="fa fa-sort-asc" aria-hidden="true"></i>
+							GPAC
+						</label>
+						{% endif %}
+
+					</li>
+					</div>
+
+				</ul>
+				{% endif %}
+			</div>
+			<div class="col-lg-2">
+				<ul class="etapes steps block-GPAC" style="display: none">
+					<li id="projet-prioritaire-btn"><a href="" >S</a>
+					<i class="fa fa-sort-asc" aria-hidden="true"></i>
+					<span class="trace" alt="Prioritaire" title="Prioritaire">
+							 <img src="{{ asset('images/icons/Trace.svg') }}" alt="">
+					</span>
+					</li>
+					<li  id="projet-confidentiel-btn"><a href="" >C</a>
+					<i class="fa fa-sort-asc" aria-hidden="true"></i>
+					<span class="lock" alt="Confidentiel" title="Confidentiel">
+							<img src="{{ asset('images/icons/lock.svg') }}" alt="">
+					</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-2 mt100">
+				<ul class="etapes steps block-wrap-profil">
+					<li class="img-profil">
+
+						<img  src="{{ projet.GerePar ? (projet.GerePar.photo ? asset('uploads/'~projet.GerePar.photo) : asset('images/image-profile.png') ) : asset('images/image-profile.png') }}" alt="">
+						<div class="info-profil">
+							<strong>Géré par :</strong>
+							<span>{{ form_widget(form.gere_par) }}</span>
+
+						</div>
+						<div class="param-profil">
+							<span></span>
+						</div>
+					</li>
+				</ul>
+			</div> <!-- End Profil -->
+
+		</div>
+	</div>
+	{# Enddddd #}

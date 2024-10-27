@@ -1,0 +1,106 @@
+<div class="content-info">
+    <div class="header">
+    <ul class="form-decision">
+		<li class="active title-btn">Phase Décision</li>
+    </ul>
+    </div>
+    
+    <div class="item-details " >
+
+        <div class="item-details-body ">
+
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayedex">
+                <div class="tab-pane fade show active"role="tabpanel">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-4">
+                                    {{ form_label(form.date_decision) }}
+                                    {{ form_widget(form.date_decision) }}
+                            </div>
+                            <label class="cs-label mb-0">Décision</label>
+                             
+                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                        <label class="cs-label mb-0">Abouti</label>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                         <label class="cs-label mb-0">Non Abouti</label>
+                                        {{ form_row(form.NAbouti, {label_attr: {class: 'switch-custom'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              
+                        </div>
+                        <div class="col-lg-8">
+                             <div class="form-group mb-0">
+                                <label class="cs-label">{{ form_label(form.details_libres_decision) }}</label>
+                                {{ form_widget(form.details_libres_decision,{'attr':{'rows':5}}) }}
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+            </div> {#  End tab-content One #}
+           
+        </div> {# End Iteme detail Body #}
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade decision_model" id="decisionmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayedex">
+                <div class="tab-pane fade show active"role="tabpanel">
+                <div class="divider30"></div>
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                                <label class="cs-label mb-0">Transféré au Ministère</label>
+                                {{ form_row(form.Transfere_au_Ministere, {label_attr: {class: 'switch-custom'} }) }}
+                            </div>
+                           <div class="feee">
+                            <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                                <label class="cs-label mb-0">Convention</label>
+                                {{ form_row(form.Convention, {label_attr: {class: 'switch-custom'} }) }}
+                            </div>
+                             <div class="form-group con_decision mb-0">
+                                 {{ form_widget(form.date_signature_convention) }}
+                            </div>
+                           </div>
+                            <div class="divimb4"></div>
+                         </div>
+                        <div class="col-lg-4">
+                        <div class="form-group mb-2 d-flex form-control justify-content-between align-items-center">
+                                <label class="cs-label mb-0">Partenaire</label>
+                                {{ form_row(form.Partenaire, {label_attr: {class: 'switch-custom'} }) }}
+                            </div>
+                            <div class="feee">
+                            <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                                <label class="cs-label mb-0">Autre document</label>
+                                {{ form_row(form.Autre_document, {label_attr: {class: 'switch-custom'} }) }}
+                            </div>
+                            <div class="form-group con_decision mb-4">
+                                     {{ form_widget(form.type_specifier) }}
+                                      {{ form_widget(form.date_PV_decision) }}
+                            </div>
+                            </div>
+                        </div>
+                         <div class="col-lg-4">
+                             <div class="form-group form-control mb-2 d-flex justify-content-between align-items-center">
+                                <label class="cs-label mb-0">Réalisé</label>
+                                {{ form_row(form.Realise, {label_attr: {class: 'switch-custom'} }) }}
+                            </div>
+                            <div class="divimb444"></div>
+                         </div>
+                    </div>
+                     
+                </div>
+            </div> {#  End tab-content One #}
+</div>

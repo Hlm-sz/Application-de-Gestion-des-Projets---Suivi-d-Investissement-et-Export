@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="col-lg-4">
+		<div class="form-group mb-4">
+			<label class="cs-label">Capital</label>
+			{{ form_widget(form.capital) }}
+
+		</div>
+		<div class="form-group mb-4">
+			<div class="form-group mb-4">
+				<label class="cs-label">Origine du capital</label>
+				{{ form_widget(form.origine_capital) }}
+			</div>
+		</div>
+				<label class="cs-label">Actionnaires</label>
+			<div class="form-group md-6">
+				{{ form_widget(form.Actionnaires ,{'attr': {'class': 'actionnaires'}}) }}
+			</div>
+		<div class="form-group">
+			<label class="cs-label">Autres documents</label>
+			<label class="cs-input-file mb-2">
+				{{ form_widget(form.Documents) }}
+				
+
+			</label>
+			<label class="cs-input-file" style="display:none">
+				{{ form_widget(form.Documents_1) }}
+
+			</label>
+		</div>
+		{% for data in compte.compteData %}
+		{% if(data.cle == "Documents") %}
+			<a  href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+			{{data.value}}
+			</a> <span class="" id="{{data.id}}" onclick="confirmeRemoveDocModal(this.id)">
+                <i class="fa fa-trash"></i>
+            </span>
+		{% endif %}
+		{% endfor %}
+	</div>
+	<div class="col-lg-8">
+		<div class="">
+			<div class="row">
+				<div class="form-group col-lg-4">
+					<label class="cs-label">Effectif</label>
+					{{ form_widget(form.effectif) }}
+				</div>
+				
+				<div class="form-group col-lg-8">
+					<label class="cs-label">Présentation</label>
+					<label class="cs-input-file mb-2">
+						{{ form_widget(form.presentation) }}
+
+					</label>
+					{% for data in compte.compteData %}
+					{% if(data.cle == "presentation") %}
+						<a  href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+						{{data.value}}
+						</a> <span class="" id="{{data.id}}" onclick="confirmeRemoveDocModal(this.id)">
+							<i class="fa fa-trash"></i>
+						</span>
+					{% endif %}
+					{% endfor %}
+				</div>
+				
+			</div>
+		</div>
+		<div class=" actionaire">
+			<div class="row">
+				<div class="form-group contact col-lg-4">
+				<div class="form-group md-4">
+					<label class="cs-label">Tag</label>
+					{{ form_widget(form.tag3) }}
+				</div>
+				
+				</div>
+				<div class="form-group col-lg-8">
+					<label class="cs-label">Adresse</label>
+					{{ form_widget(form.Adresse) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+    $('.actionnaires').select2({
+		width: '100%'
+	});
+});
+</script>

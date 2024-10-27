@@ -1,0 +1,1085 @@
+projets:
+  '1':
+    'name': 'inv'
+    'forms':
+      '1':
+        'name': 'form-compte'
+        fields:
+
+          # '4':
+          #   'name': 'pays_siege'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'pays de siége'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '5':
+          #   'name': 'pays_implantation_succursales'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Pays d’implantations / Succursales"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+             # 'attr':
+             #   'class': 'select2 form-control'
+             #   'style': 'width: 100%'
+             #   'multiple': 'multiple'
+
+          # '6':
+          #   'name': 'Secteur'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Secteurs'
+          #     'mapped': false
+          #     'class': 'App\Entity\Secteur'
+          #     'choice_label': 'nom'
+
+          # '7':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '8':
+          #   'name': 'centre_decision'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Centre de décision'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '9':
+          #   'name': 'description_projet'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          '10':
+            'name': "CA_Export"
+            'type': IntegerType
+            'options':
+              'label': "CA à l’Export (Millions /Dhs) "
+              'mapped': false
+              'required': false
+
+          # '11':
+          #   'name': "chiffre_affaires"
+          #   'type': null
+          #   'options':
+          #     'label': "Chiffre d’affaires (Millions/DHs) "
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          # '12':
+          #   'name': "detail_libre"
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détail libre'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 10
+          # '13':
+          #   'name': 'tag_1'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 1'
+          #     'mapped': false
+          #     'choices': { 'Exportateur':'Exportateur','Investisseur': 'Investisseur'}
+          # '14':
+          #   'name': 'tag_2'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 2'
+          #     'mapped': false
+          #     'choices': { 'Investisseur':'Investisseur','DO': 'DO'}
+          '15':
+            'name': "description_activite"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description de l’activité'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          # '16':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'required': false
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '17':
+          #   'name': "precision"
+          #   'type': null
+          #   'options':
+          #     'label': "Précision"
+          #     'mapped': false
+
+
+      '2':
+        'name': 'form-autre-info'
+        fields:
+          '1':
+            'name': 'capital'
+            'type': IntegerType
+            'options':
+              'label': 'Capital'
+              'mapped': false
+              'required': false
+
+          '2':
+            'name': 'effectif'
+            'type': IntegerType
+            'options':
+              'label': 'Effectif'
+              'mapped': false
+              'required': false
+
+          '3':
+            'name': 'presentation'
+            'type': 'FileType'
+            'options':
+              'label': 'Présentation'
+              'mapped': false
+              'required': false
+
+          '4':
+            'name': 'origine_capital'
+            'type': null
+            'options':
+              'label': 'Origine du capital'
+              'mapped': false
+
+
+          '5':
+            'name': 'Adresse'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Adresse'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 8
+
+          '6':
+            'name': 'Actionnaires'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Actionnaires'
+              'mapped': false
+              'multiple': true
+              'required': false
+              'class': 'App\Entity\Contact'
+              'choice_label': 'nomcomplet'
+
+          '7':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+
+          '8':
+            'name': 'Documents_1'
+            'type': 'FileType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+          '9':
+            'name': 'tag3'
+            'type': ChoiceType
+            'options':
+              'label': 'Tag '
+              'mapped': false
+              'choices': { '100% Marocain':'100% Marocain','Filiale': 'Filiale','J-V':'J-V'}
+
+
+      '3':
+        'name': 'form-prospection'
+        fields:
+          '1':
+            'name': 'date_prospe'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+
+          '2':
+            'name': 'action_prospe'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'required': false
+              'choices': { 'Echange': 'Echange', 'Rencontre B2B': 'Rencontre B2B', 'Incoming Visit':'Incoming Visit','Event':'Event','Traitement de requête':'Traitement de requête','Autre':'Autre' }
+          '66':
+            'name': 'Eventsprospec'
+            'type': 'EntityType'
+            'options':
+              'label': 'Evenements'
+              'mapped': false
+              'class': 'App\Entity\Event'
+              'choice_label': 'nom'
+
+          '3':
+            'name': 'details_prospe'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+
+          '4':
+            'name': 'details_libres_prospe'
+            'type': TextareaType
+            'options':
+              'label': 'Détails Libres'
+              'mapped': false
+              'required': false
+
+          '5':
+            'name': 'compte_rendu_action'
+            'type': FileType
+            'options':
+              'label': "Compte rendu de l'action"
+              'mapped': false
+              'required': false
+
+
+  '2':
+    'name': 'exp'
+    'forms':
+      '1':
+        'name': 'form-compte'
+        fields:
+
+          # '4':
+          #   'name': 'pays_siege'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Pays de siège'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '5':
+          #   'name': 'pays_implantation_succursales'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Pays d’implantations / Succursales"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '6':
+          #   'name': 'Secteur'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Secteurs'
+          #     'mapped': false
+          #     'class': 'App\Entity\Secteur'
+          #     'choice_label': 'nom'
+
+          # '7':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '8':
+          #   'name': 'centre_decision'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Centre de décision'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '9':
+          #   'name': 'description_projet'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          '10':
+            'name': "CA_Export"
+            'type': IntegerType
+            'options':
+              'label': "CA à l’Export (Millions /Dhs) "
+              'mapped': false
+              'required': false
+
+
+          # '11':
+          #   'name': "chiffre_affaires"
+          #   'type': null
+          #   'options':
+          #     'label': "Chiffre d’affaires (Millions/DHs) "
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          # '12':
+          #   'name': "detail_libre"
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détail libre'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 10
+          # '13':
+          #   'name': 'tag_1'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 1'
+          #     'mapped': false
+          #     'choices': { 'Exportateur':'Exportateur','Investisseur': 'Investisseur'}
+          # '14':
+          #   'name': 'tag_2'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 2'
+          #     'mapped': false
+          #     'choices': { 'Investisseur':'Investisseur','DO': 'DO'}
+          '15':
+            'name': "description_activite"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description de l’activité'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          # '16':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'required': false
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '17':
+          #   'name': "precision"
+          #   'type': null
+          #   'options':
+          #     'label': "Précision"
+          #     'mapped': false
+
+
+      '2':
+        'name': 'form-autre-info'
+        fields:
+          '1':
+            'name': 'capital'
+            'type': IntegerType
+            'options':
+              'label': 'Capital'
+              'mapped': false
+              'required': false
+
+          '2':
+            'name': 'effectif'
+            'type': IntegerType
+            'options':
+              'label': 'Effectif'
+              'mapped': false
+              'required': false
+
+          '3':
+            'name': 'presentation'
+            'type': 'FileType'
+            'options':
+              'label': 'Présentation'
+              'mapped': false
+              'required': false
+
+          '4':
+            'name': 'origine_capital'
+            'type': null
+            'options':
+              'label': 'Origine du capital'
+              'mapped': false
+
+
+          '5':
+            'name': 'Adresse'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Adresse'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 8
+
+          '6':
+            'name': 'Actionnaires'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Actionnaires'
+              'mapped': false
+              'multiple': true
+              'required': false
+              'class': 'App\Entity\Contact'
+              'choice_label': 'nomcomplet'
+
+          '7':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+
+          '8':
+            'name': 'Documents_1'
+            'type': 'FileType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+          '9':
+            'name': 'tag3'
+            'type': ChoiceType
+            'options':
+              'label': 'Tag '
+              'mapped': false
+              'choices': { '100% Marocain':'100% Marocain','Filiale': 'Filiale','J-V':'J-V'}
+
+      '3':
+        'name': 'form-prospection'
+        fields:
+          '1':
+            'name': 'date_prospe'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+
+          '2':
+            'name': 'action_prospe'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'required': false
+              'choices': { 'Echange': 'Echange', 'Rencontre B2B': 'Rencontre B2B', 'Incoming Visit':'Incoming Visit','Event':'Event','Traitement de requête':'Traitement de requête','Autre':'Autre' }
+          '66':
+            'name': 'Eventsprospec'
+            'type': 'EntityType'
+            'options':
+              'label': 'Evenements'
+              'mapped': false
+              'class': 'App\Entity\Event'
+              'choice_label': 'nom'
+
+          '3':
+            'name': 'details_prospe'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+
+          '4':
+            'name': 'details_libres_prospe'
+            'type': TextareaType
+            'options':
+              'label': 'Détails Libres'
+              'mapped': false
+              'required': false
+
+          '5':
+            'name': 'compte_rendu_action'
+            'type': FileType
+            'options':
+              'label': "Compte rendu de l'action"
+              'mapped': false
+              'required': false
+
+
+  '3':
+    'name': 'do'
+    'forms':
+      '1':
+        'name': 'form-compte'
+        fields:
+
+          # '4':
+          #   'name': 'pays_siege'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Pays de siège'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '5':
+          #   'name': 'pays_implantation_succursales'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Pays d’implantations / Succursales"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '6':
+          #   'name': 'Secteur'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Secteurs'
+          #     'mapped': false
+          #     'class': 'App\Entity\Secteur'
+          #     'choice_label': 'nom'
+
+          # '7':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '8':
+          #   'name': 'centre_decision'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Centre de décision'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '9':
+          #   'name': 'description_projet'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          '10':
+            'name': "CA_Export"
+            'type': IntegerType
+            'options':
+              'label': "CA à l’Export (Millions /Dhs) "
+              'mapped': false
+              'required': false
+
+          # '11':
+          #   'name': "chiffre_affaires"
+          #   'type': null
+          #   'options':
+          #     'label': "Chiffre d’affaires (Millions/DHs) "
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          # '12':
+          #   'name': "detail_libre"
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détail libre'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 10
+          # '13':
+          #   'name': 'tag_1'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 1'
+          #     'mapped': false
+          #     'choices': { 'Exportateur':'Exportateur','Investisseur': 'Investisseur'}
+          # '14':
+          #   'name': 'tag_2'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Tag 2'
+          #     'mapped': false
+          #     'choices': { 'Investisseur':'Investisseur','DO': 'DO'}
+          '15':
+            'name': "description_activite"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description de l’activité'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          # '17':
+          #   'name': 'ecosystemeFiliere'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Ecosystème/Filière'
+          #     'mapped': false
+          #     'required': false
+          #     'class': 'App\Entity\EcosystemeFiliere'
+          #     'choice_label': 'nom'
+
+          # '17':
+          #   'name': "precision"
+          #   'type': null
+          #   'options':
+          #     'label': "Précision"
+          #     'mapped': false
+      '2':
+        'name': 'form-autre-info'
+        fields:
+          '1':
+            'name': 'capital'
+            'type': IntegerType
+            'options':
+              'label': 'Capital'
+              'mapped': false
+              'required': false
+
+          '2':
+            'name': 'effectif'
+            'type': IntegerType
+            'options':
+              'label': 'Effectif'
+              'mapped': false
+              'required': false
+
+          '3':
+            'name': 'presentation'
+            'type': 'FileType'
+            'options':
+              'label': 'Présentation'
+              'mapped': false
+              'required': false
+
+          '4':
+            'name': 'origine_capital'
+            'type': null
+            'options':
+              'label': 'Origine du capital'
+              'mapped': false
+
+
+          '5':
+            'name': 'Adresse'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Adresse'
+              'required': false
+              'mapped': false
+              'attr':
+                'rows': 8
+
+          '6':
+            'name': 'Actionnaires'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Actionnaires'
+              'mapped': false
+              'multiple': true
+              'required': false
+              'class': 'App\Entity\Contact'
+              'choice_label': 'nomcomplet'
+
+          '7':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+
+          '8':
+            'name': 'Documents_1'
+            'type': 'FileType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+          '9':
+            'name': 'tag3'
+            'type': ChoiceType
+            'options':
+              'label': 'Tag '
+              'mapped': false
+              'choices': { '100% Marocain':'100% Marocain','Filiale': 'Filiale','J-V':'J-V'}
+
+      '3':
+        'name': 'form-prospection'
+        fields:
+          '1':
+            'name': 'date_prospe'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+
+          '2':
+            'name': 'action_prospe'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'required': false
+              'choices': { 'Echange': 'Echange', 'Rencontre B2B': 'Rencontre B2B', 'Incoming Visit':'Incoming Visit','Event':'Event','Traitement de requête':'Traitement de requête','Autre':'Autre' }
+          '66':
+            'name': 'Eventsprospec'
+            'type': 'EntityType'
+            'options':
+              'label': 'Evenements'
+              'mapped': false
+              'class': 'App\Entity\Event'
+              'choice_label': 'nom'
+
+          '3':
+            'name': 'details_prospe'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+
+          '4':
+            'name': 'details_libres_prospe'
+            'type': TextareaType
+            'options':
+              'label': 'Détails Libres'
+              'mapped': false
+              'required': false
+
+          '5':
+            'name': 'compte_rendu_action'
+            'type': FileType
+            'options':
+              'label': "Compte rendu de l'action"
+              'mapped': false
+              'required': false
+
+
+  '4':
+    'name': 'p'
+    'forms':
+      '1':
+        'name': 'form-compte'
+        fields:
+
+          '2':
+            'name': 'TypePartenaire'
+            'type': ChoiceType
+            'options':
+              'label': 'Type '
+              'mapped': false
+              'choices': { ' Ministère ou Administration P.':' Ministère ou Administration P.',
+              'Association ou Fédération Professionnelle': 'Association ou Fédération Professionnelle',
+              'Ambassade ou Représentation Diplomatique':'Ambassade ou Représentation Diplomatique',
+              'CRI':'CRI','Chambre de Commerce':'Chambre de Commerce',
+              'Commission des Investissements':'Commission des Investissements',
+              'Relai':'Relai',
+              'Bureaux économiques étrangers':'Bureaux économiques étrangers',
+              'Organisations internationales':'Organisations internationales',
+              'Bailleurs de fonds et banques multilatérales':'Bailleurs de fonds et banques multilatérales',
+              'Institutions financières':'Institutions financières',
+              'Autres':'Autres'}       
+          '3':
+              'name': 'EngagementPart' 
+              'type': 'CheckboxType'
+              'options':
+                'label': false
+                'required': false
+                'mapped': false
+                
+          '4':
+              'name': 'TypeEngagement'
+              'type': ChoiceType
+              'options':
+                'label': 'Type '
+                'mapped': false
+                'choices': { ' Convention':'Convention',
+                'Contrat': 'Contrat',
+                'MoU':'MoU',
+                'autre':'autre'}
+          # '5':
+          #   'name': 'payscible'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Pays (Cible)"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+          # '6':
+          #   'name': 'paysorigine'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Pays (Cible)"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          '7':
+              'name': "description_partenaire"
+              'type': 'TextareaType'
+              'options':
+                'label': 'Description de l’activité'
+                'mapped': false
+                'attr':
+                  'rows': 9                    
+          # '8':
+          #     'name': 'Secteur'
+          #     'type': 'EntityType'
+          #     'options':
+          #       'label': 'Secteurs'
+          #       'mapped': false
+          #       'class': 'App\Entity\Secteur'
+          #       'choice_label': 'nom'
+          '9':
+              'name': 'presentation'
+              'type': 'FileType'
+              'options':
+                'label': 'Présentation'
+                'mapped': false
+                'required': false    
+          '13':
+            'name': "detail_libre"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détail libre'
+              'mapped': false
+              'attr':
+                'rows': 3       
+
+
+          # '9':
+          #   'name': 'description_projet'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          # '12':
+          #   'name': "detail_libre"
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détail libre'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+          # '13':
+          #   'name': 'centre_decision'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Centre de décision'
+          #     'mapped': false
+          #     'class': 'App\Entity\Pays'
+          #     'choice_label': 'nom'
+
+          # '14':
+          #   'name': 'description_projet'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+          # '16':
+          #   'name': "chiffre_affaires"
+          #   'type': null
+          #   'options':
+          #     'label': "Chiffre d’affaires (Millions/DHs) "
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 5
+
+          # '17':
+          #   'name': "detail_libre"
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détail libre'
+          #     'mapped': false
+          #     'attr':
+          #       'rows': 10
+         
+      '2':
+        'name': 'form-action-partenaire'
+        fields:
+         '1':
+            'name': 'Nomaction'
+            'type': null
+            'options':
+              'label': 'Nom de l‘action'
+              'mapped': false
+        #  '2':
+        #     'name': 'ResponsableAction'
+        #     'type': 'MultiSelectType'
+        #     'options':
+        #       'label': 'Responsable de l‘Action (AMDIE)'
+        #       'mapped': false
+        #       'multiple': true
+        #       'class': 'App\Entity\User'
+        #       'choice_label': 'nomcomplet'
+        #  '3':
+        #     'name': 'InterlocuteurPrincipal'
+        #     'type': null
+        #     'options':
+        #       'label': 'Interlocuteur Principal (Partenaire)'
+        #       'mapped': false           
+        #  '4':
+        #     'name': 'Date_interaction'
+        #     'type': DateType
+        #     'options':
+        #       'label': 'Date'
+        #       'mapped': false
+        #       'input': 'datetime'
+        #       'widget': 'single_text'
+        #  '5':
+        #     'name': 'Action_interaction'
+        #     'type': ChoiceType
+        #     'options':
+        #       'label': 'Action'
+        #       'mapped': false
+        #       'choices': { ' Echange':' Echange',
+        #       'Réunion': 'Réunion',
+        #       ' Traitement de requête':' Traitement de requête',
+        #       'Autre':'Autre'}
+        #  '6':
+        #     'name': 'Objet_interaction'
+        #     'type': null
+        #     'options':
+        #       'label': 'Objet'
+        #       'mapped': false        
+        #  '7':
+        #     'name': 'Detail_interaction'
+        #     'type': 'TextareaType'
+        #     'options':
+        #       'label': 'Détails'
+        #       'mapped': false
+        #       'attr':
+        #         'rows': 8  
+        #  '8':
+        #     'name': 'Date_reali'
+        #     'type': DateType
+        #     'options':
+        #       'label': 'Date'
+        #       'mapped': false
+        #       'widget': 'single_text'
+        #  '9':
+        #     'name': 'Action_realise'
+        #     'type': ChoiceType
+        #     'options':
+        #       'label': 'Action'
+        #       'mapped': false
+        #       'choices': { ' Promotion Maroc - Pitch':' Promotion Maroc - Pitch',
+        #       'Invitation': 'Invitation',
+        #       'CTPS':' CTPS','CI':'CI',
+        #       'Suivi Projets':'Suivi Projets'}
+        #  '10':
+        #     'name': "detail_libre_realise"
+        #     'type': 'TextareaType'
+        #     'options':
+        #       'label': 'Détail libre'
+        #       'mapped': false
+        #       'attr':
+        #         'rows': 10   
+        #  '11':
+        #     'name': 'PartenaireAction'
+        #     'type': null
+        #     'options':
+        #       'label': 'Partenaire'
+        #       'mapped': false
+        #  '12':
+        #     'name': 'ObjetComptes'
+        #     'type': 'MultiSelectType'
+        #     'options':
+        #       'label': "Compte"
+        #       'mapped': false
+        #       'multiple': true
+        #       'class': 'App\Entity\CarteVisite'
+        #       'choice_label': 'compte'
+        #  '13':
+        #     'name': 'ObjetCompteseve'
+        #     'type': 'MultiSelectType'
+        #     'options':
+        #       'label': "Compte ff"
+        #       'mapped': false
+        #       'multiple': true
+        #       'class': 'App\Entity\Event'
+        #       'choice_label': 'nom'          
+                                                         
+         
+
+      '3':
+        'name': 'form-prospection'
+        fields:
+          '1':
+            'name': 'date_prospe'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+
+          # '2':
+          #   'name': 'action_prospe'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Action'
+          #     'mapped': false
+          #     'required': false
+          #     'choices': { 'Echange': 'Echange', 'Rencontre B2B': 'Rencontre B2B', 'Incoming Visit':'Incoming Visit','Event':'Event','Traitement de requête':'Traitement de requête','Autre':'Autre' }
+          # '66':
+          #   'name': 'Eventsprospec'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Evenements'
+          #     'mapped': false
+          #     'class': 'App\Entity\Event'
+          #     'choice_label': 'nom'
+
+          # '3':
+          #   'name': 'details_prospe'
+          #   'type': null
+          #   'options':
+          #     'label': 'Détails'
+          #     'mapped': false
+
+          # '4':
+          #   'name': 'details_libres_prospe'
+          #   'type': TextareaType
+          #   'options':
+          #     'label': 'Détails Libres'
+          #     'mapped': false
+          #     'required': false

@@ -1,0 +1,57 @@
+<div class="content-info hide">
+    <div class="header">
+    <ul class="form-interet">
+		<li class="active title-btn">Phase Intérêt</li>
+    </ul>
+    </div>
+    
+    <div class="item-details " >
+
+        <div class="item-details-body ">
+
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayedex">
+                <div class="tab-panel fade show active" role="tabpanel">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-0">
+                                <label class="cs-label">Date</label>
+                                {{ form_widget(form.date_sou) }}
+                            </div>
+                        </div>
+                         <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                     <label class="cs-label mb-0">{{ form_label(form.objet_sou) }}</label>
+                                    {{ form_widget(form.objet_sou) }}
+                                 </div>
+                                <div class="col-lg-6">
+                                     <label class="cs-label mb-0">{{ form_label(form.details_sou) }}</label>
+                                    {{ form_widget(form.details_sou) }}
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-4">
+                              <label class="cs-label">{{ form_label(form.action_sou) }}</label>
+                                {{ form_widget(form.action_sou) }}
+                            </div>
+                               
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group mb-4">
+                                <label class="cs-label">{{ form_label(form.details_libres_sou) }}</label>
+                                {{ form_widget(form.details_libres_sou,{'attr':{'rows':5}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {#  End tab-content One #}
+           
+        </div> {# End Iteme detail Body #}
+    </div>
+
+</div>
+
+

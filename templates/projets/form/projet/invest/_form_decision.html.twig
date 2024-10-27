@@ -1,0 +1,454 @@
+<div class="row align-items-end mb-4">
+    <div class="col-lg-4">
+        <div class="form-group mb-4">
+            {{ form_label(form.date_decision) }}
+            {{ form_widget(form.date_decision) }}
+        </div>
+        <label class="cs-label mb-0">Décision</label>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group mb-2 d-flex align-items-centert">
+                    <label class="cs-label mb-0">{{ form_label(form.signature_mou) }}</label>
+                    {{ form_row(form.signature_mou, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group con_decision mb-2 mt-2" id="docsignmou">
+            		{{ form_widget(form.document_signature_mou) }}
+            		{% for data in projet.projetsData %}
+            			{% if(data.cle == "document_signature_mou") %}
+            			<a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                			{{data.value}}
+            			</a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                			<i class="fa fa-trash"></i>
+            			</span>
+            			{% endif %}
+            		{% endfor %}
+        		</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+    </div>
+</div>
+
+<div class="row align-items-start mb-4">
+    <div class="col-lg-4">
+       <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group mb-2">
+                    <label class="cs-label mb-0">{{ form_label(form.comptabiliseCA) }}</label>
+                    {{ form_row(form.comptabiliseCA, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8" id="idAnneeStatutCA" >
+        <div class="row">
+            <div class="col-lg-6">
+	            <div class="form-group mb-0" >
+	                <label class="cs-label">{{ form_label(form.anneeNCA) }}</label>
+	                {{ form_widget(form.anneeNCA) }}
+	            </div>
+	        </div>
+            <div class="col-lg-6">
+	            <div class="form-group mb-0" >
+	                <label class="cs-label">{{ form_label(form.statutNCA) }}</label>
+	                {{ form_widget(form.statutNCA) }}
+	            </div>
+	        </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-lg-6">
+	            <div class="form-group mb-0" >
+	                <label class="cs-label">{{ form_label(form.anneeN1CA) }}</label>
+	                {{ form_widget(form.anneeN1CA) }}
+	            </div>
+	        </div>
+            <div class="col-lg-6">
+	            <div class="form-group mb-0" >
+	                <label class="cs-label">{{ form_label(form.statutN1CA) }}</label>
+	                {{ form_widget(form.statutN1CA) }}
+	            </div>
+	        </div>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-start mb-4">
+    <div class="col-lg-4">
+       <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group mb-2">
+                    <label class="cs-label mb-0">{{ form_label(form.Standby) }}</label>
+                    {{ form_row(form.Standby, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8" id="idRaisonStandby" >
+        <div class="form-group mb-0" >
+            <label class="cs-label">{{ form_label(form.DateStandby) }}</label>
+            {{ form_widget(form.DateStandby, {'attr':{'rows':2}}) }}
+        </div>
+            
+        <div class="form-group mb-0" >
+            <label class="cs-label">{{ form_label(form.RaisonStandby) }}</label>
+            {{ form_widget(form.RaisonStandby, {'attr':{'rows':2}}) }}
+        </div>
+
+        <div class="form-group mb-0" >
+            <label class="cs-label">{{ form_label(form.ActionRequiseStandby) }}</label>
+            {{ form_widget(form.ActionRequiseStandby, {'attr':{'rows':2}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-end mb-4">
+    <div class="col-lg-4">
+       <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group mb-2">
+                    <label class="cs-label mb-0">{{ form_label(form.Reactive) }}</label>
+                    {{ form_row(form.Reactive, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">        
+       <div class="row">
+             <div class="col-lg-6">
+                <div class="form-group mb-0" id="idDateReactive">
+                    <label class="cs-label">{{ form_label(form.date_reactivation) }}</label>
+                    {{ form_widget(form.date_reactivation) }}
+                </div>
+            </div>
+            <div class="col-lg-6"> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row  mb-4">
+    <div class="col-lg-2">
+        <div class="form-group mb-2 d-flex align-items-centert Non-Abouti">
+            <label class="cs-label mb-0">{{ form_label(form.NAbouti) }}</label>
+            {{ form_row(form.NAbouti, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+
+    <div class="col-lg-8" id="idRaisonBloque"> 
+            <div class="form-group mb-2">
+                <label class="cs-label">{{ form_label(form.date_pv_cloture_nabouti) }}</label>
+                {{ form_widget(form.date_pv_cloture_nabouti) }}
+            </div>
+            
+            <div class="form-group mb-2" >
+                <label class="cs-label">{{ form_label(form.RaisonBloque) }}</label>
+                {{ form_widget(form.RaisonBloque, {'attr':{'rows':2}}) }}
+            </div>
+            
+            <div class="form-group mb-2" >
+                <label class="cs-label">{{ form_label(form.ActionRequiseDebloquer) }}</label>
+                {{ form_widget(form.ActionRequiseDebloquer, {'attr':{'rows':2}}) }}
+            </div>
+              
+            <div class="form-group con_decision mb-2" >
+	        {{ form_row(form.pv_cloture_nabouti) }}
+	        {% for data in projet.projetsData %}
+	            {% if(data.cle == "pv_cloture_nabouti") %}
+	                <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+	                    {{data.value}}
+	                </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+	                    <i class="fa fa-trash"></i>
+	                </span>
+	            {% endif %}
+	        {% endfor %}
+            </div>
+    </div>
+</div>
+
+<div class="row align-items-end mb-4">
+    <div class="col-lg-4">
+       <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group mb-2">
+                    <label class="cs-label mb-0">{{ form_label(form.Debloque) }}</label>
+                    {{ form_row(form.Debloque, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">        
+       <div class="row">
+             <div class="col-lg-6">
+                <div class="form-group mb-0" id="idDateDeblocage">
+                    <label class="cs-label">{{ form_label(form.date_deblocage) }}</label>
+                    {{ form_widget(form.date_deblocage) }}
+                </div>
+            </div>
+            <div class="col-lg-6"> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-end mb-4">
+	<div class="col-lg-4">  
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group mb-2 d-flex align-items-centert">
+                    <label class="cs-label mb-0">{{ form_label(form.Abouti) }}</label>
+                    {{ form_row(form.Abouti, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-8">        
+        <div class="form-group mb-0">
+            <label class="cs-label">{{ form_label(form.details_libres_decision) }}</label>
+            {{ form_widget(form.details_libres_decision,{'attr':{'rows':5}}) }}
+        </div>
+    </div>
+
+</div>
+
+<div class="row  mb-4 seemoreAbouti" style="display:none;" id="seemore">
+    <!-- 1 -->
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.DepotCRI) }}</label>
+            {{ form_row(form.DepotCRI, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+        <div class="form-group con_decision mb-0" id="docpv">
+
+        </div>
+    </div>
+    <div class="col-lg-6">
+            <div class="form-group con_decision mt-2" id="docpv2">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">Date de dépôt CRI</label>
+            {{ form_widget(form.date_PV_decision) }}
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">Récépissé</label>
+            {{ form_row(form.document_PV_de) }}
+            {% for data in projet.projetsData %}
+                {% if(data.cle == "document_PV_de") %}
+                <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                    {{data.value}}
+                </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                    <i class="fa fa-trash"></i>
+                </span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.approuveCRUI) }}</label>
+            {{ form_row(form.approuveCRUI, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+            <div class="form-group con_decision mt-2" id="idDateApproCRUI">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.dateApprouveCRUI) }}</label>
+            {{ form_widget(form.dateApprouveCRUI) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.valideCTPS) }}</label>
+            {{ form_row(form.valideCTPS, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group con_decision mt-2" id="idDateValideCTPS">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.dateValideCTPS) }}</label>
+            {{ form_widget(form.dateValideCTPS) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.ajourneCTPS) }}</label>
+            {{ form_row(form.ajourneCTPS, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group con_decision mt-2" id="idDateAjournementCTPS">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.dateAjournementCTPS) }}</label>
+            {{ form_widget(form.dateAjournementCTPS) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.rejeteCTPS) }}</label>
+            {{ form_row(form.rejeteCTPS, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group con_decision mt-2" id="idDateRejetCTPS">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.dateRejetCTPS) }}</label>
+            {{ form_widget(form.dateRejetCTPS) }}
+        </div>
+        <div class="form-group con_decision mt-2" id="idMotifRejetCTPS">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.motifRejetCTPS) }}</label>
+            {{ form_widget(form.motifRejetCTPS, {'attr':{'rows':2}}) }}
+        </div>
+    </div>
+    <!-- 2 -->
+    <div class="col-lg-6">
+        <div class="form-group mb-2 form-control d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.approuveCNI) }}</label>
+            {{ form_row(form.approuveCNI, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+    </div>
+    <div class="col-lg-6">
+            <div class="form-group con_decision mt-2" id="idDateApproCNI">
+            <label class="cs-label mb-0"
+                style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.dateApprouveCNI) }}</label>
+            {{ form_widget(form.dateApprouveCNI) }}
+        </div>
+    </div>
+    <!-- 3 -->
+    <div class="col-lg-6">
+        <div class="form-group mb-2 d-flex form-control align-items-center">
+            <label class="cs-label mb-0">{{ form_label(form.Convention) }}</label>
+            {{ form_row(form.Convention, {label_attr: {class: 'switch-custom'} }) }}
+        </div> 
+        <div class="form-group con_decision mb-2 mt-2">
+            <div class="form-group con_decision mb-2"  id="docconv">
+                <div class="row mb-4" style="margin-left: 10px;">
+                    <div class="col-lg-3">
+                        <label class="cs-label">{{ form_label(form.convention_capex) }}</label>
+                        {{ form_widget(form.convention_capex) }}
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="cs-label">{{ form_label(form.nb_emplois_directs_convention) }}</label>
+                        {{ form_widget(form.nb_emplois_directs_convention) }}
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="cs-label">{{ form_label(form.nb_emplois_indirects_convention) }}</label>
+                        {{ form_widget(form.nb_emplois_indirects_convention) }}
+                    </div>
+                </div>
+                <label class="cs-label">Primes (Millions/DHs)</label>
+                <div class="row mb-4" style="margin-left: 10px;">
+                    <div class="col-lg-3">
+                        <label class="cs-label">{{ form_label(form.Conv_prime_engage) }}</label>
+                        {{ form_widget(form.Conv_prime_engage) }}
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="cs-label">{{ form_label(form.Conv_prime_deboursee) }}</label>
+                        {{ form_widget(form.Conv_prime_deboursee) }}
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group con_decision mb-2 mt-2" id="docconv2">
+            <label class="cs-label mb-2"
+            style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">{{ form_label(form.date_signature_convention) }}</label> 
+            {{ form_widget(form.date_signature_convention) }}
+            {{ form_widget(form.document_convention) }}
+            {% for data in projet.projetsData %}
+                {% if(data.cle == "document_convention") %}
+                <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                    {{data.value}}
+                </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                    <i class="fa fa-trash"></i>
+                </span>
+                {% endif %}
+            {% endfor %}
+        </div>        
+    </div>
+    <!-- 4 -->
+    <div class="col-lg-6">
+        <div class="form-group form-control mb-2 d-flex align-items-center">
+            <label class="cs-label mb-0">{{ form_label(form.Autre_document) }}</label>
+            {{ form_row(form.Autre_document, {label_attr: {class: 'switch-custom'} }) }}
+        </div>
+            
+    </div>
+    <div class="col-lg-6">
+        
+        <div class="form-group con_decision mb-2 mt-2" id="docdes">
+            <div class="form-group con_decision mb-2">
+            {{ form_widget(form.type_specifier) }}
+            </div>
+            {{ form_widget(form.document_desicion) }}
+            {% for data in projet.projetsData %}
+            {% if(data.cle == "document_desicion") %}
+            <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                {{data.value}}
+            </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                <i class="fa fa-trash"></i>
+            </span>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- -->
+    <!-- 5 -->
+    <div class="col-lg-6">
+        <br />  
+    </div>
+    <div class="col-lg-6"> 
+    </div>
+    <!-- 6 -->
+    <div class="col-lg-6">
+        <div class="form-group form-control mb-2 d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.en_cours_realisation) }}</label>
+            {{ form_row(form.en_cours_realisation, {label_attr: {class: 'switch-custom'} }) }}
+        </div>    
+    </div>
+    <div class="col-lg-6">
+        
+    </div>
+    <!-- 7 -->
+    <div class="col-lg-6">
+        <div class="form-group form-control mb-2 d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.Realise) }}</label>
+            {{ form_row(form.Realise, {label_attr: {class: 'switch-custom'} }) }}
+        </div>        
+    </div>
+    <div class="col-lg-6">
+        <div  id="realiser">
+            <label class="cs-label mb-2" style="font-weight: 400;letter-spacing: 0px;color: rgb(102 101 100 / 0.51);">Date de réalisation</label> 
+            {{ form_widget(form.Realise_date) }}
+{# date_realisation #}
+        </div>
+    </div>
+    <!-- 8 -->
+    <div class="col-lg-6">
+        <div class="form-group form-control mb-2 d-flex align-items-centert">
+            <label class="cs-label mb-0">{{ form_label(form.NonRealise) }}</label>
+            {{ form_row(form.NonRealise, {label_attr: {class: 'switch-custom'} }) }}
+        </div>         
+    </div>
+    <div class="col-lg-6">
+        
+    </div>
+    <!-- -->
+    <!-- -->
+
+    <div class="col-lg-6">
+
+    </div>
+
+</div>

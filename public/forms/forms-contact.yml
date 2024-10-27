@@ -1,0 +1,381 @@
+projets:
+  '1':
+    'name': 'contact'
+    'forms':
+      '1':
+        'name': 'form-par'
+        fields:
+          # '1':
+          #   'name': 'prenom'
+          #   'type': null
+          #   'options':
+          #     'label': 'Prénom'
+          #     'mapped': false
+          # '2':
+          #   'name': 'nom'
+          #   'type': null
+          #   'options':
+          #     'label': 'Nom'
+          #     'mapped': false
+          # '3':
+          #   'name': 'tel'
+          #   'type': null
+          #   'options':
+          #     'label': 'Tel'
+          #     'mapped': false
+          # '4':
+          #   'name': 'email'
+          #   'type': null
+          #   'options':
+          #     'label': 'Email'
+          #     'mapped': false
+          # '5':
+          #   'name': 'profil'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Profil'
+          #     'mapped': false
+          #     'class': 'App\Entity\Profils'
+          #     'choice_label': 'nom'
+          # '6':
+          #   'name': 'canal'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Canal'
+          #     'mapped': false
+          #     'class': 'App\Entity\Canal'
+          #     'choice_label': 'nom'
+          # '7':
+          #   'name': 'exclusif'
+          #   'type': CheckboxType
+          #   'options':
+          #     'label': 'Exclusif'
+          #     'required': false
+          #     'mapped': false
+          # '8':
+          #   'name': 'langugePrincipale'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Langue principale'
+          #     'mapped': false
+          #     'choices': { 'Francais':'Francais','Anglais': 'Anglais','Chinois':'Chinois','Espagnol':'Espagnol','Hindi':'Hindi','Arabe':'Arabe'}
+          # '9':
+          #   'name': 'langueSecondaire'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Langue secondaire'
+          #     'mapped': false
+          #     'choices': { 'Francais':'Francais','Anglais': 'Anglais','Chinois':'Chinois','Espagnol':'Espagnol','Hindi':'Hindi','Arabe':'Arabe'}
+          # '10':
+          #   'name': 'DetailsLibres'
+          #   'type': TextareaType
+          #   'options':
+          #     'label': 'Détails Libres'
+          #     'mapped': false
+          #     'required': false
+          #     'attr':
+          #       'rows': 5
+          # '11':
+          #   'name': 'responsableContact'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'user'
+          #     'mapped': false
+          #     'class': 'App\Entity\User'
+          #     'choice_label': 'nom'
+
+
+      '2':
+        'name': 'form-partenaire'
+        fields:
+         '1':
+            'name': 'nomPartenaire'
+            'type': null
+            'options':
+              'label': 'Nom du Partenaire'
+              'mapped': false
+         '2':
+            'name': 'TypePartenaire'
+            'type': ChoiceType
+            'options':
+              'label': 'Type '
+              'mapped': false
+              'choices': { ' Ministère ou Administration P.':' Ministère ou Administration P.',
+              'Association ou Fédération Professionnelle': 'Association ou Fédération Professionnelle',
+              'Ambassade ou Représentation Diplomatique':'Ambassade ou Représentation Diplomatique',
+              'CRI':'CRI','Chambre de Commerce':'Chambre de Commerce',
+              'Commission des Investissements':'Commission des Investissements',
+              'Relai':'Relai'}
+         '3':
+            'name': 'EngagementPart'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+         '4':
+            'name': 'TypeEngagement'
+            'type': ChoiceType
+            'options':
+              'label': 'Type '
+              'mapped': false
+              'choices': { ' Convention':'Convention',
+              'Contrat': 'Contrat',
+              'MoU':'MoU',
+              'autre':'autre'}
+         '5':
+            'name': 'Pays_cible'
+            'type': 'MultiSelectType'
+            'options':
+              'label': "Pays (Cible)"
+              'mapped': false
+              'multiple': true
+              'class': 'App\Entity\Pays'
+              'choice_label': 'nom'
+         '6':
+            'name': 'Pays_origine'
+            'type': 'MultiSelectType'
+            'options':
+              'label': "Pays (Cible)"
+              'mapped': false
+              'multiple': true
+              'class': 'App\Entity\Pays'
+              'choice_label': 'nom'
+         '7':
+            'name': "description_partenaire"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description de l’activité'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 9
+         '8':
+            'name': 'Secteur'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteurs'
+              'mapped': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+         '9':
+            'name': 'presentation'
+            'type': 'FileType'
+            'options':
+              'label': 'Présentation'
+              'mapped': false
+              'required': false
+
+         '10':
+            'name': 'description_projet'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description du projet'
+              'mapped': false
+              'attr':
+                'rows': 5
+
+         '13':
+            'name': "detail_libre"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détail libre'
+              'mapped': false
+              'attr':
+                'rows': 3
+
+
+      '3':
+        'name': 'form-action-partenaire'
+        fields:
+         '1':
+            'name': 'Nomaction'
+            'type': null
+            'options':
+              'label': 'Nom de l‘action'
+              'mapped': false
+         '2':
+            'name': 'ResponsableAction'
+            'type': null
+            'options':
+              'label': 'Responsable de l‘Action (AMDIE)'
+              'mapped': false
+         '3':
+            'name': 'InterlocuteurPrincipal'
+            'type': null
+            'options':
+              'label': 'Interlocuteur Principal (Partenaire)'
+              'mapped': false
+         '4':
+            'name': 'Date_interaction'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'input': 'datetime'
+              'widget': 'single_text'
+
+
+         '5':
+            'name': 'Action_interaction'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'choices': { ' Echange':' Echange',
+              'Réunion': 'Réunion',
+              ' Traitement de requête':' Traitement de requête',
+              'Autre':'Autre'}
+         '6':
+            'name': 'Objet_interaction'
+            'type': null
+            'options':
+              'label': 'Objet'
+              'mapped': false
+         '7':
+            'name': 'Detail_interaction'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails'
+              'mapped': false
+              'attr':
+                'rows': 8
+         '8':
+            'name': 'Date_reali'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'widget': 'single_text'
+         '9':
+            'name': 'Action_realise'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'choices': { ' Promotion Maroc - Pitch':' Promotion Maroc - Pitch',
+              'Invitation': 'Invitation',
+              'CTPS':' CTPS','CI':'CI',
+              'Suivi Projets':'Suivi Projets'}
+         '10':
+            'name': "detail_libre_realise"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détail libre'
+              'mapped': false
+              'attr':
+                'rows': 10
+         '11':
+            'name': 'PartenaireAction'
+            'type': null
+            'options':
+              'label': 'Partenaire'
+              'mapped': false
+         '12':
+            'name': 'ObjetComptes'
+            'type': 'MultiSelectType'
+            'options':
+              'label': "Compte"
+              'mapped': false
+              'multiple': true
+              'class': 'App\Entity\CarteVisite'
+              'choice_label': 'compte'
+        # '13':
+        #    'name': 'ObjetComptes'
+        #    'type': 'MultiSelectType'
+        #    'options':
+        #      'label': "Compte"
+        #      'mapped': false
+        #      'multiple': true
+        #      'class': 'App\Entity\comp'
+        #      'choice_label': 'compte'
+        #  '2':
+        #     'name': 'TypePartenaire'
+        #     'type': ChoiceType
+        #     'options':
+        #       'label': 'Type '
+        #       'mapped': false
+        #       'choices': { ' Ministère ou Administration P.':' Ministère ou Administration P.',
+        #       'Association ou Fédération Professionnelle': 'Association ou Fédération Professionnelle',
+        #       'Ambassade ou Représentation Diplomatique':'Ambassade ou Représentation Diplomatique',
+        #       'CRI':'CRI','Chambre de Commerce':'Chambre de Commerce',
+        #       'Commission des Investissements':'Commission des Investissements',
+        #       'Relai':'Relai'}
+        #  '3':
+        #     'name': 'Engagement'
+        #     'type': 'CheckboxType'
+        #     'options':
+        #       'label': false
+        #       'required': false
+        #       'mapped': false
+        #  '4':
+        #     'name': 'TypeEngagement'
+        #     'type': ChoiceType
+        #     'options':
+        #       'label': 'Type '
+        #       'mapped': false
+        #       'choices': { ' Convention':'Convention',
+        #       'Contrat': 'Contrat',
+        #       'MoU':'MoU',
+        #       'autre':'autre'}
+        #  '5':
+        #     'name': 'Pays_cible'
+        #     'type': 'MultiSelectType'
+        #     'options':
+        #       'label': "Pays (Cible)"
+        #       'mapped': false
+        #       'multiple': true
+        #       'class': 'App\Entity\Pays'
+        #       'choice_label': 'nom'
+        #  '6':
+        #     'name': 'Pays_origine'
+        #     'type': 'MultiSelectType'
+        #     'options':
+        #       'label': "Pays (Cible)"
+        #       'mapped': false
+        #       'multiple': true
+        #       'class': 'App\Entity\Pays'
+        #       'choice_label': 'nom'
+        #  '7':
+        #     'name': "description_partenaire"
+        #     'type': 'TextareaType'
+        #     'options':
+        #       'label': 'Description de l’activité'
+        #       'mapped': false
+        #       'required': false
+        #       'attr':
+        #         'rows': 9
+        #  '8':
+        #     'name': 'Secteur'
+        #     'type': 'EntityType'
+        #     'options':
+        #       'label': 'Secteurs'
+        #       'mapped': false
+        #       'class': 'App\Entity\Secteur'
+        #       'choice_label': 'nom'
+        #  '9':
+        #     'name': 'presentation'
+        #     'type': 'FileType'
+        #     'options':
+        #       'label': 'Présentation'
+        #       'mapped': false
+        #       'required': false
+
+        #  '10':
+        #     'name': 'description_projet'
+        #     'type': 'TextareaType'
+        #     'options':
+        #       'label': 'Description du projet'
+        #       'mapped': false
+        #       'attr':
+        #         'rows': 5
+
+        #  '13':
+        #     'name': "detail_libre"
+        #     'type': 'TextareaType'
+        #     'options':
+        #       'label': 'Détail libre'
+        #       'mapped': false
+        #       'attr':
+        #         'rows': 3

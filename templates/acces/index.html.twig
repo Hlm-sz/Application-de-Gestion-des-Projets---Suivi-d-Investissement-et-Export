@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'acces.Liste_Acces'| trans }}
+{% endblock %}
+{% block sous_title %}
+	{{ 'acces.Acces'| trans }}
+{% endblock %}
+{% block navbar_right %}
+	<li class="nav-item">
+		<a href="{{ path('acces_new') }}" class="btn btn-float text-default btn-blue">
+			<i class="icon-add"></i>
+			<span>
+				{{'acces.Create_new'| trans}}</span>
+		</a>
+	</li>
+{% endblock %}
+{% block navbar_left %}{% endblock %}
+{% block body %}
+
+	<div class="card">
+
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>{{ 'acces.Nom'| trans }}</th>
+						<th>{{ 'acces.Nom_constant'| trans }}</th>
+						<th>{{ 'acces.Actions'| trans }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for acce in acces %}
+						<tr>
+							<td>{{ acce.nom }}</td>
+							<td>{{ acce.nomConstant }}</td>
+							<td>
+								<a href="{{ path('acces_show', {'id': acce.id}) }}">{{ 'acces.Show'| trans }}</a>
+								<a href="{{ path('acces_edit', {'id': acce.id}) }}">{{ 'acces.Edit'| trans }}</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="2">{{ 'acces.Message_table'| trans }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="pagination justify-content-end" style="margin:2%">
+				{{ knp_pagination_render(acces) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

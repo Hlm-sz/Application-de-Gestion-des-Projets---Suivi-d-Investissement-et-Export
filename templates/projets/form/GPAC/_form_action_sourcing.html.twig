@@ -1,0 +1,84 @@
+<div class="row">
+      <div class="sidbar-activite" onclick="Gpacsoursing_action()">
+          <ul class="form-project form-activite">
+              <li class="pull-right add-activte">
+                  <a class="" href="#">
+                      <i class="fa  fa-save"></i>
+                  </a>
+              </li>
+          </ul> 
+      </div>
+  </div>
+  <div class="row">
+     <div class="col-md-4">
+         <div class="form-group mb-4">
+             <label class="cs-label">{{ form_label(form.date_actions_gpac_sourcing) }}</label>
+             {{ form_widget(form.date_actions_gpac_sourcing) }}
+         </div>
+
+         <div class="form-group mb-4">
+             <label class="cs-label">{{ form_label(form.Type_accompagnement_actions_gpac_sourcing) }}</label>
+             {{ form_widget(form.Type_accompagnement_actions_gpac_sourcing) }}
+         </div>
+          <div class="form-group mb-4 d-flex justify-content-between align-items-center">
+           <label class="cs-label">Solution</label>
+             {{ form_row(form.Solution, {label_attr: {class: 'switch-custom'} }) }}
+         </div>
+         <div class="form-group">
+             <label class="cs-label">{{ form_label(form.situation_projet_actions_gpac_sourcing) }}</label>
+             {{ form_widget(form.situation_projet_actions_gpac_sourcing) }}
+         </div>
+     </div>
+     <div class="col-md-8">
+         <div class="form-group mb-4">
+             <label class="cs-label">{{ form_label(form.details_libres_actions_gpac_sourcing) }}</label>
+             {{ form_widget(form.details_libres_actions_gpac_sourcing) }}
+         </div>
+         <div class="form-group">
+             <label class="cs-label">{{ form_label(form.informations_supplementaires_actions_gpac_sourcing) }}</label>
+             {{ form_widget(form.informations_supplementaires_actions_gpac_sourcing) }}
+         </div>
+     </div>
+
+ </div>
+
+  <script>
+function Gpacsoursing_action() {
+            var date_actions_gpac_sourcing = $("#projet_data_date_actions_gpac_sourcing").val();
+            var details_libres_actions_gpac_sourcing = $("#projet_data_details_libres_actions_gpac_sourcing").val();
+            var Type_accompagnement_actions_gpac_sourcing = $("#projet_data_Type_accompagnement_actions_gpac_sourcing").val();
+            var Solution = $("#projet_data_Solution").val();
+            var situation_projet_actions_gpac_sourcing = $("#projet_data_situation_projet_actions_gpac_sourcing").val();
+            var informations_supplementaires_actions_gpac_sourcing = $("#projet_data_informations_supplementaires_actions_gpac_sourcing").val();
+
+
+            $url = "{{path('gpac_sourcing_action')}}";
+            $.ajax({
+                type: "POST",
+                url: $url,
+                data: {
+                    date_actions_gpac_sourcing: date_actions_gpac_sourcing,
+                    details_libres_actions_gpac_sourcing: details_libres_actions_gpac_sourcing,
+                    Type_accompagnement_actions_gpac_sourcing: Type_accompagnement_actions_gpac_sourcing,
+                    Solution: Solution,
+                    situation_projet_actions_gpac_sourcing: situation_projet_actions_gpac_sourcing,
+                    informations_supplementaires_actions_gpac_sourcing: informations_supplementaires_actions_gpac_sourcing,
+                    pid: {{projet.id}}
+                },
+                dataType: "json",
+                success: function (response) {
+                    document.location.href = ("/projets/projet/" + response.projet_id);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'vos changements ont été bien enregistrés.',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                },
+                error: function (response) {
+                    // alert("error !" + response);
+                }
+            });
+        }
+</script>

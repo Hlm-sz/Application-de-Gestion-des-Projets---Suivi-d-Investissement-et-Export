@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit LogProjet{% endblock %}
+
+{% block body %}
+    <h1>Edit LogProjet</h1>
+
+    {{ include('log_projet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('log_projet_index') }}">back to list</a>
+
+    {{ include('log_projet/_delete_form.html.twig') }}
+{% endblock %}

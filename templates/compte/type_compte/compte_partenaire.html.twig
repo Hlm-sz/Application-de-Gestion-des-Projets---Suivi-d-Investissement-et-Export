@@ -1,0 +1,126 @@
+<div class="col-lg-12 content-infos">
+
+    <div class="item-details">
+
+        <div class="item-details-body">
+
+            <div class="tab-content ">
+
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                    {#  #}
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-0">
+                                <label class="cs-label">Nom du Partenaire</label>
+                                {# <input class="form-control" type="text" placeholder="Construction de site de Melloussa à Tanger"> #}
+                                {{ form_widget(form.nomCompte) }}
+                                {{ form_errors(form.nomCompte) }}
+                            </div> 
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                        <label class="cs-label">Type</label>
+                                        {{ form_widget(form.TypePartenaire) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                        <label class="cs-label mt10 mb-0">Engagement</label>
+                                        {{ form_widget(form.EngagementPart, {label:false,label_attr: {class: 'switch-custom'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# End row first #}
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-4" id="engage">
+                                <label class="cs-label">Type d’Engagement</label>
+                                {{ form_widget(form.TypeEngagement) }}
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="cs-label">Pays d'origine </label>
+                                {{ form_widget(form.paysSiege ,{'attr': {'class': 'form-group paysSiege'}}) }}
+
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="cs-label">Pays cible</label>
+                                 {{ form_widget(form.paysImplantationSuccursales ,{'attr': {'class': 'form-group payssales'}}) }}
+
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="cs-label">Secteur</label>
+                                {{ form_widget(form.secteurs ,{'attr': {'class': 'form-group Secteur'}}) }}
+
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label">Présentation</label>
+                                    {#  <input type="text" class="form-control"> #}
+                                    {{ form_widget(form.presentation) }}
+                                    {% for data in compte.compteData %}
+                                    {% if(data.cle == "presentation") %}
+                                    <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                                        {{data.value}}
+                                    </a> <span class="" id="{{data.id}}" onclick="confirmeRemoveDocModal(this.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                            </div>
+                            {# <div class="form-group mb-4">
+                                <label class="cs-label">Description du projet</label>
+                                {{ form_widget(form.description_projet) }}
+                            </div> #}
+                            <div class="form-group">
+                                <label class="cs-label">Description de l'activité </label>
+                                {#  <textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea> #}
+                                {{ form_widget(form.description_partenaire,{attr: {rows: '10'} }) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="cs-label">Détail libre</label>
+                                {#  <textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea> #}
+                                {{ form_widget(form.detail_libre,{attr: {rows: '10'} }) }}
+                            </div>
+                        </div>
+                    </div>{# End row second #}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{{ include('compte/form/hiden.html.twig') }}
+{{ include('compte/form/_hiden_partenaire.html.twig') }}
+
+<script>
+$(document).ready(function() {
+    
+	$('.Secteur').select2({
+		width: '100%'
+	});
+    $('.payssales').select2({
+		width: '100%'
+	});
+	$('.inpays').select2({
+		width: '100%'
+	});	
+});
+</script>
+{# {% for item in compte.secteurs %}
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        $("#compte_data_Secteur").val({{item.id}}).change();
+    });
+</script>
+{% endblock %}
+{% endfor %} #}

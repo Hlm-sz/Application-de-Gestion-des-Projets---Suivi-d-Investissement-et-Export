@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-lg-3">
+        <div class="form-group mb-2">
+            <label class="cs-label">Nom de l’action</label>
+
+            {{ form_widget(form.Nomaction) }}
+        </div>
+    </div>
+    {# <div class="col-lg-3">
+        <div class="form-group mb-2">
+            <label class="cs-label">Responsable de l’Action (AMDIE)</label>
+            {{ form_widget(form.ResponsableAction ,{'attr': {'class': 'ResponsableAction'}}) }}
+         </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group mb-2">
+            <label class="cs-label">Partenaire</label>
+            {{ form_widget(form.PartenaireAction) }}
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group mb-2">
+            <label class="cs-label">Interlocuteur Principal (Partenaire)</label>
+            {{ form_widget(form.InterlocuteurPrincipal) }}
+        </div>
+    </div> #}
+</div>
+<div class="row">
+    {# <div class="col-lg-4">
+        <div class="form-group mb-2">
+            <label class="cs-label">Date</label>
+            {{ form_widget(form.Date_interaction) }}
+        </div>
+        <div class="form-group mb-2">
+            <label class="cs-label">Action</label>
+            {{ form_widget(form.Action_interaction) }}
+        </div>
+        <div class="form-group mb-2">
+            <label class="cs-label">Objet</label>
+            {{ form_widget(form.Objet_interaction) }}
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group mb-2">
+            <label class="cs-label">Détails</label>
+            {{ form_widget(form.Detail_interaction) }}
+        </div>
+    </div> #}
+</div>
+<script>
+$(document).ready(function() {
+    $('.ResponsableAction').select2();
+});
+</script>

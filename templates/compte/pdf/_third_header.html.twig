@@ -1,0 +1,115 @@
+{# Start header third #}
+<div class="third-header col-lg-12">
+	<div class="row">
+ 		<div class="col-lg-8">
+		 {% if (compte.type.id != 4 ) %}
+			<ul class="etapes steps-compte">
+				{% if compte.etatCompte.nom != "Considération" %}
+				{% for status in list_status %}
+				<li>
+					{% if status.id == compte.etatCompte.id %}
+					<a href="{{ path('compte_change_status',{'status':status.id,'compte':compte.id}) }}" class="active">
+						{# <img src="{{ asset('images/icons/confirm.svg') }}" alt=""> #}
+					</a>
+					<label for="{{ status.nom }}" class="comptesteps">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						{{ status.nom }}
+					</label>
+					{% else %}
+					<a href="{{ path('compte_change_status',{'status':status.id,'compte':compte.id}) }}"></a>
+					<label for="{{ status.nom }}">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						{{ status.nom }}
+					</label>
+					{% endif %}
+				</li>
+				{% endfor %}
+				{% else %}
+				{% for status in list_status %}
+
+				<li>
+					{% if status.id == compte.etatCompte.id %}
+					<a href="{{ path('compte_change_status',{'status':status.id,'compte':compte.id}) }}" class="active">
+						{# <img src="{{ asset('images/icons/confirm.svg') }}" alt=""> #}
+					</a>
+					<label id="{{ status.nom }}" class="comptesteps">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						{{ status.nom }}
+					</label>
+					{% else %}
+					{% if status.nom == "Prospection" %}
+					<a href="{{ path('compte_change_status',{'status':status.id,'compte':compte.id}) }}"></a>
+					<label id="{{ status.nom }}">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						{{ status.nom }}
+
+					</label>
+					{% else %}
+					<a href="{{ path('compte_change_status',{'status':status.id,'compte':compte.id}) }}"
+						class="isDisabled"></a>
+						<label id="{{ status.nom }}">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						{{ status.nom }}
+					</label>
+					{% endif %}
+					{% endif %}
+
+
+				</li>
+				{% endfor %}
+				{% endif %}
+
+ 				<div class="last-step pull-right GPAC">
+					<li>
+						{% if compte.signalement %}
+						<a class="warning" href="{{ path('compte_change_signalement',{'signal':0,'compte':compte.id}) }}" style="background-color: red" class="warning"></a>
+						<label for="Intérêt">
+							<i class="fa fa-sort-asc" aria-hidden="true"></i>
+							Signalement
+						</label>
+						{% else %}
+						<a href="{{ path('compte_change_signalement',{'signal':1,'compte':compte.id}) }}">S</a>
+						<label for="">
+							<i class="fa fa-sort-asc" aria-hidden="true"></i>
+							Signalement
+						</label>
+						{% endif %}
+
+					</li>
+				</div>
+
+			</ul>
+		{% endif %}	
+		</div>
+		<div class="col-lg-2">
+			<ul class="GPAC-compte">
+				<li id="inv-btn"><a>INV</a></li>
+				<li id="exp-btn"><a>EXP</a></li>
+				<li id="do-btn"><a>DO</a></li>
+				<li id="p-btn"><a>P</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-2">
+			<ul class="img-profil">
+				<li class="pull-right">
+				{% if app.user.groupe.id ==29 %}
+					<img src="{{ compte.responsableCompte ? (compte.responsableCompte.photo ? asset('uploads/'~compte.responsableCompte.photo) : asset('images/image-profile.png') ) : asset('images/image-profile.png') }}"
+						alt="">
+					<div class="info-profil">
+						<strong>Géré par :</strong><br>
+							<span>{{ form_widget(form.responsableCompte) }}</span>
+							</div>
+						{% else %}
+							<div class="info-profil">
+							<span style="display: none">{{ form_widget(form.responsableCompte) }}</span>
+							</div>
+						{% endif %}
+					<div class="param-profil">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+		</div> <!-- End Profil -->
+	</div>
+ </div>
+{# Enddddd #}

@@ -1,0 +1,27 @@
+<div class="item-details">
+    <div class="row">
+     <div class="col-lg-12 content-info content-info-contact ">
+                <div class="header">
+                    <ul>
+                        <li class="title-btn linkInfo capitalize active" id="#info-parte"
+                            onclick="openInfo(event, 'info-parte')">Fiche Partenaire</li>
+                        {# <li class="title-btn linkInfo capitalize" id="#info-action"
+                            onclick="openInfo(event, 'info-action')">Action Partenaire</li> #}
+                    </ul>
+                </div> 
+                <div class="item-details">
+
+                    <div class="item-details-body item-details-contact item-bg-none">
+                        {{ include('compte/partenaire/Forms/_fiche-partenaire.html.twig', {'button_label': 'contact.Update'| trans }) }}
+                        {# {{ include('compte/partenaire/Forms/_action-partenaire.html.twig', {'button_label': 'contact.Update'| trans }) }} #}
+                    </div>
+                </div>
+            </div>          
+    </div> 
+</div>
+<script>
+    $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display","none");
+</script>
+ <div class="hide">
+ {{ form_widget(form.Nomaction) }}     
+</div>

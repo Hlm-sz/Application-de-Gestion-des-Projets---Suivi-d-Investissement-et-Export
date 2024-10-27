@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'projet.Detail'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('actions_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{% if (app.request.get('id') == 4) %}
+	{{ 'Actions'| trans | upper }}
+	{% else %}
+	{{ 'projet.titre_projet'| trans | upper }}
+	{% endif %}
+	</div>
+</a>
+{% endblock %}
+{% block header_search %}
+	 
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.csshttps://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+	{# <a class="btn btn-blue">
+		<i class="fa  fa-plus"></i>
+	</a> #}
+	<a class="btn btn-blue save-btn" id="btn_submit" href="#">
+		<i class="fa  fa-save"></i>
+	</a>
+{% endblock %}
+{% block navbar_left %}
+	<a class="btn btn-blue" href="{{ path('actions_index') }}">
+		<i class="fa fa-arrow-left"></i>
+	</a>
+	{% if (app.request.get('id') == 4) %}
+	<h4 class="navbar-text-color">{{'Nouvelle Action'}}</h4>
+	{% else %}	
+	<h4 class="navbar-text-color">{{'projet.New_projet'| trans}}</h4>
+	{% endif %}
+{% endblock %}
+{% block third_header %}
+	{{ form_start(form,{'attr':{'id':'form-projet'}}) }}
+	{# {{ include('projets/detail_projet/third_header/_third_header.html.twig') }} #}
+
+{% endblock %}
+{% block body %}
+	<div class="top-header">
+		<div class="container-fluid ">
+
+
+			<div class="row">
+			    {% if app.request.get('id') == 1 %}
+				{{ include('projets/form/projet/new/_form_investissement.html.twig', {'button_label': 'projet.Save'| trans }) }}
+				{% endif %}
+				{% if app.request.get('id') == 2 %}
+				{{ include('projets/form/projet/new/_form_sourcing.html.twig', {'button_label': 'projet.Save'| trans }) }}
+				{% endif %}
+				{% if app.request.get('id') == 3 %}
+				{{ include('projets/form/projet/new/_form_export.html.twig', {'button_label': 'projet.Save'| trans }) }}
+				{% endif %}
+				{% if app.request.get('id') == 4 %}
+				{{ include('projets/form/projet/new/_form_action.html.twig', {'button_label': 'projet.Save'| trans }) }}
+				{% endif %}
+
+			</div> <!-- End first Row Compte -->
+
+			<div class="row wrapper-g-projet ">
+				<div class="col-lg-8 wrapp-content-g-projet">
+				{% if app.request.get('id') == 1 %}
+				{# {{ include('projets/form/projet/new/invest/_form_interet.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+				<br>
+				{% endif %}
+				{% if app.request.get('id') == 1 %}
+				{# {{ include('projets/form/projet/new/invest/_form_decision.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+ 				<br>
+				{% endif %}
+				{% if app.request.get('id') == 2 %}
+				{# {{ include('projets/form/projet/new/sourcing/_form_interet.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+				<br>
+				{% endif %}
+				{% if app.request.get('id') == 2 %}
+				{# {{ include('projets/form/projet/new/sourcing/_form_decision.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+ 				<br>
+				 {% endif %}
+				 {% if app.request.get('id') == 3 %}
+				{# {{ include('projets/form/projet/new/export/_form_interet.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+				<br>
+				{% endif %}
+				{% if app.request.get('id') == 3 %}
+				{# {{ include('projets/form/projet/new/export/_form_decision.html.twig', {'button_label': 'projet.Save'| trans }) }} #}
+ 				<br>
+				 {% endif %}
+					<div class="content-info">
+						<div class="content-g-projet" style="display: {{ projet.gpac?'block':'none' }}">
+							<div class="header">
+								<ul class="form-project">
+									<li class="active title-btn">Gestion de projets et after care</li>
+
+								</ul>
+							</div>
+							<div class="item-details">
+								{# {% if app.request.get('id') == 1 %}
+								{{ include('projets/form/GPAC/_form_investissement.html.twig', {'button_label': 'projet.Update'| trans }) }}
+								{% endif %}
+								{% if app.request.get('id') == 2 %}
+								{{ include('projets/form/GPAC/_form_sourcing.html.twig', {'button_label': 'projet.Update'| trans }) }}
+								{% endif %}
+								{% if app.request.get('id') == 3 %}
+								{{ include('projets/form/GPAC/_form_export.html.twig', {'button_label': 'projet.Update'| trans }) }}
+								{% endif %} #}
+							</div>
+						</div>
+						</div>
+				</div>
+			</div><!--  End second row Projet -->
+			<button type="submit" class="btn btn-success" id="btn-submit" value="submit" style="display: none;">Submit</button>
+			{{ form_end(form) }}
+		</div>
+
+	</div>
+
+
+	{% block javascripts %}
+
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+		<script>
+		{# $("#btn_submit").click(function () {
+		$("#form-projet").submit();
+		}); #}
+			$("#btn_submit").click(function () {
+		$("#btn-submit").click();
+	});
+		</script>
+	{% endblock %}
+			{% for message in app.flashes('notice') %}
+					<script>
+						Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'vos changements ont été bien enregistrés.',
+						showConfirmButton: false,
+						timer: 3000
+						})
+					</script>
+				{% endfor %}
+		<script type="text/javascript" src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/typeahead.jquery.min.js') }}"></script>
+
+	<script>
+		var dirty = false;
+		$("input,select,textarea").on('change',function() {
+			dirty = true;
+		});
+		$("window").on('beforeunload', function() {
+			if (dirty) {
+				return 'You have unsaved changes! If you leave this page, your changes will be lost.';
+			}
+		})
+	</script>
+	<script>
+		function display() {
+			window.print();
+		}
+	</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{{ form_start(form, {'attr': {'id': 'form_mail'}}) }}
+             <div class="row align-items-start mb-4">
+                <div class="col-lg-6">
+
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block required" for="Objet_email">Objet de l'email</label>
+                        {{ form_widget(form.objet) }}
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group mb-4  required" for="mail_type">
+                        <label class="cs-label d-block">Type de l’email</label>
+                        <div class="radio-holder">
+                            {{ form_widget(form.type) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group mb-4"  for="mail_Contenu">
+                        <label class="cs-label d-block">Contenu de l'email</label>
+
+                            {{ form_widget(form.contenu,{attr: {rows: '10'} }) }}
+                    </div>
+                </div>
+	        	{{ form_widget(form) }}
+				<button class="btn btn-btn-blue">{{ button_label|default('event.Save'| trans) }}</button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

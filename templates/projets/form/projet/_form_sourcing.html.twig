@@ -1,0 +1,109 @@
+
+
+<div class="col-lg-8 content-info">
+
+    <div class="header">
+        <ul>
+            <li class="active title-btn capitalize">informations primaires</li>
+        </ul>
+    </div>
+    <div class="item-details">
+
+        <div class="item-details-body">
+
+            <div class="tab-content cs-tab-content">
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-0">
+
+                                    {{ form_label(form.intitule_projet) }}
+                                    {{ form_widget(form.intitule_projet,{'value' : projet.titre}) }}
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                        <label class="cs-label mb-0">Confidentiel</label>
+                                        <span class="lock" alt="Confidentiel" title="Confidentiel">
+                                            <img src="{{ asset('images/icons/lock.svg') }}" alt=""></span>
+                                       {#  <label class="cs-checkbox">
+                                            {{ form_widget(form.Confidentiel) }}
+                                            <span>&nbsp;</span>
+                                        </label> #}
+                                        {{ form_row(form.Confidentiel, {label_attr: {class: 'switch-custom'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                         <label class="cs-label mb-0">Stratégique</label>
+                                         <span class="trace" alt="Prioritaire" title="Prioritaire">
+                                             <img src="{{ asset('images/icons/Trace.svg') }}" alt=""></span>
+                                        {#<label class="cs-checkbox">
+                                            {{ form_widget(form.Prioritaire) }}f
+                                            <span>&nbsp;</span>
+                                        </label> #}
+                                        {{ form_row(form.Prioritaire, {label_attr: {class: 'switch-custom'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="cs-label">{{ form_label(form.secteur_sou) }}</label>
+                                {{ form_widget(form.secteur_sou ,{'attr': {'class': 'form-group secteur_sou'}}) }}
+                              </div>
+                            <div class="form-group">
+                              <label class="cs-label">{{ form_label(form.zone_cible) }}</label>
+                              {{ form_widget(form.zone_cible ,{'attr': {'class': 'form-group zone_cible'}}) }}
+                            </div>
+                            <div class="form-group">
+                              <label class="cs-label">{{ form_label(form.pays_command) }}</label>
+                                {{ form_widget(form.pays_command ,{'attr': {'class': 'form-group pays_command'}}) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="cs-label">{{ form_label(form.Documents) }}</label>
+                                <label class="cs-input-file mb-2">
+                                    {{ form_widget(form.Documents,{'attr':{'class':'file'}}) }}
+                                </label>
+                                {% for data in projet.projetsData %}
+                                {% if(data.cle == "Documents") %}
+                                <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                                    {{data.value}}
+                                </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group mb-4">
+                                <label class="cs-label">{{ form_label(form.Description_projet) }}</label>
+                                {{ form_widget(form.Description_projet,{'attr':{'rows':5}}) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="cs-label">{{ form_label(form.details_libres) }}</label>
+                                {{ form_widget(form.details_libres,{'attr':{'rows':5}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+  $('.secteur_sou').select2();
+  $('.pays_command').select2();
+  $('.zone_cible').select2();
+});
+</script>

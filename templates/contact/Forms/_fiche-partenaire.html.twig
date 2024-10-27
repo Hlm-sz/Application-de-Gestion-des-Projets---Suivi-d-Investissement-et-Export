@@ -1,0 +1,71 @@
+ 
+ <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-parte">
+    <div class="tab-pane fade show active" id="item-details" role="tabpanel">
+        <div class="container-fluid">
+            <div class="row align-items-end mb-4">
+                <div class="col-lg-4">
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Nom du Partenaire</label>
+
+                        {{ form_widget(form.nomPartenaire) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Type</label>
+                        {{ form_widget(form.TypePartenaire) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                        <label class="cs-label">Engagement</label>
+                        {{ form_widget(form.EngagementPart, {label:false,label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-end mb-4">
+                <div class="col-lg-4">
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Type d’Engagement</label>
+                        {{ form_widget(form.TypeEngagement) }}
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Pays cible</label>
+                        {{ form_widget(form.Pays_cible) }}
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Pays d'origine</label>
+                        {{ form_widget(form.Pays_origine) }}
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="form-group mb-2">
+                        <label class="cs-label mb-0">Description de l’activité</label>
+                        {{ form_widget(form.description_partenaire) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-end mb-4">
+                <div class="col-lg-4">
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Secteur</label>
+                        {{ form_widget(form.Secteur) }}
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="cs-label">Présentation</label>
+                        {{ form_widget(form.presentation) }}
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="form-group mb-2">
+                        <label class="cs-label mb-0">Détails libres</label>
+                        {{ form_widget(form.detail_libre) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> {#  End tab-content One #}

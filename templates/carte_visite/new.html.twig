@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{'carteVisite.New_carte'| trans}}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="#">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{'carteVisite.titre_cv'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+
+{% block navbar_right %}
+	<a class="btn btn-blue" id="btn_submit" href="#">
+		<i class="fa  fa-save"></i>
+	</a>
+{% endblock %}
+{% block navbar_left %}
+	{# <a class="btn btn-blue" href="{{ path('carte_visite_index') }}">
+		<i class="fa fa-arrow-left"></i>
+	</a> #}
+	<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+    <i class="fa fa-arrow-left"></i>
+</a>
+	<h4 class="navbar-text-color">{{'carteVisite.New_carte'| trans}}</h4>
+{% endblock %}
+
+{% block stylesheets %}
+		<link href="{{ asset('css/_style.css') }}" rel="stylesheet" type="text/css">
+	
+{% endblock %}
+{% block body %}
+
+
+	<div class="item-details wrape-contact-details">
+		<div class="item-details-body item-details-event item-bg-none">
+			 
+
+			<div class="item-details-body item-details-contact item-bg-none event-details">
+
+				{{ include('carte_visite/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+
+
+	{% block javascripts %}
+	<script>
+     $("#btn_submit").click(function () {
+            $("#btn-send").click();
+        });
+    </script>	
+    
+<script>
+    $(document).ready(function () {
+         var profile = $('#carte_visite_profil option:selected').text();
+            var comptetype = this.value;
+            $('#Organz').empty();
+             $.ajax({
+                type: "POST",
+                url: "/contact/listecompte/",
+                data: {
+                    comptetype: comptetype,
+                },
+                dataType: "json",
+                success: function (response) {
+                    if( profile == "Compte" || profile == "Partenaire" ){
+                    console.log(profile);
+                    $("#Organgroupe").css("display", "block"); 
+                    $("#Msgorg").css("display", "block");                                   
+                    $("#Organz").append('<option value=""></option>')
+                    for(var i=0; i< response.data.length;i++){
+                         $("#Organz").append('<option value="'+response.data[i].id+'">'+response.data[i].nom+'</option>')
+                     }
+                      $('#Organz').select2();
+                    }else{
+                        $("#Organgroupe").css("display", "none");
+                        $("#Msgorg").css("display", "none");                                   
+                    }
+                },
+                error: function (response) {
+                    // alert("error !" + response);
+                }
+            });
+        });
+        $('#carte_visite_profil').on('change', function() {
+            var profile = $('#carte_visite_profil option:selected').text();
+            var comptetype = this.value;
+            $('#Organz').empty();
+             $.ajax({
+                type: "POST",
+                url: "/contact/listecompte/",
+                data: {
+                    comptetype: comptetype,
+                },
+                dataType: "json",
+                success: function (response) {
+                    if( profile == "Compte" || profile == "Partenaire" ){
+                    console.log(profile);
+                    $("#Organgroupe").css("display", "block");
+                    $("#Msgorg").css("display", "block");                                              
+                    $("#Organz").append('<option value=""></option>')
+                    for(var i=0; i< response.data.length;i++){
+                         $("#Organz").append('<option value="'+response.data[i].id+'">'+response.data[i].nom+'</option>')
+                     }
+                      $('#Organz').select2();
+                    }else{
+                        $("#Organgroupe").css("display", "none");
+                        $("#Msgorg").css("display", "none");                                   
+                    }
+                },
+                error: function (response) {
+                    // alert("error !" + response);
+                }
+            });
+    });    
+</script>
+
+	{% endblock %}
+{% endblock %}

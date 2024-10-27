@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LogProjet index{% endblock %}
+
+{% block body %}
+    <h1>LogProjet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>DateCreation</th>
+                <th>Commentaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for log_projet in log_projets %}
+            <tr>
+                <td>{{ log_projet.id }}</td>
+                <td>{{ log_projet.status }}</td>
+                <td>{{ log_projet.dateCreation ? log_projet.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ log_projet.commentaire }}</td>
+                <td>
+                    <a href="{{ path('log_projet_show', {'id': log_projet.id}) }}">show</a>
+                    <a href="{{ path('log_projet_edit', {'id': log_projet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('log_projet_new') }}">Create new</a>
+{% endblock %}

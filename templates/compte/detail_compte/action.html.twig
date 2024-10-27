@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="row">
+        <div class="activite">
+        <div class="filter-project">
+			
+			<div class="sidebare-filter activite-filter ">
+            <a class="btn-filtre" style="position: absolute;top: 15px;right: 15px;">
+				<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+			</a>
+                   <form method="post">
+					<div>
+                    <div class="form-group">
+                        <label for="log_status">Logs Status</label>
+                        <select id="log_status" name="log_status" class="form-control">
+                        <option value=""></option>
+                        <option value="Considération">Considération</option>
+                        <option value="Prospection">Prospection</option>
+                        <option value="Intérêt">Intérêt</option>
+                        <option value="Décision">Décision</option>
+                        <option value="Suivi">Suivi</option>
+                        <option value="Fermé">Fermé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="log_date">Période logs</label>
+                        <input type="date" id="log_date" name="log_date" required="required" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="log_date_end" class="required"> </label>
+                        <input type="date" id="log_date_end" name="log_date_end" class="form-control">
+                    </div>
+                    </div>
+					</form>
+					<a style="width: 100%" href="#" class="btn btn-btn-blue" onclick="logfiltre()">Filtre</a>
+			</div>
+		</div>
+            <div class="header">
+                <ul>
+                    <li class="active title-btn">Actions</li>
+                </ul>
+            </div>
+            <div class="scroll_container">
+                <div class="wrapper-item-activite scroll_content scroll_content-compte wrapper-item-activite-export">
+                    <div class="wrape-filter">
+                        <div class="filter">
+                            <a onclick="logallfiltre()"><span>Tout</span></a>
+                            <a class="btn-filtre"><img src="{{ asset('images/icons/filter.png') }}" alt=""></a>
+                        </div>
+                    </div>
+
+                  <div id="log_filtre_compte">
+                    {% for log in logs_compte %}
+                    <div class="item-activite">
+                        <div class="wrap-img-activite">
+                            <img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+                        </div>
+                        <div class="wrapper-content">
+                            <div class="content">
+                                <div class="header">
+                                    <strong>{{ log.status }}</strong>
+                                    <div class="date">
+                                        {{ log.dateCreation ? log.dateCreation|date('d/m/Y'):'' }}</div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="body">
+                                    <span></span>
+                                    <p>{{ log.commentaire |nl2br}}
+                                    {% if log.document is not null %}
+            						<br/>Compte rendu : <a href="{{ asset("uploads/"~ (log.document)) }}" target="_blink">{{log.document}}</a>
+            					    {% endif %}
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function logfiltre(){
+    var log_status = $("select[name='log_status']").val();
+    var log_date = $("input[name='log_date']").val();
+    var log_date_end = $("input[name='log_date_end']").val();
+    var path = "{{ path('compte_log_filtre') }}";
+
+        console.log(log_status);
+        console.log(log_date);
+        console.log(log_date_end);
+
+            $.ajax({
+                url:     "{{ path('compte_log_filtre') }}",  
+                type:      'POST',   
+                dataType: 'html', 
+                async:      true,  
+                data: {
+                        log_status: log_status,
+                        log_date: log_date,
+                        log_date_end: log_date_end,
+                        compte: {{compte.id}}
+
+                    },
+                success: function (data) {
+                document.getElementById("log_filtre_compte").innerHTML = data;
+                $('.sidebare-filter').css('display', 'none');
+
+                },
+                error: function(response){
+                alert("error !"+response);
+            }
+            }); 
+}
+    function logallfiltre(){
+    
+            $.ajax({
+                url:     "{{ path('compte_log_filtre_all') }}",  
+                type:      'POST',   
+                dataType: 'html', 
+                async:      true,  
+                data: {
+                        compte: {{compte.id}}
+                    },
+                success: function (data) {
+                document.getElementById("log_filtre_compte").innerHTML = data;
+                $('.sidebare-filter').css('display', 'none');
+
+                },
+                error: function(response){
+                alert("error !"+response);
+            }
+            });
+}
+</script>

@@ -1,0 +1,23 @@
+<div id="log_filtre_compte">
+    {% for log in logs_compte %}
+    <div class="item-activite">
+        <div class="wrap-img-activite">
+            <img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+        </div>
+        <div class="wrapper-content">
+            <div class="content">
+                <div class="header">
+                    <strong>{{ log.status }}</strong>
+                    <div class="date">
+                        {{ log.dateCreation ? log.dateCreation|date('d/m/Y'):'' }}</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="body">
+                    <span></span>
+                    <p>{{ log.commentaire |nl2br}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> 

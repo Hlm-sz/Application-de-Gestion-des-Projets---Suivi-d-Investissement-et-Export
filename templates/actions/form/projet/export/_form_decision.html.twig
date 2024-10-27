@@ -1,0 +1,198 @@
+<div class="row align-items-end mb-4">
+    <div class="col-lg-4">
+        <div class="form-group mb-4">
+            <label class="cs-label">Date</label>
+            {{ form_widget(form.date_decision) }}
+        </div>
+        <label class="cs-label mb-0">Décision</label>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                    <label class="cs-label mb-0">Abouti</label>
+                    {{ form_row(form.Aboutiexpo, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                    <label class="cs-label mb-0">Non Abouti</label>
+                    {{ form_row(form.NAboutiexpo, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+            
+        </div>
+       
+
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group mb-0">
+            <label class="cs-label">{{ form_label(form.details_libres_expo_decision) }}</label>
+            {{ form_widget(form.details_libres_expo_decision,{'attr':{'rows':5}}) }}
+        </div>
+    </div>
+    <div class="col-lg-4" id="Motif_expo">
+                 <div class="form-group mb-4">
+                <label class="cs-label">Motif</label>
+                {{ form_widget(form.Motif_expo) }}
+                </div>
+                 <div class="form-group mt-2">
+            <label class="cs-label mb-0">PV Clôture</label>
+            {{ form_row(form.pv_cloture_nabouti_expo) }}
+            <div class="form-group con_decision mb-2 mt-2">
+                {{ form_widget(form.date_pv_cloture_nabouti_expo) }}
+            </div>
+        </div>
+            </div>
+</div>
+<div class="divider30"></div>
+            <div class="row mb-4" style="display:none;" id="seemoreexpo">
+                <div class="col-lg-4">
+                    <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">Commande</label>
+                        {{ form_row(form.Commande_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_cmd_expo) }}
+                    </div>
+                    <div class="form-group con_decision mb-2" id="document_CMD">
+                        {{ form_widget(form.document_CMD) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">Signature de contrat</label>
+                        {{ form_row(form.Signaturedecontrat_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_signature_expo) }}
+                    </div>
+                      <div class="form-group con_decision mb-2" id="document_contra">
+                        {{ form_widget(form.document_contra) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group form-control mb-2 d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">PV de clôture</label>
+                        {{ form_row(form.pvcloture_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_pvclose_expo) }}
+                    </div>
+                     <div class="form-group con_decision mb-2" id="document_pv_cloture">
+                        {{ form_widget(form.document_pv_cloture) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="row mb-4" style="display:none;" id="seemoreexpo02">
+                <div class="col-lg-4">
+                    <div class="form-group mt25 mb-4">
+                        {{ form_widget(form.Compte_exportateur_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="cs-label">Date</label>
+                        {{ form_widget(form.date_decision_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="cs-label">Valeurde la commande</label>
+                        {{ form_widget(form.valeur_cmd_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Secteur</label>
+                        {{ form_widget(form.secteur_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Référence</label>
+                        {{ form_widget(form.reference_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Ecosystème/Filière</label>
+                        {{ form_widget(form.eco_fil_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Produit</label>
+                        {{ form_widget(form.produit_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+
+                </div>
+            </div>
+
+<!-- Modal -->
+{# <div class="modal fade decision_modelsou" id="decisionmodalexpo" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayedex">
+        <div class="tab-pane fade show active" role="tabpanel">
+            <div class="divider30"></div>
+            <div class="row mb-4">
+                <div class="col-lg-4">
+                    <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">Commande</label>
+                        {{ form_row(form.Commande_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group mb-2 form-control d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">Signature de contrat</label>
+                        {{ form_row(form.Signaturedecontrat_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_signature_expo) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group form-control mb-2 d-flex justify-content-between align-items-center">
+                        <label class="cs-label mb-0">PV de clôture</label>
+                        {{ form_row(form.pvcloture_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="divider130"></div>
+            <div class="row mb-4">
+                <div class="col-lg-4">
+                    <div class="form-group mt25 mb-4">
+                        {{ form_widget(form.Compte_exportateur_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="cs-label lwithe">Date</label>
+                        {{ form_widget(form.date_decision_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="cs-label lwithe">Valeur de la commande</label>
+                        {{ form_widget(form.valeur_cmd_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group mb-2">
+                        <label class="cs-label lwithe">Secteur</label>
+                        {{ form_widget(form.secteur_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="cs-label lwithe">Référence</label>
+                        {{ form_widget(form.reference_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-2">
+                        <label class="cs-label lwithe">Ecosystème/Filière</label>
+                        {{ form_widget(form.eco_fil_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="cs-label lwithe">Produit</label>
+                        {{ form_widget(form.produit_expo,{ 'attr':{'disabled':'disabled'} }) }}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> #}

@@ -1,0 +1,289 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'projet.Detail'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('projets_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'projet.titre_projet'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block header_search %}
+	{# <form class="form-inline" action="{{ path('projets_index') }}" method="get">
+		<input class="form-control mr-sm-2" name="search" type="search" placeholder="Chercher" aria-label="Chercher">
+	</form> #}
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+
+
+{% endblock %}
+{% block navbar_left %}
+
+
+{% endblock %}
+{% block body %}
+	<div class="top-header">
+		<div class="container-fluid">
+
+			<div class="third-header col-lg-12">
+				<div class="row">
+					<div class="col-lg-6">
+						<ul class="etapes steps">
+							{% for status in list_status %}
+								<li>
+									{% if status.id == projet.etatProjet.id %}
+										<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}" class="active">
+											<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+										</a>
+									{% else %}
+										<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}"></a>
+									{% endif %}
+
+									<label for="{{ status.nom }}">
+										<i class="fa fa-sort-asc" aria-hidden="true"></i>
+										{{ status.nom }}
+									</label>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="col-lg-4">
+						<ul class="GPAC">
+							<li>
+								<a href="" class="active">
+									<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+								</a>
+								<label for="Intérêt">
+									<i class="fa fa-sort-asc" aria-hidden="true"></i>
+									GPAC
+								</label>
+							</li>
+							<li  id="projet-prioritaire-btn"><a href="" >S</a></li>
+							<li  id="projet-confidentiel-btn"><a href="" >C</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-2">
+						<ul class="img-profil">
+							<li>
+								<img src="{{ asset('images/image-profile.png') }}" alt="" class="clip-profil">
+								<div class="info-profil">
+									<label>Géré par :</label><br>
+									<span>{{ projet.GerePar.prenom ~' '~ projet.GerePar.nom }}</span>
+								</div>
+								<div class="param-profil">
+									<span></span>
+								</div>
+							</li>
+						</ul>
+					</div> <!-- End Profil -->
+				</div>
+			</div>
+			<div class="row">
+				{{ include('projets/_form_detail.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+				<div class="col-lg-4 sidbar-compte">
+					<div class="container">
+						<div class="row">
+							<div class="compte col-sm ">
+								<div class="header">
+									<h3>Compte</h3>
+								</div>
+								<div class="profil">
+									<div class="thumb">
+										<img src="{{ data.compte.logo ? asset('images/'.data.compte.logo) : asset('images/Image-33.png') }}" alt="" class="clip-circle">
+
+									</div>
+									<div class="name">{{ data.compte.nomCompte }}</div>
+									<strong>#Secteur</strong>
+
+								</div>
+								<div >
+									<button class="compte-contact">Consulter le compte</button>
+								</div>
+							</div>
+							<div class="contact col-sm ">
+								<div class="header">
+									<h3>Contact</h3>
+								</div>
+								<ul>
+
+									{% for contact in data.contact %}
+										<li>
+											<a href="{{ path('contact_show',{'id':contact.id }) }}" class="active">
+												{{ contact.prenom|first|upper ~''~ contact.nom|first|upper }}
+											</a>
+											<div class="info">
+												<label for="">{{ contact.prenom|capitalize ~' '~ contact.nom|capitalize }}</label>
+												<span>DG</span>
+											</div>
+
+										</li>
+									{% endfor %}
+								</ul>
+								<div >
+									<button class="compte-contact">Ajouter un contact</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div> <!-- End Sidebar compte -->
+			</div> <!-- End first Row Compte -->
+
+			<div class="row wrapper-g-projet ">
+				<div class="col-lg-8 content-g-projet">
+					<div class="header">
+						<ul>
+							<li>Gestion de projets et after care</li>
+
+						</ul>
+					</div>
+					<div class="item-details">
+
+						<div class="item-details-body">
+
+							<div class="tab-content cs-tab-content">
+								<div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="form-group mb-4">
+												<label class="cs-label">Statut du projet</label>
+												<select class="form-control">
+													<option>Nom démarre</option>
+												</select>
+											</div>
+											<div class="form-group mb-4">
+												<label class="cs-label">incitation sollicitées</label>
+												<select class="form-control">
+													<option>Exonération</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="cs-label">Programme d'investissement</label>
+												<label class="cs-input-file mb-2">
+													<input type="file">
+													<span>Lorem ipsum</span>
+												</label>
+												<label class="cs-label">Mode de financement</label>
+												<label class="cs-input-file">
+													<input type="file">
+													<span>Lorem ipsum</span>
+												</label>
+											</div>
+										</div>
+										<div class="col-lg-8">
+											<div class="form-group mb-4">
+												<label class="cs-label">Requêtes du projet</label>
+												<textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea>
+											</div>
+											<div class="form-group">
+												<label class="cs-label">Information supplémentaires</label>
+												<textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea>
+											</div>
+										</div>
+										<div class="container-fluid user-operation">
+											<div class="row">
+												<div class="col-sm cree-par">
+                                                    <span class="icon-user">
+                                                        <img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+                                                    </span>
+													<div class="info-user">
+														<strong>Créé par :</strong>
+														<span class="name">{{ projet.CreePar ? projet.CreePar.prenom ~' '~projet.CreePar.nom : '' }}</span>
+													</div>
+													<div class="date-user">
+														{{ projet.dateCreation ? projet.dateCreation|date('d/m/Y'):'' }}
+													</div>
+
+												</div>
+												<div class="col-sm modifier-par">
+                                                    <span class="icon-user">
+                                                        <img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+                                                    </span>
+													<div class="info-user">
+														<strong>Modifié par :</strong>
+														<span class="name">{{ projet.ModifiePar ? projet.ModifiePar.prenom ~' '~projet.ModifiePar.nom : ''}}</span>
+													</div>
+													<div class="date-user">
+														{{ projet.dateModification ? projet.dateModification|date('d/m/Y'): '' }}
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-lg-4 sidbar-activite">
+					<div class="container">
+						<div class="row">
+							<div class="activite">
+								<div class="header">
+									<ul>
+										<li>Activités</li>
+
+
+									</ul>
+								</div>
+								<div class="wrapper-item-activite">
+									<div class="wrape-filter">
+										<div class="filter">
+											<span>Tous</span>
+											<img src="{{ asset('images/icons/filter.png') }}" alt="">
+										</div>
+									</div>
+									{% for log in logs_projet %}
+										<div class="item-activite">
+										<div class="wrap-img-activite">
+											<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+										</div>
+										<div class="wrapper-content">
+											<div class="content">
+												<div class="header">
+													{% if log.status %}
+														<strong>{{ log.status }}</strong>
+													{% endif %}
+													<div class="date">{{ log.dateCreation ? log.dateCreation|date('d/m/Y'):'' }}</div>
+													<div class="clear"></div>
+												</div>
+												<div class="body">
+													<span></span>
+													<p>{{ log.commentaire }} </p>
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+
+								</div> <!--  End Wrapper item activite -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--  End second row Projet -->
+		</div>
+
+	</div>
+	{% block javascripts %}
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+	{% endblock %}
+{% endblock %}

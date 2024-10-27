@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}
+		Index
+		{% endblock %}
+		| CRM AMDIE
+	</title>
+
+	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="{{ asset('images/amdie.png') }}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="{{ asset('js/app.js') }}"></script>
+	{% set currentRoute = app.request.attributes.get('_route') %}
+	{% if 'event' in currentRoute == false %}
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.22/datatables.min.css" />
+
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.22/datatables.min.js"></script>
+	{% endif %}
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet" type="text/css">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+	{% block stylesheets %}{% endblock %}{% block style %}{% endblock %}
+	<script>
+		$(document).ready(function () {
+			$(".button").click(function () {
+				$(".body-container").addClass("modal-mobile")
+				$(".modal-mobile").fadeIn();
+				$("row-wrape-filter-project").css("overflow", "hidden");
+			});
+			$(".cross").click(function () {
+				console.log("test");
+				$(".modal-mobile").fadeOut();
+				$("row-wrape-filter-project").css("overflow", "auto");
+			});
+		});
+	</script>
+
+
+</head>
+
+<body class="page_{{ currentRoute|lower }} {{ 'event' in currentRoute ? 'event' : '' }}">
+<div class="desktop">
+
+	<!-- flash msg zone -->
+	{% for message in app.flashes('success') %}
+	<script>
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: '{{ message }}',
+			showConfirmButton: false,
+			timer: 3000
+		})
+	</script>
+
+	{% endfor %}
+
+	<!-- /flash msg zone -->
+	<div class="sticky">
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light menuMobile">
+	{% block sous_title %}
+		<a class="navbar-brand" href="{{ path('projets_index') }}">
+			<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+				alt="logo">
+				<div class="SousTitre">
+				<strong>AMDIE</strong>
+			|
+
+			Index
+
+			</div>
+		</a>
+		{% endblock %}
+		<div class="nav_toggle">
+			<button class="nav-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="nav-toggle__text">Toggle Menu</span>
+			</button>
+		</div>
+
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav mr-auto"></ul>
+			{# <ul class="nav navbar-nav navbar-right"> #}
+			{# <a href="{{ path('contact_site_amdie') }}">
+				<div class="wrap-notification"> #}
+					{# <img src="{{asset('images/icons/email.png')}}" /> #}
+
+					{# <span class="notification-icon" id="notification">
+						{% if is_array(count) == "false" %}
+						{{ count }}
+						{% endif %}
+					</span>
+
+
+				</div>
+			</a> #}
+			{% block header_search %}
+			{# <form class="form-inline" action="#" method="get">
+				<input class="form-control mr-sm-2" name="search" type="search" placeholder="Chercher"
+					aria-label="Chercher">
+			</form> #}
+
+			{% endblock %}
+			{% set currentRoute = app.request.attributes.get('_route') %}
+			<ul class="nav navbar-nav navbar-right main-menu">
+
+				{% if app.user.groupe.id==1 %}
+				<li class="nav-item dropdown drop-list">
+					<a class="nav-link-global dropdown-toggle current-page" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Administration
+					</a>
+					<div class="dropdown-menu header-navbar" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item {{ currentRoute == 'user_index' ?'active' : '' }}"
+							href="{{ path('user_index') }}">{{ 'user.titre_user'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'role_index' ?'active' : '' }}"
+							href="{{ path('role_index') }}">{{ 'role.titre_role'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'restriction_index' ?'active' : '' }}"
+							href="{{ path('restriction_index') }}">{{ 'restriction.Restriction'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'groupe_index' ?'active' : '' }}"
+							href="{{ path('groupe_index') }}">{{ 'groupe.titre_groupe'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'permission_index' ?'active' : '' }}"
+							href="{{ path('permission_index') }}">{{ 'acces.Acces'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'secteur_index' ?'active' : '' }}"
+							href="{{ path('secteur_index') }}">{{ 'secteur.Secteur'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'profils_index' ?'active' : '' }}"
+							href="{{ path('profils_index') }}">{{ 'profil.Profils'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'canal_index' ?'active' : '' }}"
+							href="{{ path('canal_index') }}">{{ 'canal.Canals'| trans }}</a>
+							<div class="dropdown-divider"></div>
+						<a class="dropdown-item {{ currentRoute == 'fonction_index' ?'active' : '' }}"
+							href="{{ path('fonction_index') }}">Fonction</a>
+					</div>
+				</li>
+				{% else %}
+				<li class="nav-item dropdown drop-list">
+					<a class="nav-link-global dropdown-toggle current-page-user" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Gestion
+					</a>
+					<div class="dropdown-menu  header-navbar" aria-labelledby="navbarDropdown">
+						{# <a class="nav-link {{ currentRoute == 'contact_index' ?'active' : '' }}"
+							href="{{ path('contact_index') }}">{{ 'contact.Contacts'| trans }}</a> #}
+						<a class="dropdown-item"
+							href="{{ path('contact_index') }}">{{ 'contact.Contacts'| trans }}</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="{{ path('compte_index') }}">{{ 'compte.Compte'| trans }}</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="{{ path('partenaire_list') }}">Partenaires</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="{{ path('projets_index') }}">{{ 'projet.Projects'| trans }}</a>
+						{# <a class="dropdown-item"
+							href="{{ path('actions_index') }}">Actions</a> #}
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item"
+							href="{{ path('events_index') }}">Events</a>
+						{# <div class="dropdown-divider"></div> #}
+						{# <a class="dropdown-item"
+							href="{{ path('emails_index') }}">Emails</a> #}
+
+					</div>
+				</li>
+				<li class="nav-item dropdown drop-list">
+					<a class="nav-link-global dropdown-toggle current-page" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Console
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						{# <a class="nav-link {{ currentRoute == 'reporting' ?'active' : '' }}"
+							href="{{ path('reporting') }}">Analytics</a> #}
+						{% if app.user.groupe.nom == "Business Developers Export" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/9T4VBWVWNX?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Business Developers Investissement" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/1gFrp52eTv?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Departement Investissement" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/1gFrp52eTv?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Directeur - GPAC" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/Ewcd7VhM0G?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Directeur Investissement" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/rp-epIKFEt?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Directeur-transverse" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/-MAJ1wO-oF?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkSharee">Analytics</a>
+						{% elseif app.user.groupe.nom == "Direction Générale - DG" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/SbrGxLCWvj?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Département Export" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/9T4VBWVWNX?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Gestion Directeur Export" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/9T4VBWVWNX?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Gestionnaires CRM & KPI" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/pI2AzABKG6?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Responsable-GPAC" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/Ewcd7VhM0G?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% elseif app.user.groupe.nom == "Utilisateurs - transverses" %}
+						<a class="nav-link" target="_blank" href="https://app.powerbi.com/links/-MAJ1wO-oF?ctid=1820ac0c-a642-4f86-b293-614635ce57b8&pbi_source=linkShare">Analytics</a>
+						{% endif %}
+						<a class="nav-link {{ currentRoute == 'projets_dashbord' ?'active' : '' }}"
+							href="{{ path('projets_dashbord') }}">Dashbord</a>
+					</div>
+				</li>
+
+				{% endif %}
+				<li class="nav-item dropdown drop-list">
+					<a class="nav-link-global dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ app.user.prenom|capitalize }}
+						{{ app.user.nom|upper }}
+						{# {{ app.user.nom|first|upper }} #}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ path('user_edit_profile',{ 'id': app.user.id }) }}">Mon Profile</a>
+						<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+					</div>
+					
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+
+	<nav class="navbar navbar-expand-lg navbar-light navbar-blue transaction">
+
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav mr-auto"> {% block navbar_left %}{% endblock %}
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right"> {% block navbar_right %}{% endblock %}
+			</ul>
+
+		</div>
+	</nav>
+	</div>
+	<div class="contentst">
+	{% block third_header %}{% endblock %}
+	</div>
+	<div class="container-dash" width=" 100%"> {% block body %}{% endblock %}
+	</div>
+	{% block javascripts %}{% endblock %}
+	<script src="{{ asset('js/dom.js') }}"></script>
+	<div class="clear"></div>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<script src="{{ asset('js/custom.js') }}"></script>
+	<script>
+		$(document).ready(function () {
+			bsCustomFileInput.init()
+		})
+	</script>
+</div>
+<div class="mobile">
+<div class="row">
+			<div class="col-lg-12 col-md-6">
+				<div class="descLogin">
+					<div>
+						<img src="/images/illustration.png" alt="" style="position: relative;width: 100%;">
+					</div>
+					<div class="">
+						  <img src="/images/logoAmdie.png" alt=""  style="display: block;margin-left: auto;margin-right: auto;width: 50%";>
+					  </div>
+					<div class="textLogin">
+						<div class="titre-textLogin">
+							<h1> Doing business with Morocco </h1>
+						</div>
+						<div class="desc-textLogin" style="text-align: justify;">
+							<p> Cette solution CRM vise à suivre le funnel commercial des clients à prospecter par l'AMDIE </p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+</div>	
+</div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<div class="row">
+      <div class="sidbar-activite" onclick="Gpacexport_action()">
+          <ul class="form-project form-activite">
+              <li class="pull-right add-activte">
+                  <a class="" href="#">
+                      <i class="fa  fa-save"></i>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+        <div class="form-group mb-4">
+            <label class="cs-label">{{ form_label(form.date_actions_gpac_export) }}</label>
+            {{ form_widget(form.date_actions_gpac_export) }}
+        </div>
+        <div class="form-group mb-4">
+            <label class="cs-label">{{ form_label(form.Type_accompagnement_actions_gpac_export) }}</label>
+            {{ form_widget(form.Type_accompagnement_actions_gpac_export) }}
+        </div>
+        <div class="form-group mb-4 d-flex justify-content-between align-items-center">
+           <label class="cs-label">Appui Obtenu</label>
+             {{ form_row(form.Appui_Obtenu, {label_attr: {class: 'switch-custom'} }) }}
+         </div>
+         <div class="form-group">
+             <label class="cs-label">{{ form_label(form.situation_projet_actions_gpac_export) }}</label>
+             {{ form_widget(form.situation_projet_actions_gpac_export) }}
+         </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label class="cs-label">{{ form_label(form.details_libres_actions_gpac_export) }}</label>
+            {{ form_widget(form.details_libres_actions_gpac_export) }}
+        </div>
+
+
+        <div class="form-group">
+            <label class="cs-label">{{ form_label(form.informations_supplementaires_actions_gpac_export) }}</label>
+            {{ form_widget(form.informations_supplementaires_actions_gpac_export) }}
+        </div>
+    </div>
+
+</div>
+<script>
+function Gpacexport_action() {
+            var date_actions_gpac_export = $("#projet_data_date_actions_gpac_export").val();
+            var details_libres_actions_gpac_export = $("#projet_data_details_libres_actions_gpac_export").val();
+            var Type_accompagnement_actions_gpac_export = $("#projet_data_Type_accompagnement_actions_gpac_export").val();
+            var Appui_Obtenu = $("#projet_data_Appui_Obtenu").val();
+            var situation_projet_actions_gpac_export = $("#projet_data_situation_projet_actions_gpac_export").val();
+            var informations_supplementaires_actions_gpac_export = $("#projet_data_informations_supplementaires_actions_gpac_export").val();
+
+
+            $url = "{{path('gpac_export_action')}}";
+            $.ajax({
+                type: "POST",
+                url: $url,
+                data: {
+                    date_actions_gpac_export: date_actions_gpac_export,
+                    details_libres_actions_gpac_export: details_libres_actions_gpac_export,
+                    Type_accompagnement_actions_gpac_export: Type_accompagnement_actions_gpac_export,
+                    Appui_Obtenu: Appui_Obtenu,
+                    situation_projet_actions_gpac_export: situation_projet_actions_gpac_export,
+                    informations_supplementaires_actions_gpac_export: informations_supplementaires_actions_gpac_export,
+                    pid: {{projet.id}}
+                },
+                dataType: "json",
+                success: function (response) {
+                    document.location.href = ("/projets/projet/" + response.projet_id);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'vos changements ont été bien enregistrés.',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                },
+                error: function (response) {
+                    // alert("error !" + response);
+                }
+            });
+        }
+</script>

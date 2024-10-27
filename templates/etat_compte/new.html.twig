@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EtatCompte{% endblock %}
+
+{% block body %}
+    <h1>Create new EtatCompte</h1>
+
+    {{ include('etat_compte/_form.html.twig') }}
+
+    <a href="{{ path('etat_compte_index') }}">back to list</a>
+{% endblock %}

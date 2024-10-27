@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{'carteVisite.listes_carte'| trans}}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="#">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{'carteVisite.titre_cv'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+
+{% block navbar_right %}{% endblock %}
+{% block navbar_left %}{% endblock %}
+{% block body %}
+	<div class="table-responsive">
+		<table class="table" id="data-table">
+			<thead>
+				<tr>
+					<th>{{'carteVisite.Contact'| trans }}</th>
+					<th>{{'carteVisite.Fonction'| trans }}</th>
+					<th>{{'carteVisite.Email'| trans }}</th>
+					<th>{{'carteVisite.Tel'| trans }}</th>
+					<th>{{'carteVisite.Tel.2'| trans }}</th>
+					<th>{{'carteVisite.Web'| trans }}</th>
+					<th>{{'carteVisite.Adresse'| trans }}</th>
+					<th>{{'carteVisite.Actions'| trans }}</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	{% block javascripts %}
+		<script>
+			$(document).ready(function () {
+
+$('#data-table').DataTable({
+pageLength: 10,
+destroy: true,
+searching: true,
+ajax: {
+"url": "{{ path('ajax_carte_visite') }}",
+"type": "POST",
+"dataType": "json"
+
+},
+columnDefs: [
+{
+"targets": 7,
+"orderable": false
+}
+],
+columns: [
+{
+"data": "contact"
+},
+{
+"data": "fonction"
+},
+{
+"data": "email"
+},
+{
+"data": "tel"
+}, {
+"data": "tel2"
+}, {
+"data": "web"
+}, {
+"data": "adresse"
+}, {
+"data": "actions"
+}
+],
+"language": {
+"sProcessing": "Traitement en cours...",
+"sSearch": "Rechercher&nbsp;:",
+"sLengthMenu": "Afficher &nbsp; : &nbsp; _MENU_",
+"sInfo": "Affichage des &eacute;l&eacute;ments _START_ &agrave; _END_ sur _TOTAL_",
+"sInfoEmpty": "Affichage des &eacute;l&eacute;ments 0 &agrave; 0 sur 0",
+"sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+"sInfoPostFix": "",
+"sLoadingRecords": "Chargement en cours...",
+"sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+"sEmptyTable": "Aucun résultat à afficher",
+"oPaginate": {
+"sFirst": "Premier",
+"sPrevious": "Pr&eacute;c&eacute;dent",
+"sNext": "Suivant",
+"sLast": "Dernier"
+},
+"oAria": {
+"sSortAscending": ": activer pour trier la colonne par ordre croissant",
+"sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+}
+}
+});
+
+
+});
+		</script>
+	{% endblock %}
+
+{% endblock %}

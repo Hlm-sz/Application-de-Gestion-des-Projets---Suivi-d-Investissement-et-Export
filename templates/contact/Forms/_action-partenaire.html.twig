@@ -1,0 +1,78 @@
+<div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-action" style="display: none;">
+    <div class="tab-pane fade show active" id="item-details" role="tabpanel">
+        <div class="container-fluid">
+              <div class="row align-items-end mb-4">
+                <div class="col-lg-3">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Nom de l’action</label>
+
+                        {{ form_widget(form.Nomaction) }}
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Responsable de l’Action (AMDIE)</label>
+                        {{ form_widget(form.ResponsableAction) }}
+                    </div>
+                </div>
+                {# <div class="col-lg-3">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Partenaire</label>
+                        {{ form_widget(form.PartenaireAction) }}
+                    </div>
+                </div> #}
+                 <div class="col-lg-3">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Interlocuteur Principal (Partenaire)</label>
+                        {{ form_widget(form.InterlocuteurPrincipal) }}
+                    </div>
+                </div>
+            </div>
+             <div class="row align-items-end mb-4">
+                 <div class="col-lg-4">
+                    <p>Interactions Avec Le Partenaire</p>
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Date</label>
+                        {{ form_widget(form.Date_interaction) }}
+                    </div>
+                     <div class="form-group mb-2">
+                        <label class="cs-label">Action</label>
+                        {{ form_widget(form.Action_interaction) }}
+                    </div>
+                     <div class="form-group mb-2">
+                        <label class="cs-label">Objet</label>
+                        {{ form_widget(form.Objet_interaction) }}
+                    </div>
+                </div>
+                 <div class="col-lg-8">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Détails</label>
+                        {{ form_widget(form.Detail_interaction) }}
+                    </div>
+                </div>
+            </div>
+             <div class="row align-items-end mb-4">
+                 <div class="col-lg-4">
+                    <p>Action Réalisée</p>
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Date</label>
+                        {{ form_widget(form.Date_reali) }}
+                    </div>
+                     <div class="form-group mb-2">
+                        <label class="cs-label">Action</label>
+                        {{ form_widget(form.Action_realise) }}
+                    </div>
+                     <div class="form-group mb-2">
+                        <label class="cs-label">Objet</label>
+                        
+                    </div>
+                </div>
+                 <div class="col-lg-8">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Détails</label>
+                        {{ form_widget(form.detail_libre_realise) }}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div> {#  End tab-content One #}

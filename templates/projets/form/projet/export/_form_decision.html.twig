@@ -1,0 +1,216 @@
+<div class="row align-items-end mb-4">
+    <div class="col-lg-4">
+        <div class="form-group mb-4">
+            <label class="cs-label">Date</label>
+            {{ form_widget(form.date_decision) }}
+        </div>
+        <label class="cs-label mb-0">Décision</label>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group mb-2 mb-2 d-flex align-items-centert">
+                    <label class="cs-label mb-0">{{ form_label(form.Aboutiexpo) }}</label>
+                    {{ form_row(form.Aboutiexpo, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group mb-2 mb-2 d-flex align-items-centert">
+                    <label class="cs-label mb-0">{{ form_label(form.NAboutiexpo) }}</label>
+                    {{ form_row(form.NAboutiexpo, {label_attr: {class: 'switch-custom'} }) }}
+                </div>
+            </div>
+            
+        </div>
+       
+
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group mb-0">
+            <label class="cs-label">{{ form_label(form.details_libres_expo_decision) }}</label>
+            {{ form_widget(form.details_libres_expo_decision,{'attr':{'rows':5}}) }}
+        </div>
+    </div>
+    <div class="col-lg-4" id="Motif_expo">
+        <div class="form-group mb-4">
+            <label class="cs-label">Motif</label>
+                {{ form_widget(form.Motif_expo) }}
+            </div>
+            <div class="form-group mt-2">
+                {{ form_row(form.pv_cloture_nabouti_expo) }}
+                {% for data in projet.projetsData %}
+                {% if(data.cle == "pv_cloture_nabouti_expo") %}
+                    <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                        {{data.value}}
+                    </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                {% endif %}
+                {% endfor %}
+                <div class="form-group con_decision mb-2 mt-2">
+                    {{ form_widget(form.date_pv_cloture_nabouti_expo) }}
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="divider30"></div>
+            <div class="row mb-4" style="display:none;" id="seemoreexpo">
+                <div class="col-lg-4">
+                    <div class="form-group mb-2 form-control mb-2 d-flex align-items-centert">
+                        <label class="cs-label mb-0">{{ form_label(form.Commande_expo) }}</label>
+                        {{ form_row(form.Commande_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    {# <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_cmd_expo) }}
+                    </div> #}
+                    <div class="form-group con_decision mb-2" id="document_CMD">
+                        {{ form_widget(form.document_CMD) }}
+                    </div>
+                    <div id="document_CMDooo">
+                    {% for data in projet.projetsData %}
+                    {% if(data.cle == "document_CMD") %}
+                    <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                        {{data.value}}
+                    </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="form-group mb-2 form-control mb-2 d-flex align-items-centert">
+                        <label class="cs-label mb-0">{{ form_label(form.Signaturedecontrat_expo) }}</label>
+                        {{ form_row(form.Signaturedecontrat_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_signature_expo) }}
+                    </div>
+                      <div class="form-group con_decision mb-2" id="document_contra">
+                        {{ form_widget(form.document_contra) }}
+                    </div>
+                    <div id="document_contraooo">
+                    {% for data in projet.projetsData %}
+                    {% if(data.cle == "document_contra") %}
+                    <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                        {{data.value}}
+                    </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group form-control mb-2 mb-2 d-flex align-items-centert">
+                        <label class="cs-label mb-0">{{ form_label(form.pvcloture_expo) }}</label>
+                        {{ form_row(form.pvcloture_expo, {label_attr: {class: 'switch-custom'} }) }}
+                    </div>
+                    <div class="form-group con_decision mb-2">
+                        {{ form_widget(form.date_pvclose_expo) }}
+                    </div>
+                     <div class="form-group con_decision mb-2" id="document_pv_cloture">
+                        {{ form_widget(form.document_pv_cloture) }}
+                    </div>
+                    <div id="document_pv_clotureooo">
+                    {% for data in projet.projetsData %}
+                    {% if(data.cle == "document_pv_cloture") %}
+                    <a href="{{ asset("uploads/"~ (data.value)) }}" target="_blink">
+                        {{data.value}}
+                    </a> <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4" style="display:none;" id="document_CMDRR">
+                <div class="col-lg-6">
+                    <div class="form-group mb-4">
+                    <label class="cs-label">Compte</label>
+                        {{ form_widget(form.Compte_exportateur_expo) }}
+                     </div>
+                    <div class="form-group mb-4">
+                          {{ form_widget(form.comptes_eido ,{'attr': {'class': 'form-group eido'}}) }}
+                    </div>
+                     {#
+                     <div class="form-group mb-4">
+                        <label class="cs-label">Secteur</label>
+                        {{ form_widget(form.secteur_expo ,{'attr': {'class': 'form-group Secteur'}}) }}
+                    </div> #}
+                     <div class="form-group mb-4">
+                        <label class="cs-label">Ecosystème/Filière</label>
+                        {{ form_widget(form.eco_fil_expo ,{'attr': {'class': 'form-group eco_fil_expo'}}) }}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                    <div class="col">
+                     <div class="form-group mb-4">
+                        <label class="cs-label">Date</label>
+                        {{ form_widget(form.date_decision_expo) }}
+                    </div></div>
+                    <div class="col">
+                    <div class="form-group mb-2">
+                        <label class="cs-label">Référence</label>
+                        {{ form_widget(form.reference_expo) }}
+                    </div>
+                    </div></div>
+                     <div class="form-group mb-2">
+                        <label class="cs-label">Produit</label>
+                        {{ form_widget(form.produit_expo) }}
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="cs-label">Valeurde la commande (Millions /Dhs)</label>
+                        {{ form_widget(form.valeur_cmd_expo,{ 'attr':{'step':'any'} }) }}
+                        {{ form_errors(form.valeur_cmd_expo) }}
+                    </div>
+                    
+                </div>
+                 
+            </div>
+<script>
+$(document).ready(function() {
+    
+	$('.Secteur').select2({
+        width : '100%'
+    });
+    $('.eco_fil_expo').select2({
+        width : '100%'
+    });
+    $('.eido').select2({
+        width : '100%'
+    });
+    
+    
+	 
+});
+ $('#projet_data_Compte_exportateur_expo').on('change', function() {
+            var type_compte = $('#projet_data_Compte_exportateur_expo option:selected').text();
+            var comptetype = this.value;
+             $('#projet_data_comptes_eido').empty();
+             $.ajax({
+                type: "POST",
+                url: "/projets/listecomptesdecision/",
+                data: {
+                    comptetype: comptetype,
+                },
+                dataType: "json",
+                success: function (response) {        
+                    $("#projet_data_comptes_eido").append('<option value=""></option>')
+                    for(var i=0; i< response.data.length;i++){
+                         $("#projet_data_comptes_eido").append('<option value="'+response.data[i].id+'">'+response.data[i].nom+'</option>')
+                     }
+                      $('#projet_data_comptes_eido').select2({
+                           width : '100%'
+                      });
+                },
+                error: function (response) {
+                    // // alert("error !" + response);
+                }
+            });
+        });
+
+   
+</script>

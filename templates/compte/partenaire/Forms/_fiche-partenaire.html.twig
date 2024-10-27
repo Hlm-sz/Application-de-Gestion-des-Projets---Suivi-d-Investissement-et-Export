@@ -1,0 +1,111 @@
+<div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-parte">
+	<div class="tab-pane fade show active" id="item-details" role="tabpanel">
+		<div class="container-fluid">
+			<div class="row align-items-end mb-2">
+				<div class="col-lg-3">
+					<div class="form-group mb-0">
+						<label class="cs-label">Nom du Partenaire</label>
+						{{ form_widget(form.nomCompte) }} 
+						{{ form_errors(form.nomCompte) }}
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group mb-0">
+						<label class="cs-label">Type</label>
+						{{ form_widget(form.TypePartenaire) }}
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group mb-2 d-flex justify-content-between align-items-center">
+						<label class="cs-label">Engagement</label>
+						{{ form_widget(form.EngagementPart, {label:false,label_attr: {class: 'switch-custom'} }) }}
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="form-group mb-0" id="engage">
+						<label class="cs-label">Type d’Engagement</label>
+						{{ form_widget(form.TypeEngagement) }}
+					</div>
+				</div>
+			</div>
+			<div class="row align-items-end mb-2">
+				<div class="col-lg-4">
+						<div class="form-group mb-0">
+						<label class="cs-label">Logo</label>
+						{{ form_widget(form.logo) }}
+					</div>
+					<div class="form-group mb-0">
+						<label class="cs-label">Pays d'origine</label>
+						{{ form_widget(form.paysSiege ,{'attr': {'class': 'form-group siege'}}) }}
+
+					</div>
+					<div class="form-group mb-0">
+						<label class="cs-label">Pays cible</label>
+						{{ form_widget(form.paysImplantationSuccursales ,{'attr': {'class': 'form-group sales'}}) }}
+
+					</div>
+				</div>
+
+				<div class="col-lg-8">
+					<div class="form-group mb-2">
+						<label class="cs-label mb-0">Description de l’activité</label>
+						{{ form_widget(form.description_partenaire) }}
+					</div>
+				</div>
+			</div>
+			<div class="row align-items-end mb-2">
+				<div class="col-lg-4">
+					<div class="form-group mb-0">
+						<label class="cs-label">Secteur</label>
+ 						{{ form_widget(form.secteurs ,{'attr': {'class': 'form-group Secteur'}}) }}
+
+					</div>
+					<div class="form-group mb-0">
+						<label class="cs-label">Présentation</label>
+						{{ form_widget(form.presentation) }}
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="form-group mb-2">
+						<label class="cs-label mb-0">Détails libres</label>
+						{{ form_widget(form.detail_libre) }}
+					</div>
+				</div>
+			</div>
+			{# <div class="row align-items-end mb-4">
+				<div class="col-lg-4">
+					<div class="form-group mb-4">
+						<label class="cs-label mb-0">
+							{{ form_label(form.responsableContact) }}
+						</label>
+							{{ form_widget(form.responsableContact) }}
+					</div>
+				</div>
+			</div> #}
+		</div>
+	</div>
+</div>
+{#  End tab-content One #}
+ <div style="display: none;">
+ {{ form_widget(form.etatCompte) }}
+ {{ form_widget(form.chiffreAffaires) }}
+ {{ form_widget(form.detailLibre) }}
+ {{ form_widget(form.type) }}
+ {{ form_widget(form.paysSiege) }}
+ {{ form_widget(form.paysImplantationSuccursales) }}
+ {{ form_widget(form.categorie) }}
+ {{ form_widget(form.centreDecision) }}
+ {{ form_widget(form.responsableCompte) }}
+ {{ form_widget(form.signalement) }}
+ {{ form_widget(form.logo) }}
+ {{ form_widget(form.ecosystemeFiliere) }}
+</div>
+<script>
+$(document).ready(function() {
+    $('.Secteur').select2();
+	$('.sales').select2();
+	$('.siege').select2();
+
+
+});
+</script>

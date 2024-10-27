@@ -1,0 +1,5 @@
+<form method="post" id="delete-form" action="{{ path('groupe_delete', {'id': groupe.id}) }}">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ groupe.id) }}">
+	<button class="btn btn-blue" id="delete-item">{{ 'groupe.Delete'| trans }}</button>
+</form>

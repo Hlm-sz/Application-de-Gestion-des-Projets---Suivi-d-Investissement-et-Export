@@ -1,0 +1,67 @@
+===================================================
+$ php bin/console doctrine:schema:update --dump-sql
+===================================================
+
+ The following SQL statements will be executed:
+
+     CREATE TABLE canal (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(50) NOT NULL, is_deleted TINYINT(1) NOT NULL, active TINYINT(1) NOT NULL, parent INT DEFAULT NULL, sorting INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+     ALTER TABLE secteur CHANGE color color VARCHAR(10) DEFAULT NULL;
+     ALTER TABLE permission CHANGE is_active is_active TINYINT(1) DEFAULT NULL;
+     ALTER TABLE tiny_journal CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE status status VARCHAR(255) DEFAULT NULL, CHANGE date_creation date_creation DATE DEFAULT NULL, CHANGE doc_mou doc_mou VARCHAR(255) DEFAULT NULL, CHANGE doc_cnv doc_cnv VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE contact_data CHANGE value value VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE projets_data CHANGE value value MEDIUMTEXT DEFAULT NULL;
+     ALTER TABLE mail CHANGE contenu contenu VARCHAR(1000) DEFAULT NULL, CHANGE date_envoi date_envoi DATETIME DEFAULT NULL, CHANGE type type VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE carte_visite CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE contact_id contact_id INT DEFAULT NULL, CHANGE tel2 tel2 VARCHAR(30) DEFAULT NULL, CHANGE web web VARCHAR(100) DEFAULT NULL, CHANGE email email VARCHAR(100) DEFAULT NULL, CHANGE compte_autre compte_autre VARCHAR(200) DEFAULT NULL, CHANGE organisation organisation VARCHAR(250) DEFAULT NULL;
+     ALTER TABLE role CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE compte CHANGE pays_siege_id pays_siege_id INT DEFAULT NULL, CHANGE etat_compte_id etat_compte_id INT DEFAULT NULL, CHANGE centre_decision_id centre_decision_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE modifie_par_id modifie_par_id INT DEFAULT NULL, CHANGE ecosysteme_filiere_id ecosysteme_filiere_id INT DEFAULT NULL, CHANGE chiffre_affaires chiffre_affaires VARCHAR(255) DEFAULT NULL, CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL, CHANGE ca_export ca_export VARCHAR(50) DEFAULT NULL, CHANGE logo logo VARCHAR(255) DEFAULT NULL, CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE date_modification date_modification DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE status status LONGTEXT DEFAULT NULL COMMENT '(DC2Type:array)', CHANGE gpac gpac TINYINT(1) DEFAULT NULL;
+     ALTER TABLE groupe CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE fonction CHANGE contact_id contact_id INT DEFAULT NULL, CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE projets CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE modifie_par_id modifie_par_id INT DEFAULT NULL, CHANGE gpac gpac TINYINT(1) DEFAULT NULL, CHANGE titre titre VARCHAR(100) DEFAULT NULL, CHANGE status status LONGTEXT DEFAULT NULL COMMENT '(DC2Type:array)', CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE date_modification date_modification DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE action_gpac action_gpac TINYINT(1) DEFAULT NULL;
+     ALTER TABLE compte_data CHANGE value value MEDIUMTEXT DEFAULT NULL;
+     ALTER TABLE base_liste CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)';
+     ALTER TABLE contact DROP FOREIGN KEY FK_4C62E63868DB5B2E;
+     ALTER TABLE contact CHANGE responsable_contact_id responsable_contact_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE nom nom VARCHAR(60) DEFAULT NULL, CHANGE prenom prenom VARCHAR(60) DEFAULT NULL, CHANGE statut statut VARCHAR(50) DEFAULT NULL, CHANGE langue_secondaire langue_secondaire VARCHAR(80) DEFAULT NULL, CHANGE email email VARCHAR(100) DEFAULT NULL, CHANGE tel tel VARCHAR(30) DEFAULT NULL, CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)';
+     ALTER TABLE contact ADD CONSTRAINT FK_4C62E63868DB5B2E FOREIGN KEY (canal_id) REFERENCES canal (id);
+     ALTER TABLE log_projet CHANGE duree duree INT DEFAULT NULL, CHANGE document document VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE partenaire_data CHANGE value value VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE user CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL, CHANGE photo photo VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE ecosysteme_filiere CHANGE compte_id compte_id INT DEFAULT NULL;
+     ALTER TABLE region CHANGE nom nom VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE import CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE is_valider is_valider TINYINT(1) DEFAULT NULL;
+     ALTER TABLE log_compte CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE document document VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE event CHANGE pays_id pays_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE created_by_id created_by_id INT DEFAULT NULL, CHANGE updated_by_id updated_by_id INT DEFAULT NULL, CHANGE partenaires partenaires VARCHAR(1000) DEFAULT NULL, CHANGE created_at created_at DATETIME DEFAULT NULL, CHANGE updated_at updated_at DATETIME DEFAULT NULL, CHANGE is_valide is_valide TINYINT(1) DEFAULT NULL, CHANGE secteur secteur VARCHAR(1000) DEFAULT NULL, CHANGE documet documet VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE partenaire CHANGE responsable_contact_id responsable_contact_id INT DEFAULT NULL;
+     ALTER TABLE province CHANGE nom nom VARCHAR(255) DEFAULT NULL;
+
+===================================================
+$ php bin/console doctrine:schema:update --dump-sql
+===================================================
+
+ The following SQL statements will be executed:
+
+     ALTER TABLE secteur CHANGE color color VARCHAR(10) DEFAULT NULL;
+     ALTER TABLE canal CHANGE parent parent INT DEFAULT NULL, CHANGE sorting sorting INT DEFAULT NULL;
+     ALTER TABLE permission CHANGE is_active is_active TINYINT(1) DEFAULT NULL;
+     ALTER TABLE tiny_journal CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE status status VARCHAR(255) DEFAULT NULL, CHANGE date_creation date_creation DATE DEFAULT NULL, CHANGE doc_mou doc_mou VARCHAR(255) DEFAULT NULL, CHANGE doc_cnv doc_cnv VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE contact_data CHANGE value value VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE projets_data CHANGE value value MEDIUMTEXT DEFAULT NULL;
+     ALTER TABLE mail CHANGE contenu contenu VARCHAR(1000) DEFAULT NULL, CHANGE date_envoi date_envoi DATETIME DEFAULT NULL, CHANGE type type VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE carte_visite CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE contact_id contact_id INT DEFAULT NULL, CHANGE tel2 tel2 VARCHAR(30) DEFAULT NULL, CHANGE web web VARCHAR(100) DEFAULT NULL, CHANGE email email VARCHAR(100) DEFAULT NULL, CHANGE compte_autre compte_autre VARCHAR(200) DEFAULT NULL, CHANGE organisation organisation VARCHAR(250) DEFAULT NULL;
+     ALTER TABLE role CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE compte CHANGE pays_siege_id pays_siege_id INT DEFAULT NULL, CHANGE etat_compte_id etat_compte_id INT DEFAULT NULL, CHANGE centre_decision_id centre_decision_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE modifie_par_id modifie_par_id INT DEFAULT NULL, CHANGE ecosysteme_filiere_id ecosysteme_filiere_id INT DEFAULT NULL, CHANGE chiffre_affaires chiffre_affaires VARCHAR(255) DEFAULT NULL, CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL, CHANGE ca_export ca_export VARCHAR(50) DEFAULT NULL, CHANGE logo logo VARCHAR(255) DEFAULT NULL, CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE date_modification date_modification DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE status status LONGTEXT DEFAULT NULL COMMENT '(DC2Type:array)', CHANGE gpac gpac TINYINT(1) DEFAULT NULL;
+     ALTER TABLE groupe CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE fonction CHANGE contact_id contact_id INT DEFAULT NULL, CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL;
+     ALTER TABLE projets CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE modifie_par_id modifie_par_id INT DEFAULT NULL, CHANGE gpac gpac TINYINT(1) DEFAULT NULL, CHANGE titre titre VARCHAR(100) DEFAULT NULL, CHANGE status status LONGTEXT DEFAULT NULL COMMENT '(DC2Type:array)', CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE date_modification date_modification DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)', CHANGE action_gpac action_gpac TINYINT(1) DEFAULT NULL;
+     ALTER TABLE compte_data CHANGE value value MEDIUMTEXT DEFAULT NULL;
+     ALTER TABLE base_liste CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)';
+     ALTER TABLE contact CHANGE responsable_contact_id responsable_contact_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE nom nom VARCHAR(60) DEFAULT NULL, CHANGE prenom prenom VARCHAR(60) DEFAULT NULL, CHANGE statut statut VARCHAR(50) DEFAULT NULL, CHANGE langue_secondaire langue_secondaire VARCHAR(80) DEFAULT NULL, CHANGE email email VARCHAR(100) DEFAULT NULL, CHANGE tel tel VARCHAR(30) DEFAULT NULL, CHANGE date_creation date_creation DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)';
+     ALTER TABLE log_projet CHANGE duree duree INT DEFAULT NULL, CHANGE document document VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE partenaire_data CHANGE value value VARCHAR(100) DEFAULT NULL;
+     ALTER TABLE user CHANGE is_deleted is_deleted TINYINT(1) DEFAULT NULL, CHANGE photo photo VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE ecosysteme_filiere CHANGE compte_id compte_id INT DEFAULT NULL;
+     ALTER TABLE region CHANGE nom nom VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE import CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE is_valider is_valider TINYINT(1) DEFAULT NULL;
+     ALTER TABLE log_compte CHANGE compte_id compte_id INT DEFAULT NULL, CHANGE document document VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE event CHANGE pays_id pays_id INT DEFAULT NULL, CHANGE cree_par_id cree_par_id INT DEFAULT NULL, CHANGE created_by_id created_by_id INT DEFAULT NULL, CHANGE updated_by_id updated_by_id INT DEFAULT NULL, CHANGE partenaires partenaires VARCHAR(1000) DEFAULT NULL, CHANGE created_at created_at DATETIME DEFAULT NULL, CHANGE updated_at updated_at DATETIME DEFAULT NULL, CHANGE is_valide is_valide TINYINT(1) DEFAULT NULL, CHANGE secteur secteur VARCHAR(1000) DEFAULT NULL, CHANGE documet documet VARCHAR(255) DEFAULT NULL;
+     ALTER TABLE partenaire CHANGE responsable_contact_id responsable_contact_id INT DEFAULT NULL;
+     ALTER TABLE province CHANGE nom nom VARCHAR(255) DEFAULT NULL;

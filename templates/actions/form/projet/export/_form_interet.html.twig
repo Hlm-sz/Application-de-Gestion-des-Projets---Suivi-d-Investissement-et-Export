@@ -1,0 +1,138 @@
+
+ <div class="header">
+    <ul class="form-project form-project-interet">
+    {% if app.user.groupe.id!=24%}
+        <li class="title-btn linkInteret capitalize active" id="#phase-interet"
+          onclick="openInteret(event, 'phase-interet')">Phase intérêt</li>
+        {% else %}
+        <li class="title-btn linkInteret capitalize active" id="#phase-interet"
+          onclick="openInteret(event, 'phase-interet')">Intéraction</li>
+    {% endif %}
+
+        {% if projet.status is null %}
+        <div class="hide">
+            <li class="title-btn linkInteret capitalize" id="#info-invest"
+                onclick="openInteret(event, 'phase-decision')">Phase décision</li>
+        </div>
+        {% endif %}
+        {% for key in projet.status|keys %}
+        {% if (key == "Intérêt") %}
+        <div class="hide">
+            <li class="title-btn linkInteret capitalize" id="#info-invest"
+                onclick="openInteret(event, 'phase-decision')">Phase décision</li>
+        </div>
+        {% else %}
+          {% if app.user.groupe.id!=24%}
+          <li class="title-btn linkInteret capitalize" id="#info-invest" onclick="openInteret(event, 'phase-decision')">
+              Phase décision</li>
+          {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% if projet.GPAC == true %}
+            <li class="title-btn linkInteret capitalize" id="#gpac" onclick="openInteret(event, 'gpac')">GPAC</li>
+        {% endif %}
+        {% if projet.GPAC == true %}
+            <li class="title-btn linkInteret capitalize" id="#action-gpac" onclick="openInteret(event, 'action-gpac')">Actions GPAC</li>
+        {% endif %}
+    </ul>
+
+</div>
+<div class="item-details ">
+
+    <div class="item-details-body ">
+
+        <div class="tab-content cs-tab-content no-left-padding no-right-padding infophases" id="phase-interet">
+            <div class="tab-pane fade show active" id="item-details-interet" role="tabpanel">
+                <div class="container-fluid">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-0">
+                                <label class="cs-label">Date</label>
+                                {{ form_widget(form.date_expo) }}
+                            </div>
+                        </div>
+                         <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                     <label class="cs-label mb-0">{{ form_label(form.objet_expo) }}</label>
+                                    {{ form_widget(form.objet_expo) }}
+                                 </div>
+                                <div class="col-lg-6">
+                                     <label class="cs-label mb-0">{{ form_label(form.details_expo) }}</label>
+                                    {{ form_widget(form.details_expo) }}
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-4">
+                              <label class="cs-label">{{ form_label(form.action_expo) }}</label>
+                                {{ form_widget(form.action_expo) }}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group mb-4">
+                                <label class="cs-label">{{ form_label(form.details_libres_in_expo) }}</label>
+                                {{ form_widget(form.details_libres_in_expo,{'attr':{'rows':5}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> {#  End tab-content One #}
+        <div class="tab-content cs-tab-content no-left-padding no-right-padding infophases" id="phase-decision"
+            style="display: none;">
+            <div class="tab-pane fade show active" id="item-details-decision" role="tabpanel">
+                <div class="container-fluid">
+                    {% if projet.status is null %}
+                    <div class="hide">
+                        {{ include('projets/form/projet/export/_form_decision.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                        <br>
+                    </div>
+                    {% endif %}
+                    {% for key in projet.status|keys %}
+                    {% if (key == "interet") %}
+                    <div class="hide">
+                        {{ include('projets/form/projet/export/_form_decision.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                        <br>
+                    </div>
+                    {% else %}
+                    {{ include('projets/form/projet/export/_form_decision.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                    <br>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div> {#  End tab-content Tow #}
+         <div class="tab-content cs-tab-content no-left-padding no-right-padding infophases" id="gpac"
+            style="display: none;">
+            <div class="tab-pane fade show active" id="item-details-decision" role="tabpanel">
+                <div class="container-fluid">
+                	{% if projet.GPAC == true %}
+                    {{ include('projets/form/GPAC/_form_export.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                    {% else %}
+                    <div class="hide">
+                    {{ include('projets/form/GPAC/_form_export.html.twig', {'button_label': 'projet.Update'| trans }) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {#  End tab-content Tow #}
+        <div class="tab-content cs-tab-content no-left-padding no-right-padding infophases" id="action-gpac" style="display: none;">
+            <div class="tab-pane fade show active" id="item-details-decision" role="tabpanel">
+                <div class="container-fluid">
+                    {% if projet.GPAC == true %}
+                        {{ include('projets/form/GPAC/_form_action_export.html.twig', {'button_label': 'projet.Update'| trans }) }}
+                    {% else %}
+                        <div class="hide">
+                            {{ include('projets/form/GPAC/_form_action_export.html.twig', {'button_label': 'projet.Update'| trans }) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {#  End tab-content Tow #}
+
+    </div>
+</div>

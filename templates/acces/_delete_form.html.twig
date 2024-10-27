@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('acces_delete', {'id': acce.id}) }}">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ acce.id) }}">
+	<button class="btn">{{ 'acces.Delete'| trans }}</button>
+</form>

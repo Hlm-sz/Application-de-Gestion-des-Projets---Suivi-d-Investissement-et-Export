@@ -1,0 +1,273 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'projet.Detail'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('projets_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'projet.titre_invistisement'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block header_search %}
+
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.csshttps://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+{# <a class="btn btn-blue" href="{{ path('log_projet_new',{'id':projet.id}) }}">
+	<i class="fa  fa-plus"></i>
+</a> #}
+{% if is_granted('SUPRIMER_UN_PROJET', projet) %}
+<form method="post" id="delete-form" action="{{ path('projets_delete', {'id': projet.id}) }}" class="form_delete">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ projet.id) }}">
+	<button class="btn btn-blue" id="delete-item"><i class="fa fa-trash"></i></button>
+</form>
+{% endif %}
+{% if is_granted('EXTRACTIONS_PROJETS', projet) %}
+<a class="btn btn-blue" href="{{ path('projets_pdf',{'id':projet.id}) }}">
+	<i class="fa  fa-download"></i>
+</a>
+{% endif %}
+{% if is_granted('MODIFIER_PROJET', projet) %}
+<a class="btn btn-blue save-btn" id="btn_submit" href="#">
+	<i class="fa  fa-save"></i>
+</a>
+{% endif %}
+{% endblock %}
+{% block navbar_left %}
+
+<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+	<i class="fa fa-arrow-left"></i>
+</a>
+
+
+{% endblock %}
+{% block third_header %}
+{{ form_start(form,{'attr':{'id':'form_projet'}}) }}
+{{ include('projets/detail_projet/third_header/_third_header.html.twig') }}
+
+{% endblock %}
+{% block body %}
+
+
+
+<div class="top-header">
+	<div class="container-fluid ">
+ 		<div class="row">
+			{{ include('projets/form/projet/_form_investissement.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+			<div class="col-lg-4 sidbar-compte">
+				<div class="container container-compte">
+					<div class="row">
+						<div class="compte col-sm ">
+							<div class="header">
+								<h3>Compte</h3>
+							</div>
+							<div class="profil">
+								<div class="thumb">
+									<img src="{{ asset("uploads/"~ (data.compte.logo ? data.compte.logo.filename: 'logo_default.png')) }}"
+										alt="" class="clip-circle">
+								</div>
+								<div class="name">{{ data.compte.nomCompte }}</div>
+								<strong>{% for secteur in data.compte.secteurs %}
+									{{ secteur.nom ~' ' }}
+									{% else %}
+									{% endfor %}</strong>
+
+							</div>
+							<div>
+								<a href="{{ path('compte_detail',{id:data.compte.id}) }}"
+									class="btn compte-contact">Consulter le compte</a>
+							</div>
+						</div>
+						<div class="contact col-sm ">
+							<div class="header">
+								<h3>Contacts</h3>
+							</div>
+							<ul>
+								{% for contact in data.contact %}
+
+									<li class="contactliste">
+										<a href="{{ path('contact_detail',{'id':contact.id }) }}">
+										<span class="contact_name" class="active">
+
+											{{ contact.prenom ~' '~contact.nom }}
+										</span></a>
+										<div class="info">
+										<a href="{{ path('contact_detail',{'id':contact.id }) }}">
+											<label
+												for="">{{ contact.prenom|capitalize ~' '~ contact.nom|capitalize }}</label>
+											<span>{{ contact.fonction }}</span>
+										</a>
+										</div>
+
+									</li>
+								{% endfor %}
+							</ul>
+							<div>
+								<a href="{{ path('contact_new') }}" class="btn compte-contact">Ajouter un contact</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row wrapper-g-projet ">
+			<div class="col-lg-8 wrapp-content-g-projet autre-info-projet">
+
+				{{ include('projets/form/projet/invest/_form_interet.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+				{# <div class="content-info">
+						<div class="content-g-projet" style="display: {{ projet.gpac?'block':'none' }}">
+							<div class="header">
+								<ul class="form-project">
+									<li class="active title-btn">Gestion de projets et after care</li>
+
+								</ul>
+							</div>
+							<div class="item-details">
+
+								{{ include('projets/form/GPAC/_form_investissement.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+							</div>
+						</div>
+						</div> #}
+				{#  #}
+				<div class="container-fluid user-operation">
+					<div class="row">
+						<div class="col-sm cree-par">
+							<span class="icon-user">
+								<img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+							</span>
+							<div class="info-user">
+								<strong>Créé par :</strong>
+								<span
+									class="name">{{ projet.CreePar ? projet.CreePar.prenom ~' '~projet.CreePar.nom : '' }}</span>
+							</div>
+							<div class="date-user">
+								{{ projet.dateCreation ? projet.dateCreation|date('d/m/Y'):'' }}
+							</div>
+
+						</div>
+						<div class="col-sm modifier-par">
+							<span class="icon-user">
+								<img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+							</span>
+							<div class="info-user">
+								<strong>Modifié par :</strong>
+								<span
+									class="name">{{ projet.ModifiePar ? projet.ModifiePar.prenom ~' '~projet.ModifiePar.nom : ''}}</span>
+							</div>
+							<div class="date-user">
+								{{ projet.dateModification ? projet.dateModification|date('d/m/Y'): '' }}
+							</div>
+						</div>
+					</div>
+				</div>
+				{#  #}
+			</div>
+
+
+			<div class="col-lg-4 sidbar-activite  action-projet">
+				
+				{{ include('projets/detail_projet/action.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+			</div>
+		</div><!--  End second row Projet -->
+
+		{{ form_end(form) }}
+	</div>
+
+</div>
+
+
+{% block javascripts %}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.contact_name').nameBadge({
+
+		// boder options
+		border: {
+			color: '#ddd',
+			width: 1
+		},
+
+		// an array of background colors.
+		colors: ['#c5c5c5'],
+
+		// text color
+		text: '#fff',
+
+		// avatar size
+		size: 45,
+
+		// avatar margin
+		margin: 0,
+
+		// disable middle name
+		middlename: true,
+
+		// force uppercase
+		uppercase: true
+
+	});
+</script>
+
+{% endblock %}
+{% for message in app.flashes('notice') %}
+<script>
+	Swal.fire({
+		position: 'top-end',
+		icon: 'success',
+		title: 'vos changements ont été bien enregistrés.',
+		showConfirmButton: false,
+		timer: 3000
+	})
+</script>
+{% endfor %}
+<script>
+$(document).ready(function() {
+		// $('input[id=projet_data_date_interet]').val('');
+		// $('select[id=projet_data_action_interet]').val('');
+		// $('input[id=projet_data_details_interet]').val('');
+		// $('input[id=projet_data_Events]').val('');
+		// $('textarea[id=projet_data_details_libres_interet]').val('');
+});
+</script>
+<script type="text/javascript" src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/typeahead.jquery.min.js') }}"></script>
+
+
+<script>
+	var dirty = false;
+	$("input,select,textarea").on('change', function () {
+		dirty = true;
+	});
+	$("window").on('beforeunload', function () {
+		if (dirty) {
+			return 'You have unsaved changes! If you leave this page, your changes will be lost.';
+		}
+	})
+</script>
+<script>
+	function display() {
+		window.print();
+	}
+</script>
+
+{% endblock %}

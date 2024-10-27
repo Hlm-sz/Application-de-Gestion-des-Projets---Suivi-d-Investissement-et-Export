@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Etat Compte index
+{% endblock %}
+{% block navbar_right %}
+	<li class="nav-item">
+		<a href="{{ path('etat_compte_new') }}" class="btn btn-float text-default btn-blue">
+			<i class="icon-add"></i>
+			<span>
+				{{'compte.Create_new'| trans}}</span>
+		</a>
+	</li>
+{% endblock %}
+{% block navbar_left %}{% endblock %}
+{% block body %}
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for etat_compte in etat_comptes %}
+				<tr>
+					<td>{{ etat_compte.id }}</td>
+					<td>{{ etat_compte.nom }}</td>
+					<td>
+						<a href="{{ path('etat_compte_show', {'id': etat_compte.id}) }}">show</a>
+						<a href="{{ path('etat_compte_edit', {'id': etat_compte.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}

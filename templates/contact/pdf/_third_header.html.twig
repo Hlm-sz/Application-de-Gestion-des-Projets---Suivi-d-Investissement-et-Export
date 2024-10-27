@@ -1,0 +1,36 @@
+
+{# Start header third #}
+<div class="third-header col-md-12">
+	<div class="row">
+		<div class="col-md-8">
+			<ul class="etapes steps">
+				
+				<div class="last-step pull-right">
+					
+				</div>
+
+			</ul>
+		</div>
+		<div class="col-md-2">
+			<ul class="GPAC">
+
+				
+			</ul>
+		</div>
+		<div class="col-md-2 wrap-profil">
+			<ul class="img-profil">
+				<li>
+					<img  src="{{ contact.responsableContact ? (contact.responsableContact.photo ? app.request.scheme ~'://' ~ app.request.httpHost ~ asset('uploads/'~contact.responsableContact.photo) : app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/image-profile.png') ) : app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/image-profile.png') }}" alt="">
+					<div class="info-profil">
+						<strong>Géré par :</strong><br>
+						<span>{{ contact.responsableContact.prenom ~' '~ contact.responsableContact.nom }}</span>
+					</div>
+					<div class="param-profil">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+		</div> <!-- End Profil -->
+	</div>
+</div>
+{# Enddddd #}

@@ -1,0 +1,504 @@
+<table class="tg">
+<tbody>
+<tr>
+    <td class="tg-0lax" colspan="2">
+        <label class="cs-label">Intitulé</label>
+        <p>{{ projet.titre }}</p>
+    </td>
+    <td class="tg-0lax" colspan="2">
+        <label class="cs-label">Responsable du projet</label>
+        <p>{{ projet.GerePar.nom }}</p>
+    </td>
+
+</tr>
+  <tr>
+
+    <td class="tg-tf2e">
+        <label class="cs-label mb-0">Confidentiel</label>
+        {% if projet.confidentiel %}
+          <p> Oui </p>
+        {% else %}
+          <p> Non </p>
+       {% endif %}
+    </td>
+    <td class="tg-0lax">
+        <label class="cs-label mb-0">Prioritaire</label>
+        {% for x in projet.projetsData %}
+        {% if x.cle == "Prioritaire" %}
+        {% if x.value %}
+          <p>Oui</p>
+        {% else%}
+          <p>Non</p>
+      {% endif%}
+      {% endif %}
+      {% endfor %}
+    </td>
+      <td class="tg-0lax">
+          <label class="cs-label">Status de projet</label>
+          {% for key,value in projet.status %}
+              <p>{{key|e }}</p>
+          {% endfor %}
+      </td>
+    <td class="tg-tf2e">
+        <label class="cs-label">Secteur</label>
+        {% for p in projet.projetsData %}
+            {% if p.cle == "Secteur"%}
+                {% for s in Secteur %}
+                   {% if p.value == s.id %}
+                       <p> {{ s.nom}} </p>
+                   {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+    </td>
+
+  </tr>
+
+  <tr>
+
+    <td class="tg-tf2e">
+        <label class="cs-label">GPAC</label>
+        {% if projet.GPAC == false %}
+        <p>Désactivé</p>
+        {% else %}
+        <p>Activé</p>
+        {% endif %}
+    </td>
+
+    <td class="tg-tf2e">
+    <label class="cs-label">Compte</label>
+        <div class="form-group"><p>{{ projet.compte.nomCompte }}</p>
+        </div>
+    </td>
+      <td class="tg-tf2e">
+          <label class="cs-label"> Régions</label>
+          {% for x in projet.projetsData %}
+              {% if x.cle == "Localisation" %}
+                  {% for r in Localisation %}
+                      {% if x.value == r.id %}
+                          <p>{{ r.nom }}</p>
+                      {% endif %}
+                  {% endfor %}
+              {% endif %}
+          {% endfor %}
+      </td>
+      <td class="tg-0lax" >
+          <label class="cs-label">Ville</label>
+          {% for x in projet.projetsData %}
+              {% if x.cle == "Ville" %}
+                  {% for v in Ville %}
+                      {% if x.value == v.id %}
+                          <p>{{ v.nom }}</p>
+                      {% endif %}
+                  {% endfor %}
+              {% endif %}
+          {% endfor %}
+      </td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax" colspan="4">
+    <label class="cs-label">Description du projet</label>
+        {% for x in projet.projetsData %}
+            {% if x.cle == "Description_projet" %}
+                <p>{{ x.value}}</p>
+            {% endif %}
+        {% endfor %}
+    </td>
+  </tr>
+  <tr>
+    <td class="tg-tf2e" colspan="4">
+    <label class="cs-label">Détails libres sur le projet</label>
+        {% for x in projet.projetsData %}
+        {% if x.cle == "details_libres" %}
+            <p>{{ x.value}}</p>
+        {% endif %}
+        {% endfor %}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">
+    <label class="cs-label"> Pays d'investissement</label>
+        <div class="form-group">
+            {% for x in projet.projetsData %}
+            {% if x.cle == "pays_invest" %}
+            {% for p in Pays %}
+            {% if x.value == p.id %}
+                <p>{{ p.nom }}</p>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </td>
+    <td class="tg-tf2e">
+    <label class="cs-label">Type d'investissement </label>
+        {% for x in projet.projetsData %}
+        {% if x.cle == "type_invest" %}
+           <p>{{ x.value }}</p>
+        {% endif %}
+        {% endfor %}
+    </td>
+    <td class="tg-0lax" colspan="2">
+    <label class="cs-label"> Montant d'investissement (Millions/DHs)</label>
+        {% for x in projet.projetsData %}
+        {% if x.cle == "mantant_invest" %}
+            <p>{{ x.value }} </p>
+        {% endif %}
+        {% endfor %}
+    </td>
+
+  </tr>
+   <tr>
+       {% for x in projet.projetsData %}
+           {% if x.cle == "nb_emplois_directs_invest"%}
+               <td class="tg-tf2e"><label class="cs-label">
+                       Nombre d'emplois directs
+                   </label>
+                   <p> {{ x.value }}</p>
+               </td>
+           {% endif %}
+           {% if x.cle == "nb_emplois_Indirects_invest"%}
+               <td class="tg-tf2e"> <label class="cs-label">
+                       Nombre d'emplois indirects
+                   </label>
+                   <p> {{ x.value }}</p>
+               </td>
+           {% endif %}
+           {% if x.cle == "nb_emplois_Induits_invest"%}
+               <td class="tg-0lax" colspan="2"><label class="cs-label">
+                       Nombre d'emplois induits
+                   </label>
+                   <p> {{ x.value }}</p>
+               </td>
+           {% endif %}
+       {% endfor %}
+
+  </tr>
+<tr>
+    <td class="tg-tf2e" colspan="4"><label class="cs-label">Adresse complète</label>
+    {% for x in projet.projetsData %}
+        {% if x.cle == "localisation_invest" %}
+                <p> {{ x.value }}</p>
+
+        {% endif %}
+
+    {% endfor %}
+    </td>
+</tr>
+<tr>
+    <th class="tg-tf2e" colspan="4" ><h4><strong>Phase d'interêt</strong></h4> </th>
+</tr>
+  <tr>
+    <td class="tg-0lax" colspan="2">
+        <label class="cs-label"> Date </label>
+        {% for x in projet.projetsData %}
+          {% if x.cle == "date_interet" %}
+              <p>{{ x.value }} </p>
+          {% endif %}
+        {% endfor %}
+    </td>
+      <td class="tg-0lax" colspan="2">
+          <label class="cs-label"> Action  </label>
+          {% for x in projet.projetsData %}
+              {% if x.cle == "action_interet" %}
+                  <p>{{ x.value }} </p>
+              {% endif %}
+          {% endfor %}
+      </td>
+
+  </tr>
+<tr>
+    <td class="tg-0lax" colspan="4">
+        <label class="cs-label"> Détails libres</label>
+        {% for x in projet.projetsData %}
+            {% if x.cle == "details_libres_interet" %}
+                <p>{{ x.value }} </p>
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+<tr>
+    <th class="tg-tf2e" colspan="4"><h4><strong>Phase de décision</strong></h4> </th>
+</tr>
+<tr>
+    <td class="tg-0lax" colspan="2" >
+        <label class="cs-label"> Date </label>
+        {% for x in projet.projetsData %}
+            {% if x.cle == "date_decision" %}
+                <p>{{ x.value }} </p>
+            {% endif %}
+        {% endfor %}
+    </td>
+    <td class="tg-tf2e" colspan="2">
+        <label class="cs-label mb-0">Abouti</label>
+        {% for x in projet.projetsData %}
+            {% if x.cle == "Abouti" %}
+                {% if x.value %}
+                    <p> Oui </p>
+                {% else%}
+                    <p>Non</p>
+                {% endif%}
+            {% endif %}
+        {% endfor %}
+    </td>
+</tr>
+    <tr>
+    <td class="tg-0lax" colspan="4">
+        <label class="cs-label"> Détails Libres</label>
+        {% for x in projet.projetsData %}
+            {% if x.cle == "details_libres_decision" %}
+                <p>{{ x.value }} </p>
+            {% endif %}
+        {% endfor %}
+    </td>
+
+</tr>
+
+{% for x in projet.projetsData %}
+{% if x.cle == "Abouti" %}
+{% if x.value %}
+    <tr>
+        <td class="tg-0lax">
+            <label class="cs-label mb-0">Transféré au Ministère</label>
+
+            {% for x in projet.projetsData %}
+                {% if x.cle == "Transfere_au_Ministere" %}
+                    {% if x.value %}
+                        <p>Oui</p>
+                    {% else %}
+                        <p>Non</p>
+                    {% endif%}
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-0lax">
+            <label class="cs-label mb-0"> Date </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "date_TM" %}
+                    <p>{{ x.value }}</p>
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-tf2e">
+            <label class="cs-label mb-0"> Convention </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "Convention" %}
+                    {% if x.value%}
+                        <p>Oui</p>
+                    {% else%}
+                        <p>Non</p>
+                    {% endif%}
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-tf2e">
+            <label class="cs-label mb-0">Réalisé</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "Realise" %}
+                    {% if x.value %}
+                        <p> Oui </p>
+                    {% else %}
+                        <p>Non</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </td>
+
+    </tr>
+    <tr>
+        <td class="tg-0lax">
+            <label class="cs-label mb-0"> Partenaire</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "Partenaire" %}
+                    {% if x.value%}
+                        <p>Oui</p>
+                    {% else%}
+                        <p>Non</p>
+                    {% endif%}
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-0lax">
+            <label class="cs-label mb-0"> Date signature convention </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "date_signature_convention" %}
+                    <p>{{ x.value }}</p>
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-tf2e" >
+            <label class="cs-label mb-0">Autre document </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "Autre_document" %}
+                    {% if x.value%}
+                        <p>Oui</p>
+                    {% else%}
+                        <p>Non</p>
+                    {% endif%}
+                {% endif %}
+            {% endfor %}
+        </td>
+        <td class="tg-0lax">
+            <label class="cs-label mb-0">Type </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "type_specifier" %}
+                    <p>{{ x.value }}</p>
+                {% endif%}
+            {% endfor %}
+        </td>
+
+    </tr>
+    <tr>
+        <td class="tg-0lax" colspan="4">
+            <label class="cs-label mb-0">Date du document et PV de clôture</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "date_PV_decision" %}
+                    <p>{{x.value |date('Y-m-d')}}</p>
+                {% endif%}
+            {% endfor %}
+
+        </td>
+    </tr>
+
+{% endif%}
+{% elseif x.cle == "NAbouti"%}
+{% if x.value %}
+    <tr>
+        <td class="tg-0lax" colspan="4">
+            <label class="cs-label mb-0">Date PV de clôture</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "date_pv_cloture_nabouti" %}
+                    <p>{{x.value |date('Y-m-d')}}</p>
+                {% endif%}
+            {% endfor %}
+
+        </td>
+    </tr>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+
+
+{% if projet.GPAC == true %}
+    <tr>
+        <th class="tg-tf2e" colspan="4"><h4><strong>GPAC</strong></h4> </th>
+    </tr>
+    <tr>
+        <td class="tg-tf2e" >
+            <label class="cs-label">Status</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "statut_projet" %}
+                    <p> {{ x.value }} </p>
+                {% endif%}
+            {% endfor %}
+        </td>
+
+        <td class="tg-tf2e" >
+            <label class="cs-label">Incitations sollicitées</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "incitations_sollicitees" %}
+                    <p> {{ x.value }} </p>
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-tf2e" >
+            <label class="cs-label">Programme d’investissement</label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "programme_investissement" %}
+                    <p> {{ x.value }} </p>
+                {% endif%}
+            {% endfor %}
+        </td>
+        <td class="tg-tf2e" >
+            <label class="cs-label">Mode de financement </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "mode_financement" %}
+                   {% if x.value == 1 %}
+                       <p> Dettes </p>
+                    {% elseif x.value == 0 %}
+                       <p> Fonds Propres </p>
+                    {% endif %}
+                {% endif%}
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td class="tg-tf2e" colspan="4" >
+            <label class="cs-label">Requêtes du compte </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "requetes_compte" %}
+                    <p> {{ x.value }} </p>
+                {% endif%}
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td class="tg-tf2e" colspan="4" >
+            <label class="cs-label"><strong> Informations supplémentaires</strong> </label>
+            {% for x in projet.projetsData %}
+                {% if x.cle == "informations_supplementaires" %}
+                    <p> {{ x.value }} </p>
+                {% endif%}
+            {% endfor %}
+        </td>
+    </tr>
+
+{% endif %}
+
+
+
+  <tr>
+      <th class="tg-0lax" colspan="4"><h4><strong>Actions</strong></h4></th>
+ </tr>
+
+  {% for x in logs_projet %}
+      <tr>
+          <td class="tg-0lax">{{ x.dateCreation |date('Y-m-d') }}</td>
+          <td class="tg-0lax">{{ x.status }}</td>
+          <td class="tg-0lax" colspan="2">{{ x.commentaire }}</td>
+      </tr>
+  {% endfor %}
+<tr>
+    <td class="tg-0lax" colspan="2">
+        <strong>Crée par :</strong>
+        <span class="name">{{ projet.CreePar ? projet.CreePar.prenom ~' '~projet.CreePar.nom : ''}}</span>
+    </td>
+    <td class="tg-0lax" colspan="2">
+        <strong>Date de création :</strong>
+{#        <div class="date-user">#}
+            {{ projet.dateCreation ? projet.dateCreation|date('d/m/Y'): '' }}
+{#        </div>#}
+    </td>
+</tr>
+<tr>
+    <td class="tg-0lax" colspan="2">
+      <strong>Modifié par :</strong>
+		<span class="name">{{ projet.ModifiePar ? projet.ModifiePar.prenom ~' '~projet.ModifiePar.nom : ''}}</span>
+    </td>
+    <td class="tg-0lax" colspan="2">
+        <strong>Date de modification</strong>
+{#     <div class="date-user">#}
+         {{ projet.dateModification ? projet.dateModification|date('d/m/Y'): '' }}
+{#	</div>#}
+    </td>
+  </tr>
+</tbody>
+</table>
+
+<div style="display:none">
+{#{{ form_row(form.Documents) }}#}
+{#{{ form_row(form.document_desicion) }}#}
+{#{{ form_row(form.document_convention) }}#}
+{#{{ form_row(form.document_PV_de) }}#}
+{#{{ form_row(form.document_TM) }}#}
+{#{{ form_widget(form.date_pv_cloture_nabouti) }}#}
+{#{{ form_row(form.pv_cloture_nabouti) }}#}
+</div>
+        
+                                        
+        
+         

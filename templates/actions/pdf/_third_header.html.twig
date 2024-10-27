@@ -1,0 +1,76 @@
+
+{# Start header third #}
+<div class="third-header col-md-12">
+	<div class="row">
+		<div class="col-md-8">
+			<ul class="etapes steps">
+				{% for status in list_status %}
+					<li>
+						{% if status.id == projet.etatProjet.id %}
+							<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}" class="active">
+								<img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label class="active" for="{{ status.nom }}">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								{{ status.nom }}
+							</label>
+						{% else %}
+							<a href="{{ path('projet_change_status',{'status':status.id,'projet':projet.id}) }}"></a>
+							<label for="{{ status.nom }}">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								{{ status.nom }}
+							</label>
+						{% endif %}
+
+
+					</li>
+				{% endfor %}
+				<div class="last-step pull-right">
+					<li >
+
+						{% if projet.gpac %}
+							<a href="{{ path('projet_change_gpac',{'isgpac':0,'projet':projet.id}) }}" class="active">
+								<img src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label class="active" for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								GPAC
+							</label>
+						{% else %}
+							<a href="{{ path('projet_change_gpac',{'isgpac':1,'projet':projet.id}) }}"></a>
+							<label for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								GPAC
+							</label>
+						{% endif %}
+
+					</li>
+				</div>
+
+			</ul>
+		</div>
+		<div class="col-md-2">
+			<ul class="GPAC">
+
+				<li  id="projet-prioritaire-btn"><a href="" >P</a></li>
+				<li  id="projet-confidentiel-btn"><a href="" >C</a></li>
+			</ul>
+		</div>
+		<div class="col-md-2 wrap-profil">
+			<ul class="img-profil">
+				<li>
+
+					<img  src="{{ projet.GerePar ? (projet.GerePar.photo ? app.request.scheme ~'://' ~ app.request.httpHost ~ asset('uploads/'~projet.GerePar.photo) : app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/image-profile.png') ) : app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/image-profile.png') }}" alt="">
+					<div class="info-profil">
+						<strong>Géré par :</strong><br>
+						<span>{{ projet.GerePar.prenom ~' '~ projet.GerePar.nom }}</span>
+					</div>
+					<div class="param-profil">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+		</div> <!-- End Profil -->
+	</div>
+</div>
+{# Enddddd #}

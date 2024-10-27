@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'acces.Detail_acces'| trans }}
+{% endblock %}
+{% block sous_title %}
+	{{ 'acces.Acces'| trans }}
+{% endblock %}
+{% block body %}
+
+
+	<div class="card">
+		<div class="card-header">
+			<a class="btn btn-primary" href="{{ path('acces_index') }}">{{ 'acces.Back_to_list'| trans }}</a>
+			{{ 'acces.Detail_acces'| trans }}
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'acces.Nom'| trans }}</th>
+						<td>{{ acce.nom }}</td>
+					</tr>
+					<tr>
+						<th>{{ 'acces.Nom_constant'| trans }}</th>
+						<td>{{ acce.nomConstant }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<a class="btn btn-default" href="{{ path('acces_edit', {'id': acce.id}) }}">{{ 'acces.Edit'| trans }}</a>
+
+			{{ include('acces/_delete_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}

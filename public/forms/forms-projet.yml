@@ -1,0 +1,1918 @@
+projets:
+  '1':
+    'name': 'inv'
+    'forms':
+      '1':
+        'name': 'form-projet'
+        fields:
+          '1':
+            'name': 'Denomination_projet'
+            'type': null
+            'options':
+              'label': 'Intitulé'
+              'mapped': false
+          '2':
+            'name': 'Secteur'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteur'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+          '3':
+            'name': 'Description_projet'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description du projet'
+              'mapped': false
+          '4':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+
+          # '5':
+          #   'name': 'Document_1'
+          #   'type': 'FileType'
+          #   'options':
+          #     'label': false
+          #     'mapped': false
+          #     'required': false
+
+          '6':
+            'name': 'Confidentiel'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+
+          '7':
+            'name': 'Prioritaire'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+
+          '8':
+            'name': 'Localisation'
+            'type': 'EntityType'
+            'options':
+              'label': 'Régions'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Region'
+              'choice_label': 'nom'
+
+          '18':
+            'name': 'Province'
+            'type': 'EntityType'
+            'options':
+              'label': 'Province/Préfecture'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Province'
+              'choice_label': 'nom'    
+
+          '9':
+            'name': 'details_libres'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+
+          '10':
+            'name': 'pays_invest'
+            'type': 'EntityType'
+            'options':
+              'label': 'Pays d’origine de l’investissement'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Pays'
+              'choice_label': 'nom'
+             
+          '11':
+            'name': 'type_invest'
+            'type': ChoiceType
+            'options':
+              'label': 'Type d’Invest'
+              'mapped': false
+              'required': false
+              'choices': { 'Création': 'Création',
+               'Extension': 'Extension',
+               'Autre':'Autre',
+               'J.V':'J.V',
+               'Acquisition':'Acquisition' }
+          '12':
+            'name': 'mantant_invest'
+            'type': NumberType
+            'options':
+              'label': 'Montant d’investissement (Millions/DHs)'
+              'mapped': false
+              'required': false
+          '13':
+            'name': 'nb_emplois_directs_invest'
+            'type': NumberType
+            'options':
+              'label': 'Nombre d’emplois directs'
+              'mapped': false
+              'required': false
+           # '14':
+          #   'name': 'des_projet_invest'
+          #   'type': TextareaType
+          #   'options':
+          #     'label': 'Description du projet'
+          #     'mapped': false
+          '15':
+            'name': 'localisation_invest'
+            'type': TextareaType
+            'options':
+              'label': 'Adresse Complète'
+              'mapped': false
+              'required': false
+          '16':
+            'name': 'nb_emplois_Indirects_invest'
+            'type': NumberType
+            'options':
+              'label': 'Nombre d’emplois indirects'
+              'mapped': false
+              'required': false
+          '17':
+            'name': 'nb_emplois_Induits_invest'
+            'type': NumberType
+            'options':
+              'label': 'Nombre d’emplois induits'
+              'mapped': false
+              'required': false
+          '19':
+            'name': 'horizon_projet_invest'
+            'type': ChoiceType
+            'options':
+              'label': 'Horizon projet'
+              'mapped': false
+              'required': false
+              'choices': { '3 ans': '3 ans','5 ans': '5 ans','Plus de 5 ans':'Plus de 5 ans'}
+          '20':
+            'name': 'mecanisme_accomp_invest'
+            'type': ChoiceType
+            'options':
+              'label': 'Mécanisme d’accompagnement'
+              'mapped': false
+              'required': false
+              'choices': { 'CNI': 'CNI','Ecosystème OEM': 'Ecosystème OEM','Maroc PME':'Maroc PME'}
+
+
+      '2':
+        'name': 'form-gpac'
+        fields:
+          '1':
+            'name': 'statut_projet'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Statut du projet'
+              'mapped': false
+              'required': false
+              'choices': {'Nom démarré': 'Nom démarré','En cours de réalisation':'En cours de réalisation','Réalisé':'Réalisé',' À l’Arrêt':' À l’Arrêt'}
+          '2':
+            'name': 'incitations_sollicitees'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Incitations sollicitées'
+              'mapped': false
+              'required': false
+              'choices': {'Exonérations':'Exonérations','Subventions directes':'Subventions directes','Autres':'Autres'}
+
+          '3':
+            'name': 'programme_investissement'
+            'type': null
+            'options':
+              'label': 'Programme d’investissement'
+              'mapped': false
+
+          '4':
+            'name': 'mode_financement'
+            'type': ChoiceType
+            'options':
+              'label': 'Mode de financement'
+              'mapped': false
+              # 'multiple': true
+              'required': false
+              'choices': {'Fonds Propres':'0','Dettes':'1'}
+          '5':
+            'name': 'requetes_compte'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Requêtes du compte'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+
+          '6':
+            'name': 'informations_supplementaires'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '7':
+            'name': 'date_actions_gpac'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '8':
+            'name': 'Type_accompagnement_actions_gpac'
+            'type': ChoiceType
+            'options':
+              'label': 'Type d’accompagnement'
+              'mapped': false
+              'required': false
+              'choices': { 'Montage dossier et mise en relation avec CRI': 'Montage dossier et mise en relation avec CRI',
+                'Examen des Dossiers au CTPS': 'Examen des Dossiers au CTPS',
+                'Examen Dossier à la CI':'Examen Dossier à la CI','Traitement requêtes d’infos d’invetisseurs':'Traitement requêtes d’infos d’invetisseurs',
+                'Traitement des listes de biens d’équipement à importer en exonération':'Traitement des listes de biens d’équipement à importer en exonération',
+                'Traitement dossiers déboursement de participation de l’Etat - FDII':'Traitement dossiers déboursement de participation de l’Etat - FDII',
+                'Suivi et contrôle de réalisation du projet (conventionné)':'Suivi et contrôle de réalisation du projet (conventionné)','Mission After Care':'Mission After Care' }
+          '9':
+            'name': 'details_libres_actions_gpac'
+            'type': TextareaType
+            'options':
+              'label': 'Actions / Détails Libres'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '10':
+            'name': 'incitations'
+            'type': ChoiceType
+            'options':
+              'label': 'Incitations Obtenues'
+              'mapped': false
+              'required': false
+              'choices': { 'Exonérations' : {'Fiscales':'Fiscales','Douanières':'Douanières','Subventions Directes':'Subventions Directes'} ,
+                         'Infrastructures' : {'Externes':'Externes','Formation Pro':'Formation Pro','Terrain':'Terrain'} ,
+                         'Autres':'Autres' }
+
+          '11':
+            'name': 'situation_projet_actions_gpac'
+            'type': ChoiceType
+            'options':
+              'label': 'Situation du Projet'
+              'mapped': false
+              'required': false
+              'choices': { 'Réalisé': 'Réalisé',
+                'En cours de réalisation': 'En cours de réalisation',
+                'En démarrage':'En démarrage'}
+          '12':
+            'name': 'informations_supplementaires_actions_gpac'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations Supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '13':
+            'name': 'incitations_autre'
+            'type': null
+            'options':
+              'label': 'Autre'
+              'mapped': false
+
+      '3':
+        'name': 'form-interet'
+        fields:
+          '1':
+            'name': 'date_interet'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '2':
+            'name': 'action_interet'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'required': false
+              'choices': { 'Echange': 'Echange', 'Rencontre B2B': 'Rencontre B2B',
+               'Incoming Visit':'Incoming Visit','Event':'Event',
+               'Traitement de requête':'Traitement de requête',
+               'MoU en cours de préparation':'MoU en cours de préparation',
+               'MoU en cours de signature':'MoU en cours de signature',
+               'Construction de Business cases':'Construction de Business cases',
+               'Recherche de financement':'Recherche de financement',
+               'Recherche partenaires':'Recherche partenaires',
+               'Mise en relation':'Mise en relation',
+               'Etude d’opportunités':'Etude d’opportunités',
+               'Terrain/ site d’implantation':'Terrain/ site d’implantation',
+               'Appui à la conformité réglementaire':'Appui à la conformité réglementaire'
+                }
+          # '18':
+          #   'name': 'Event_interet'
+          #   'type': 'EntityType'
+          #   'options':
+          #     'label': 'Event'
+          #     'mapped': false
+          #     'class': 'App\Entity\Event'
+          #     'choice_label': 'nom'
+          '3':
+            'name': 'details_interet'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+          '4':
+            'name': 'details_libres_interet'
+            'type': TextareaType
+            'options':
+              'label': 'Détails Libres'
+              'mapped': false
+              'required': false
+          '17':
+            'name': 'Events'
+            'type': 'EntityType'
+            'options':
+              'label': 'Evenements'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Event'
+              'choice_label': 'nom'
+          '5':
+            'name': 'loi_signe_invest'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'LoI signé'
+              'required': false
+              'mapped': false
+          '6':
+              'name': 'document_loi_signe_invest'
+              'type': 'FileType'
+              'options':
+                'label': 'Présentation'
+                'mapped': false
+                'required': false
+          '7':
+            'name': 'Tier'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Tier'
+              'mapped': false
+              'required': false
+              'choices': {'Non identifié': 'Non identifié','Tier 1':'Tier 1','Tier 2':'Tier 2','Tier 3':'Tier 3'}
+
+      '4':
+        'name': 'form-interet'
+        fields:
+          '5':
+            'name': 'date_decision'
+            'type': DateType
+            'options':
+              'label': 'Date Decision'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          # '22':
+          #   'name': 'decision_decision'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Décision'
+          #     'mapped': false
+          #     'choices': { 'Abouti': 'Abouti', 'Transféré au Ministère': 'Transféré au Ministère', 'Partenaire':'Partenaire','Non Réalisé':'Non Réalisé','Non Abouti':'Non Abouti'}
+          '6':
+            'name': 'details_libres_decision'
+            'type': TextareaType
+            'options':
+              'label': 'Détails Libres'
+              'mapped': false
+              'required': false
+          '7':
+            'name': 'signature_mou'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Signature de MoU'
+              'required': false
+              'mapped': false
+          '8':
+              'name': 'document_signature_mou'
+              'type': 'FileType'
+              'options':
+                'label': 'Présentation'
+                'mapped': false
+                'required': false
+          '9':
+            'name': 'Standby'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Standby'
+              'required': false
+              'mapped': false
+          '91':
+            'name': 'DateStandby'       
+            'type': DateType
+            'options':
+              'label': 'Date Standby'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'   
+          '10':
+            'name': 'RaisonStandby'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Raison'
+              'required': false
+              'mapped': false
+          '11':
+            'name': 'ActionRequiseStandby'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Action requise'
+              'required': false
+              'mapped': false
+          '12':
+            'name': 'Reactive'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Réactivé'
+              'required': false
+              'mapped': false
+          '13':
+            'name': 'date_reactivation'
+            'type': DateType
+            'options':
+              'label': 'Date de réactivation'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '14':
+            'name': 'NAbouti'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Bloqué'
+              'required': false
+              'mapped': false
+          '15':
+            'name': 'date_pv_cloture_nabouti'
+            'type': DateType
+            'options':
+              'label': 'Date de blocage'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '16':
+            'name': 'RaisonBloque'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Raison de blocage'
+              'required': false
+              'mapped': false
+          '17':
+            'name': 'ActionRequiseDebloquer'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Action requise pour le débloquer'
+              'required': false
+              'mapped': false
+          '18':
+            'name': 'Debloque'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Débloqué'
+              'required': false
+              'mapped': false
+          '19':
+            'name': 'date_deblocage'
+            'type': DateType
+            'options':
+              'label': 'Date de déblocage'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '20':
+            'name': 'Abouti'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Abouti'
+              'required': false
+              'mapped': false
+          '21':
+            'name': 'type_specifier'
+            'type': ChoiceType
+            'options':
+              'label': 'Type à spécifier'
+              'placeholder': 'Type à spécifier'
+              'mapped': false
+              'required': false
+              'choices': { 'Lettre d’intention': 'Lettre d’intention', 'Document de création d’entreprise': 'Document de création d’entreprise', 'MoU,':'MoU,','Business Plan':'Business Plan','PV de Clôture':'PV de Clôture'}
+          '22':
+            'name': 'date_PV_decision'
+            'type': DateType
+            'options':
+              'label': 'Date de dépôt CRI'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          #'23':
+          #  'name': 'Transfere_au_Ministere'
+          #  'type': 'CheckboxType'
+          #  'options':
+          #    'label': 'Transféré au Ministère'
+          #    'required': false
+          #    'mapped': false
+          '24':
+            'name': 'Convention'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Convention'
+              'required': false
+              'mapped': false
+          '241':
+            'name': 'Conv_prime_engage'
+            'type': NumberType 
+            'options':
+              'label': 'Engagées'
+              'mapped': false
+              'required': false
+          '242':
+            'name': 'Conv_prime_deboursee'
+            'type': NumberType
+            'options':
+              'label': 'Déboursées'
+              'mapped': false
+              'required': false            
+          '25':
+            'name': 'date_signature_convention'
+            'type': DateType
+            'options':
+              'label': 'Date signature convention'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '26':
+            'name': 'DepotCRI'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Dépôt CRI'
+              'required': false
+              'mapped': false
+          '27':
+            'name': 'Autre_document'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Autre document'
+              'required': false
+              'mapped': false
+          '28':
+            'name': 'en_cours_realisation'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'En Cours de Réalisation'
+              'required': false
+              'mapped': false
+          '29':
+            'name': 'Realise'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Réalisé'
+              'required': false
+              'mapped': false
+          '30':
+            'name': 'Realise_date'
+            'type': 'DateType'
+            'options':
+              'label': 'Date de Réalisation'
+              'required': false
+              'mapped': false
+              'widget': 'single_text'
+          '31':
+            'name': 'NonRealise'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Non Réalisé'
+              'required': false
+              'mapped': false
+          '32':
+              'name': 'document_desicion'
+              'type': 'FileType'
+              'options':
+                'label': 'Présentation'
+                'mapped': false
+                'required': false    
+          '33':
+              'name': 'document_convention'
+              'type': 'FileType'
+              'options':
+                'label': 'Présentation'
+                'mapped': false
+                'required': false   
+          '34':
+              'name': 'document_PV_de'
+              'type': 'FileType'
+              'options':
+                'label': false
+                'mapped': false
+                'required': true
+          #'35':
+          #    'name': 'document_TM'
+          #    'type': 'FileType'
+          #    'options':
+          #      'label': 'Document TM'
+          #      'mapped': false
+          #      'required': false
+          #'36':
+          #  'name': 'date_TM'
+          #  'type': DateType
+          #  'options':
+          #    'label': 'Date TM'
+          #    'mapped': false
+          #    'required': false
+          #    'widget': 'single_text'
+          '37':
+              'name': 'pv_cloture_nabouti'
+              'type': 'FileType'
+              'options':
+                'label': 'PV Clôture'
+                'mapped': false
+                'required': false
+          '38':
+            'name': 'approuveCRUI'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Approuvé CRUI'
+              'required': false
+              'mapped': false
+          '39':
+            'name': 'dateApprouveCRUI'
+            'type': DateType
+            'options':
+              'label': "Date d'approbation CRUI"
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '40':
+            'name': 'valideCTPS'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Validé CTPS'
+              'required': false
+              'mapped': false
+          '41':
+            'name': 'dateValideCTPS'
+            'type': DateType
+            'options':
+              'label': "Date de validation CTPS"
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '42':
+            'name': 'ajourneCTPS'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Ajourné CTPS'
+              'required': false
+              'mapped': false
+          '43':
+            'name': 'dateAjournementCTPS'
+            'type': DateType
+            'options':
+              'label': "Date d'ajournement CTPS"
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '44':
+            'name': 'rejeteCTPS'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Rejeté CTPS'
+              'required': false
+              'mapped': false
+          '45':
+            'name': 'dateRejetCTPS'
+            'type': DateType
+            'options':
+              'label': "Date de rejet CTPS"
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '46':
+            'name': 'motifRejetCTPS'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Motif de rejet CTPS'
+              'required': false
+              'mapped': false
+          '47':
+            'name': 'comptabiliseCA'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Comptabilisé en CA'
+              'required': false
+              'mapped': false
+          '48':
+            'name': 'anneeNCA'
+            'type': ChoiceType
+            'options':
+              'label': 'Année N'
+              'mapped': false
+              'required': false
+              'choices': {'2023':'2023','2024':'2024','2025':'2025','2026':'2026'}
+          '49':
+            'name': 'anneeN1CA'
+            'type': ChoiceType
+            'options':
+              'label': 'Année N+1'
+              'mapped': false
+              'required': false
+              'choices': {'2023':'2023','2024':'2024','2025':'2025','2026':'2026'}
+          '50':
+            'name': 'statutNCA'
+            'type': ChoiceType
+            'options':
+              'label': 'Statut N'
+              'mapped': false
+              'required': false
+              'choices': {'MoU':'MoU','Dépôt CRI':'Dépôt CRI','Convention':'Convention','Réalisé':'Réalisé'}
+          '51':
+            'name': 'statutN1CA'
+            'type': ChoiceType
+            'options':
+              'label': 'Statut N+1'
+              'mapped': false
+              'required': false
+              'choices': {'MoU':'MoU','Dépôt CRI':'Dépôt CRI','Convention':'Convention','Réalisé':'Réalisé'}
+          '52':
+            'name': 'approuveCNI'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Approuvé CNI'
+              'required': false
+              'mapped': false
+          '53':
+            'name': 'dateApprouveCNI'
+            'type': DateType
+            'options':
+              'label': "Date d'approbation CNI"
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '54':
+            'name': 'convention_capex'
+            'type': NumberType
+            'options':
+              'label': 'Capex (Millions/DHs)'
+              'mapped': false
+              'required': false
+          '55':
+            'name': 'nb_emplois_directs_convention'
+            'type': NumberType
+            'options':
+              'label': 'Nb d’emplois directs'
+              'mapped': false
+              'required': false
+          '56':
+            'name': 'nb_emplois_indirects_convention'
+            'type': NumberType
+            'options':
+              'label': 'Nb d’emplois indirects'
+              'mapped': false
+              'required': false
+
+
+  '2':
+    'name': 'sourcing'
+    'forms':
+      '1':
+        'name': 'form-projet'
+        fields:
+          '1':
+            'name': 'intitule_projet'
+            'type': null
+            'options':
+              'label': 'Intitulé du projet'
+              'mapped': false
+
+          '2':
+            'name': 'Confidentiel'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+          '3':
+            'name': 'Prioritaire'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+          '4':
+            'name': 'Description_projet'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description du projet'
+              'mapped': false
+          '5':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+
+          # '6':
+          #   'name': 'Documents_1'
+          #   'type': 'FileType'
+          #   'options':
+          #     'label': false
+          #     'mapped': false
+          #     'required': false
+
+          '7':
+            'name': 'details_libres'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+          '8':
+            'name': 'secteur_sou'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteur'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+          '9':
+            'name': 'zone_cible'
+            'type': 'EntityType'
+            'options':
+              'label': 'Groupe/Zone du Marché Cible'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Zone'
+              'choice_label': 'nom'
+          '10':
+            'name': 'pays_command'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Pays Commanditaire'
+              'multiple': true
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Pays'
+              'choice_label': 'nom'
+
+      '2':
+        'name': 'form-gpac'
+        fields:
+          '1':
+            'name': 'statut_projet'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Statut du projet'
+              'mapped': false
+              'required': false
+              'choices': {'Nom démarré': 'Nom démarré','En cours de réalisation':'En cours de réalisation','Réalisé':'Réalisé',' À l’Arrêt':' À l’Arrêt'}
+
+          '2':
+            'name': 'type_requete'
+            'type': null
+            'options':
+              'label': 'Type de Requête'
+              'mapped': false
+
+          '3':
+            'name': 'exportateur'
+            'type': null
+            'options':
+              'label': 'Exportateur'
+              'mapped': false
+
+          '4':
+            'name': 'montant_projet'
+            'type': null
+            'options':
+              'label': 'montant projet'
+              'mapped': false
+
+          '5':
+            'name': 'requetes_compte'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Requêtes du compte'
+              'mapped': false
+              'required': false
+              'attr' :
+                'rows': 5
+
+          '6':
+            'name': 'informations_supplementaires'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '7':
+            'name': 'date_actions_gpac_sourcing'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '8':
+            'name': 'Type_accompagnement_actions_gpac_sourcing'
+            'type': ChoiceType
+            'options':
+              'label': 'Type d’accompagnement'
+              'mapped': false
+              'required': false
+              'choices': { 'Traitement de requêtes DO': 'Traitement de requêtes DO',
+                'Signature de contrat': 'Signature de contrat',
+                'Signature des avenants':'Signature des avenants','Suivi et contrôle réalisa de projet':'Suivi et contrôle réalisa de projet',
+                'Mission After-Care':'Mission After-Care' }
+          '9':
+            'name': 'details_libres_actions_gpac_sourcing'
+            'type': TextareaType
+            'options':
+              'label': 'Actions / Détails Libres'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '10':
+            'name': 'Solution'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+          '11':
+            'name': 'situation_projet_actions_gpac_sourcing'
+            'type': ChoiceType
+            'options':
+              'label': 'Situation du Projet'
+              'mapped': false
+              'required': false
+              'choices': { 'Réalisé': 'Réalisé',
+                'En cours de réalisation': 'En cours de réalisation',
+                'En démarrage':'En démarrage'}
+          '12':
+            'name': 'informations_supplementaires_actions_gpac_sourcing'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations Supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5 
+      '3':
+        'name': 'form-interet'
+        fields:
+           '1':
+            'name': 'date_sou'
+            'type': DateType
+            'options':
+              'label': 'false'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+           '2':
+            'name': 'objet_sou'
+            'type': null
+            'options':
+              'label': 'Objet'
+              'mapped': false
+           '3':
+            'name': 'details_sou'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+           '4':
+            'name': 'details_libres_sou'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+           '5':
+            'name': 'action_sou'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'required': false
+              'choices': { 'Echange': 'Echange','Rencontre B2B': 'Rencontre B2B', 'Incoming Visit':'Incoming Visit', 'Demande Event':'Demande Event','Demande Shortlist':'Demande Shortlist','Demande cotation':'Demande cotation','Traitement de Requête':'Traitement de Requête','Autre':'Autre'}
+           '6':
+             'name': 'valeur_cmd_prev_sou'
+             'type': NumberType
+             'options':
+               'label': 'Commande prévisionnelle au sourcing en MDhs'
+               'required': false
+               'mapped': false
+           '7':
+             'name': 'loi_signe_sou'
+             'type': 'CheckboxType'
+             'options':
+               'label': 'LoI reçue'
+               'required': false
+               'mapped': false
+           '8':
+             'name': 'document_loi_signe_sou'
+             'type': 'FileType'
+             'options':
+               'label': 'Présentation'
+               'mapped': false
+               'required': false
+
+      '4':
+        'name': 'form-interet'
+        fields:
+           '6':
+            'name': 'date_decision'
+            'type': DateType
+            'options':
+              'label': 'Date Decision'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+           '7':
+            'name': 'details_libres_sou_decision'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+           '8':
+            'name': 'Aboutisou'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Abouti'
+              'required': false
+              'mapped': false
+           '9':
+            'name': 'NAboutisou'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Non Abouti'
+              'required': false
+              'mapped': false
+           '10':
+            'name': 'Motif_sou'
+            'type': null
+            'options':
+              'label': 'Motif'
+              'mapped': false
+           '11':
+            'name': 'Commandesou'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Commande'
+              'required': false
+              'mapped': false
+           '12':
+            'name': 'Signaturedecontrat'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Signature de contrat'
+              'required': false
+              'mapped': false
+           '13':
+            'name': 'date_signature_sou'
+            'type': DateType
+            'options':
+              'label': 'Date de signature'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          #  '14':
+          #   'name': 'date_signature_cmd'
+          #   'type': DateType
+          #   'options':
+          #     'label': 'Date de signature commande'
+          #     'mapped': false
+          #     'required': false
+          #     'widget': 'single_text'
+           '15':
+            'name': 'date_signature_pv'
+            'type': DateType
+            'options':
+              'label': 'Date de signature PV'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+           '16':
+            'name': 'plateformelocal'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Création platforme locale'
+              'required': false
+              'mapped': false
+           '17':
+            'name': 'type_doc_sour'
+            'type': ChoiceType
+            'options':
+              'label': 'Type de document'
+              'mapped': false
+              'required': false
+              'choices': { 'Lettre d’intention': 'Lettre d’intention', 'Document de création d’entreprise': 'Document de création d’entreprise', 'MoU,':'MoU,','Business Plan':'Business Plan','PV de Clôture':'PV de Clôture'}
+           '18':
+            'name': 'pvcloture'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'PV de clôture'
+              'required': false
+              'mapped': false
+           '19':
+            'name': 'date_decision_sou'
+            'type': DateType
+            'options':
+              'label': 'Date de signature commande'
+              'required': false
+              'mapped': false
+              'widget': 'single_text'
+           '20':
+            'name': 'valeur_cmd_sou'
+            'type': NumberType
+            'options':
+              'label': 'Valeur de la commande (Millions/DHs)'
+              'mapped': false
+           '21':
+            'name': 'secteur_sou'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteur'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+           '22':
+            'name': 'reference_sou'
+            'type': null
+            'options':
+              'label': 'Réference'
+              'mapped': false
+           '23':
+            'name': 'eco_fil_sou'
+            'type': 'EntityType'
+            'options':
+              'label': 'Ecosystème/Filière'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\EcosystemeFiliere'
+              'choice_label': 'nom'
+           '24':
+            'name': 'produit_sou'
+            'type': null
+            'options':
+              'label': 'Produit'
+              'mapped': false
+           '25':
+            'name': 'Compte_exportateur'
+            'type': ChoiceType
+            'options':
+              'label': 'Type à spécifier'
+              'mapped': false
+              'required': false
+              'choices': { 'Compte Exportateur':'Compte Exportateur','Compte Investisseur':'Compte Investisseur','Compte DO':'Compte DO','Compte Partenaire':'Compte Partenaire'}
+           '26':
+              'name': 'document_CMD_sou'
+              'type': 'FileType'
+              'options':
+                'label': false
+                'mapped': false
+                'required': false
+           '27':
+              'name': 'document_contra_sou'
+              'type': 'FileType'
+              'options':
+                'label': 'Document de contrat'
+                'mapped': false
+                'required': false
+           '28':
+              'name': 'document_pv_cloture_sou'
+              'type': 'FileType'
+              'options':
+                'label': 'Document pv clôture'
+                'mapped': false
+                'required': false
+           '29':
+              'name': 'pv_cloture_nabouti_sou'
+              'type': 'FileType'
+              'options':
+                'label': 'Pv clôture Non Abouti'
+                'mapped': false
+                'required': false
+           '30':
+            'name': 'date_pv_cloture_nabouti_sou'
+            'type': DateType
+            'options':
+              'label': 'Date PV Cloture Non Abouti'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+           '31':
+            'name': 'comptes_eido'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Compte'
+              'multiple': true
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Compte'
+              'choice_label': 'nomCompte'
+
+  '3':
+    'name': 'export'
+    'forms':
+      '1':
+        'name': 'form-projet'
+        fields:
+          '1':
+            'name': 'intitule_projet'
+            'type': null
+            'options':
+              'label': 'Intitulé du projet'
+              'mapped': false
+          '2':
+            'name': 'Confidentiel'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+          '3':
+            'name': 'Prioritaire'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'mapped': false
+              'required': false
+          '4':
+            'name': 'Description_projet'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Description du projet'
+              'mapped': false
+          '5':
+            'name': 'Documents'
+            'type': 'FileType'
+            'options':
+              'label': 'Documents'
+              'mapped': false
+              'required': false
+          # '6':
+          #   'name': 'Documents_1'
+          #   'type': 'FileType'
+          #   'options':
+          #     'label': false
+          #     'mapped': false
+          #     'required': false
+          '7':
+            'name': 'details_libres'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+          '8':
+            'name': 'secteur_expo'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteur'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+          '9':
+            'name': 'zone_cible'
+            'type': 'EntityType'
+            'options':
+              'label': 'Groupe/Zone du Marché Cible'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Zone'
+              'choice_label': 'nom'
+          '10':
+            'name': 'pays_command'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Pays Commanditaire'
+              'multiple': true
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Pays'
+              'choice_label': 'nom'
+
+      '2':
+        'name': 'form-gpac'
+        fields:
+          '1':
+            'name': 'statut_projet'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Statut du projet'
+              'mapped': false
+              'required': false
+              'choices': {'Nom démarré': 'Nom démarré','En cours de réalisation':'En cours de réalisation','Réalisé':'Réalisé',' À l’Arrêt':' À l’Arrêt'}
+
+          '2':
+            'name': 'type_requete'
+            'type': null
+            'options':
+              'label': 'Type de Requête'
+              'mapped': false
+              'required': false
+
+          '3':
+            'name': 'donneur_ordre'
+            'type': null
+            'options':
+              'label': 'Donneur d’Ordre'
+              'mapped': false
+              'required': false
+             
+          '4':
+            'name': 'programme_appui'
+            'type': null
+            'options':
+              'label': 'Programme d’Appui'
+              'mapped': false
+              'required': false
+
+          '5':
+            'name': 'montant_projet'
+            'type': null
+            'options':
+              'label': 'Montant du projet'
+              'mapped': false
+              'required': false
+
+          '6':
+            'name': 'requetes_compte'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Requêtes du comptes'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+
+          '7':
+            'name': 'informations_supplementaires'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '8':
+            'name': 'date_actions_gpac_export'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '9':
+            'name': 'Type_accompagnement_actions_gpac_export'
+            'type': ChoiceType
+            'options':
+              'label': 'Type d’accompagnement'
+              'mapped': false
+              'required': false
+              'choices': { 'Traitement de requête exportateur': 'Traitement de requête exportateur',
+                'Signature de contrat': 'Signature de contrat',
+                'Signature des avenants':'Signature des avenants','Suivi et contrôle de réalisation des projets':'Suivi et contrôle de réalisation des projets',
+                'Mission After-Care':'Mission After-Care' }
+          '10':
+            'name': 'details_libres_actions_gpac_export'
+            'type': TextareaType
+            'options':
+              'label': 'Actions / Détails Libres'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+          '11':
+            'name': 'Appui_Obtenu'
+            'type': 'CheckboxType'
+            'options':
+              'label': false
+              'required': false
+              'mapped': false
+
+          '12':
+            'name': 'situation_projet_actions_gpac_export'
+            'type': ChoiceType
+            'options':
+              'label': 'Situation du Projet'
+              'mapped': false
+              'required': false
+              'choices': { 'Réalisé': 'Réalisé',
+                'En cours de réalisation': 'En cours de réalisation',
+                'En démarrage':'En démarrage'}
+          '13':
+            'name': 'informations_supplementaires_actions_gpac_export'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Informations Supplémentaires'
+              'mapped': false
+              'required': false
+              'attr':
+                'rows': 5
+ 
+      '3':
+        'name': 'form-interet'
+        fields:
+          '1':
+            'name': 'date_expo'
+            'type': DateType
+            'options':
+              'label': 'false'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '2':
+            'name': 'objet_expo'
+            'type': null
+            'options':
+              'label': 'Objet'
+              'mapped': false
+          '3':
+            'name': 'details_expo'
+            'type': null
+            'options':
+              'label': 'Détails'
+              'mapped': false
+          # '11':
+          #   'name': 'details_libres_exp'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Détails libres'
+          #     'mapped': false
+          '4':
+            'name': 'action_expo'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'required': false
+              'mapped': false
+              'choices': { 'Echange': 'Echange','Rencontre B2B': 'Rencontre B2B','Demande Event':'Demande Event','Demande Shortlist':'Demande Shortlist','Demande cotation':'Demande cotation','Traitement de Requête':'Traitement de Requête','Autre':'Autre'}
+          '5':
+            'name': 'valeur_cmd_prev_expo'
+            'type': NumberType
+            'options':
+              'label': 'Commande prévisionnelle à l’export en MDhs'
+              'required': false
+              'mapped': false
+
+      '4':
+        'name': 'form-interet'
+        fields:     
+          '5':
+            'name': 'details_libres_in_expo'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+          '6':
+            'name': 'date_decision'
+            'type': DateType
+            'options':
+              'label': 'Date Decision'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '7':
+            'name': 'details_libres_expo_decision'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails libres'
+              'mapped': false
+              'required': false
+          '8':
+            'name': 'Aboutiexpo'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Abouti'
+              'required': false
+              'mapped': false
+          '9':
+            'name': 'NAboutiexpo'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Non Abouti'
+              'required': false
+              'mapped': false
+          '10':
+            'name': 'Motif_expo'
+            'type': null
+            'options':
+              'label': 'Motif'
+              'mapped': false
+          '11':
+            'name': 'Commande_expo'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Commande'
+              'required': false
+              'mapped': false
+          '12':
+            'name': 'Signaturedecontrat_expo'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'Signature de contrat'
+              'required': false
+              'mapped': false
+          '13':
+            'name': 'date_signature_expo'
+            'type': DateType
+            'options':
+              'label': 'Date de signature contrat'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          # '14':
+          #   'name': 'date_cmd_expo'
+          #   'type': DateType
+          #   'options':
+          #     'label': 'Date de Commande'
+          #     'mapped': false
+          #     'required': false
+          #     'widget': 'single_text'
+          '15':
+            'name': 'date_pvclose_expo'
+            'type': DateType
+            'options':
+              'label': 'Date de PV clôture'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '16':
+            'name': 'pvcloture_expo'
+            'type': 'CheckboxType'
+            'options':
+              'label': 'PV de clôture'
+              'required': false
+              'mapped': false
+          '17':
+            'name': 'date_decision_expo'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'required': false
+              'mapped': false
+              'widget': 'single_text'
+          '18':
+            'name': 'valeur_cmd_expo'
+            'type': NumberType
+            'options':
+              'label': 'Valeur de commande'
+              'mapped': false
+          '19':
+            'name': 'secteur_expo'
+            'type': 'EntityType'
+            'options':
+              'label': 'Secteur'
+              'required': false
+              'mapped': false
+              'class': 'App\Entity\Secteur'
+              'choice_label': 'nom'
+          '20':
+            'name': 'reference_expo'
+            'type': null
+            'options':
+              'label': 'Reference'
+              'mapped': false
+          '21':
+            'name': 'eco_fil_expo'
+            'type': 'EntityType'
+            'options':
+              'label': 'Ecosysteme Filiere'
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\EcosystemeFiliere'
+              'choice_label': 'nom'
+          '22':
+            'name': 'produit_expo'
+            'type': null
+            'options':
+              'label': 'Produit'
+              'mapped': false
+          '23':
+            'name': 'Compte_exportateur_expo'
+            'type': ChoiceType
+            'options':
+              'label': 'Type à spécifier'
+              'mapped': false
+              'required': false
+              'choices': { 'Compte Exportateur':'Compte Exportateur','Compte Investisseur':'Compte Investisseur','Compte DO':'Compte DO','Compte Partenaire':'Compte Partenaire'}
+          '24':
+              'name': 'document_CMD'
+              'type': 'FileType'
+              'options':
+                'label': 'Document CMD'
+                'mapped': false
+                'required': false
+          '25':
+              'name': 'document_contra'
+              'type': 'FileType'
+              'options':
+                'label': 'Document contrat'
+                'mapped': false
+                'required': false
+          '26':
+              'name': 'document_pv_cloture'
+              'type': 'FileType'
+              'options':
+                'label': 'Document Pv clôture'
+                'mapped': false
+                'required': false
+          '27':
+              'name': 'pv_cloture_nabouti_expo'
+              'type': 'FileType'
+              'options':
+                'label': 'Pv Clôture Non abouti'
+                'mapped': false
+                'required': false
+          '28':
+            'name': 'date_pv_cloture_nabouti_expo'
+            'type': DateType
+            'options':
+              'label': 'Date PV Clôture Non Abouti'
+              'mapped': false
+              'required': false
+              'widget': 'single_text'
+          '29':
+            'name': 'comptes_eido'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Compte'
+              'multiple': true
+              'mapped': false
+              'required': false
+              'class': 'App\Entity\Compte'
+              'choice_label': 'nomCompte'
+
+
+  '4':
+    'name': 'actions'
+    'forms':
+      '1':
+        'name': 'form-projet'
+        fields:
+          '1':
+            'name': 'Nomaction'
+            'type': null
+            'options':
+              'label': 'Nom de l‘action'
+              'mapped': false
+          '2':
+            'name': 'ResponsableAction'
+            'type':  null
+            'options':
+              'label': 'Responsable de l‘Action (AMDIE)'
+              'mapped': false
+               
+          '3':
+            'name': 'InterlocuteurPrincipal'
+            'type': 'MultiSelectType'
+            'options':
+              'label': 'Actionnaires'
+              'mapped': false
+              'multiple': true
+              'required': false
+              'class': 'App\Entity\Contact'
+              'choice_label': 'nomcomplet'  
+                    
+          '4':
+            'name': 'Date_interaction'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'input': 'datetime'
+              'widget': 'single_text'
+          '5':
+            'name': 'Action_interaction'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'choices': { ' Echange':' Echange',
+              'Réunion': 'Réunion',
+              ' Traitement de requête':' Traitement de requête',
+              'Autre':'Autre'}
+          '6':
+            'name': 'Objet_interaction'
+            'type': null
+            'options':
+              'label': 'Objet'
+              'mapped': false        
+          '7':
+            'name': 'Detail_interaction'
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détails'
+              'mapped': false
+              'attr':
+                'rows': 8  
+          
+          
+          # '11':
+          #   'name': 'PartenaireAction'
+          #   'type': null
+          #   'options':
+          #     'label': 'Partenaire'
+          #     'mapped': false
+         
+      '2':
+        'name': 'form-gpac'
+        fields:
+          '1':
+            'name': 'statut_projet'
+            'type': 'ChoiceType'
+            'options':
+              'label': 'Statut du projet'
+              'mapped': false
+              'required': false
+              'choices': {'Nom démarré': 'Nom démarré','En cours de réalisation':'En cours de réalisation','Réalisé':'Réalisé',' À l’Arrêt':' À l’Arrêt'}
+
+          # '2':
+          #   'name': 'type_requete'
+          #   'type': null
+          #   'options':
+          #     'label': 'Type de Requête'
+          #     'mapped': false
+          #     'required': false
+
+          # '3':
+          #   'name': 'donneur_ordre'
+          #   'type': null
+          #   'options':
+          #     'label': 'Donneur d’Ordre'
+          #     'mapped': false
+          #     'required': false
+
+          # '4':
+          #   'name': 'programme_appui'
+          #   'type': null
+          #   'options':
+          #     'label': 'Programme d’Appui'
+          #     'mapped': false
+          #     'required': false
+
+          # '5':
+          #   'name': 'montant_projet'
+          #   'type': null
+          #   'options':
+          #     'label': 'Montant du projet'
+          #     'mapped': false
+          #     'required': false
+
+          # '6':
+          #   'name': 'requetes_compte'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Requêtes du comptes'
+          #     'mapped': false
+          #     'required': false
+          #     'attr':
+          #       'rows': 5
+
+          # '7':
+          #   'name': 'informations_supplementaires'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Informations supplémentaires'
+          #     'mapped': false
+          #     'required': false
+          #     'attr':
+          #       'rows': 5
+          # '8':
+          #   'name': 'date_actions_gpac_export'
+          #   'type': DateType
+          #   'options':
+          #     'label': 'Date'
+          #     'mapped': false
+          #     'required': false
+          #     'widget': 'single_text'
+          # '9':
+          #   'name': 'Type_accompagnement_actions_gpac_export'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Type d’accompagnement'
+          #     'mapped': false
+          #     'required': false
+          #     'choices': { 'Traitement de requête exportateur': 'Traitement de requête exportateur',
+          #       'Signature de contrat': 'Signature de contrat',
+          #       'Signature des avenants':'Signature des avenants','Suivi et contrôle de réalisation des projets':'Suivi et contrôle de réalisation des projets',
+          #       'Mission After-Care':'Mission After-Care' }
+          # '10':
+          #   'name': 'details_libres_actions_gpac_export'
+          #   'type': TextareaType
+          #   'options':
+          #     'label': 'Actions / Détails Libres'
+          #     'mapped': false
+          #     'required': false
+          #     'attr':
+          #       'rows': 5
+          # '11':
+          #   'name': 'Appui_Obtenu'
+          #   'type': 'CheckboxType'
+          #   'options':
+          #     'label': false
+          #     'required': false
+          #     'mapped': false
+
+          # '12':
+          #   'name': 'situation_projet_actions_gpac_export'
+          #   'type': ChoiceType
+          #   'options':
+          #     'label': 'Situation du Projet'
+          #     'mapped': false
+          #     'required': false
+          #     'choices': { 'Réalisé': 'Réalisé',
+          #       'En cours de réalisation': 'En cours de réalisation',
+          #       'En démarrage':'En démarrage'}
+          # '13':
+          #   'name': 'informations_supplementaires_actions_gpac_export'
+          #   'type': 'TextareaType'
+          #   'options':
+          #     'label': 'Informations Supplémentaires'
+          #     'mapped': false
+          #     'required': false
+          #     'attr':
+          #       'rows': 5
+
+      '3':
+        'name': 'form-realisee'
+        fields:
+          '1':
+            'name': 'Date_reali'
+            'type': DateType
+            'options':
+              'label': 'Date'
+              'mapped': false
+              'widget': 'single_text'
+          '2':
+            'name': 'Action_realise'
+            'type': ChoiceType
+            'options':
+              'label': 'Action'
+              'mapped': false
+              'choices': { ' Promotion Maroc - Pitch':' Promotion Maroc - Pitch',
+              'Invitation': 'Invitation',
+              'CTPS':' CTPS','CI':'CI',
+              'Suivi Projets':'Suivi Projets'}
+          '3':
+            'name': "detail_libre_realise"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Détail libre'
+              'mapped': false
+              'attr':
+                'rows': 10
+          '4':
+            'name': "ObjetComptes"
+            'type': 'TextareaType'
+            'options':
+              'label': 'Objet'
+              'mapped': false
+              'attr':
+                'rows': 5
+
+          # '5':
+          #   'name': 'ObjetCompteseve'
+          #   'type': 'MultiSelectType'
+          #   'options':
+          #     'label': "Compte ff"
+          #     'mapped': false
+          #     'multiple': true
+          #     'class': 'App\Entity\Event'
+          #     'choice_label': 'nom'                   
+
+    

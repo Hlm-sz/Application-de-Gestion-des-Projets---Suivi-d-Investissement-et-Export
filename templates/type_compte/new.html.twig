@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeCompte
+{% endblock %}
+{% block navbar_right %}{% endblock %}
+{% block navbar_left %}
+	<a class="btn btn-blue" href="{{ path('secteur_index') }}">{{'secteur.Back_to_list'| trans}}</a>
+	<h4 class="navbar-text-color">{{'secteur.New_secteur'| trans}}</h4>
+{% endblock %}
+{% block body %}
+	<h1>Create new TypeCompte</h1>
+
+	{{ include('type_compte/_form.html.twig') }}
+
+	<a href="{{ path('type_compte_index') }}">back to list</a>
+{% endblock %}

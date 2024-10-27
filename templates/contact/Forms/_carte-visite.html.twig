@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row align-items-end mb-4">
+        <div class="col-lg-4">
+            <div class="form-group mb-0">
+                <label class="cs-label">Fonction</label>
+                <select class="form-control">
+                    <option>
+                    {{ carte.fonction ? carte.fonction.nom : carte.fonction }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group mb-0">
+                <label class="cs-label">Profil</label>
+                <select class="form-control">
+                    <option>
+                    {{ carte.profil ? carte.profil.nom : carte.profil }}
+                    </option>
+               </select>            
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group mb-0">
+                <label class="cs-label">Tél.</label>
+                <input value="{{carte.tel}}" class="form-control" type="text">
+                {# {{ form_widget(form.catel) }} #}
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group mb-0">
+                <label class="cs-label">Tél.2</label>
+                <input value="{{carte.tel2}}" class="form-control" type="text">
+                {# {{ form_widget(form.catel2) }} #}
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group mb-0">
+                <label class="cs-label">Web</label>
+                <input value="{{carte.web}}" class="form-control" type="text">
+                {# {{ form_widget(form.caweb) }} #}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group mb-0">
+                <label class="cs-label">Email</label>
+                <input value="{{carte.email}}" class="form-control" type="text">
+                {# {{ form_widget(form.caemail) }} #}
+            </div>
+        </div>
+
+    </div>
+    <div class="row align-items-end mb-4">
+        <div class="col-lg-8">
+            <div class="form-group mb-0">
+                <label class="cs-label">Adresse</label>
+                <input value="{{carte.adresse}}" class="form-control" type="text">
+                {# {{ form_widget(form.caadresse) }} #}
+            </div>
+        </div>
+
+        
+    </div>
+</div>

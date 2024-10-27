@@ -1,0 +1,212 @@
+<div class="container">
+    <div class="row">
+        <div class="activite">
+            <div class="filter-project">
+
+                <div class="sidebare-filter activite-filter " style="height: 630px;">
+                    <a class="btn-filtre" style="position: absolute;top: 15px;right: 15px;">
+                        <img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+                    </a>
+                    <form method="post">
+                        <div>
+                            <div class="form-group">
+                                <label class="required" for="log_status">Log status</label>
+                                <select id="log_status" name="log_status" class="form-control">
+                                    <option value=""></option>
+                                    <option value="Considération">Considération</option>
+                                    <option value="Prospection">Prospection</option>
+                                    <option value="Intérêt">Intérêt</option>
+                                    <option value="Décision">Décision</option>
+                                    <option value="Suivi">Suivi</option>
+                                    <option value="Fermé">Fermé</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="log_date" class="required">Période log</label>
+                                <input type="date" id="log_date" name="log_date" required="required"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="log_date_end" class="required"> </label>
+                                <input type="date" id="log_date_end" name="log_date_end" required="required"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                    <a style="width: 100%" href="#" class="btn btn-btn-blue" onclick="logfiltrepro()">Filtre</a>
+                </div>
+            </div>
+            <div class="header">
+                {# <ul class="form-project form-activite">
+                    <li class="active title-btn">Actions</li> #}
+                {# <li class="pull-right add-activte">
+                        <a class="" href="{{ path('log_projet_new',{'id':projet.id}) }}">
+                            <i class="fa  fa-plus"></i>
+                        </a>
+                    </li> #}
+                {# </ul> #}
+                {# <ul class="form-project form-project-interet">
+                    <li class="title-btn linkInteret capitalize active" id="#actions"
+                        onclick="openInteret(event, 'actions')">Actions</li>
+                    <li class="title-btn linkInteret capitalize" id="#historique"
+                        onclick="openInteret(event, 'historique')">Historique</li>
+                </ul> #}
+                <ul class="nav nav-pills" id="pills-tab" role="tablist" style="margin-left: 40px;">
+                    <li class="nav-item">
+                        <a class="active title-btn capitalize" id="pills-actions-tab" data-toggle="pill"
+                            href="#pills-actions" role="tab" aria-controls="pills-actions"
+                            aria-selected="true">Actions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="title-btn capitalize" id="pills-historique-tab" data-toggle="pill"
+                            href="#pills-historique" role="tab" aria-controls="pills-historique"
+                            aria-selected="false">Journal</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-actions" role="tabpanel"
+                    aria-labelledby="pills-actions-tab">
+                    <div class="scroll_container">
+                        <div class="wrapper-item-activite scroll_content">
+                            <div class="wrape-filter">
+                                <div class="filter">
+                                    <a onclick="logallfiltrepro()"><span>Tout</span></a>
+                                    <a class="btn-filtre"><img src="{{ asset('images/icons/filter.png') }}" alt=""></a>
+                                </div>
+                            </div>
+                            <div id="log_filtre_projet">
+                                {% for log in logs_projet %}
+                                <div class="item-activite">
+                                    <div class="wrap-img-activite">
+                                        <img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+                                    </div>
+                                    <div class="wrapper-content">
+                                        <div class="content">
+                                            <div class="header">
+
+                                                {% if log.duree %}
+                                                <strong>{{ log.status }} ({{ log.duree}}) Jour</strong>
+                                                {% else %}
+                                                <strong>{{ log.status }} </strong>
+                                                {% endif %}
+                                                <div class="date">
+                                                    {{ log.dateCreation ? log.dateCreation|date('d/m/Y'):'' }}</div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="body">
+                                                <span></span>
+                                                <p>{{ log.commentaire |nl2br}}
+                                                {% if log.document is not null %}
+                                                {% if projet.TypeProjet.id == 1 %}
+            						            <br/>Doc Loi Signe : <a href="{{ asset("uploads/"~ (log.document)) }}" target="_blink">{{log.document}}</a>
+            					                {% endif %}
+            					                {% if projet.TypeProjet.id == 2 %}
+            						            <br/>Doc Loi Reçue : <a href="{{ asset("uploads/"~ (log.document)) }}" target="_blink">{{log.document}}</a>
+            					                {% endif %}
+            					                {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-historique" role="tabpanel" aria-labelledby="pills-historique-tab">
+                     <div class="scroll_container">
+                        <div class="wrapper-item-activite scroll_content">
+                            <div class="wrape-filter">
+                                {# <div class="filter">
+                                    <a onclick="logallfiltrepro()"><span>Tout</span></a>
+                                    <a class="btn-filtre"><img src="{{ asset('images/icons/filter.png') }}" alt=""></a>
+                                </div> #}
+                            </div>
+                            <div id="log_filtre_projet">
+                                {% for jt in jt_projet %}
+                                <div class="item-activite" style="height: 320px !important;">
+                                    <div class="wrap-img-activite">
+                                        <img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+                                    </div>
+                                    <div class="wrapper-content">
+                                        <div class="content">
+                                            <div class="header">
+                                                <strong>{{ jt.status }} </strong>
+                                                <div class="date">
+                                                    {{ jt.dateCreation ? jt.dateCreation|date('d/m/Y'):'' }}</div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="body">
+                                                <span></span>
+                                                <p>{{ jt.commentaire |nl2br}}
+                                                {% if jt.docMou is not null %}
+            						            <br/>MOU Signé : <a href="{{ asset("uploads/"~ (jt.docMou)) }}" target="_blink">{{jt.docMou}}</a>
+            					                {% endif %}
+                                                {% if jt.docCnv is not null %}
+            						            <br/>Convention : <a href="{{ asset("uploads/"~ (jt.docCnv)) }}" target="_blink">{{jt.docCnv}}</a>
+            					                {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function logfiltrepro() {
+        var log_status = $("select[name='log_status']").val();
+        var log_date = $("input[name='log_date']").val();
+        var log_date_end = $("input[name='log_date_end']").val();
+        var path = "{{ path('compte_log_filtre') }}";
+        console.log(log_status);
+        console.log(log_date);
+        console.log(log_date_end);
+        $.ajax({
+            url: "{{ path('projet_log_filtre') }}",
+            type: 'POST',
+            dataType: 'html',
+            async: true,
+            data: {
+                log_status: log_status,
+                log_date: log_date,
+                log_date_end: log_date_end,
+                projet: {{ projet.id }}
+            },
+            success: function (data) {
+                document.getElementById("log_filtre_projet").innerHTML = data;
+                $('.sidebare-filter').css('display', 'none');
+            },
+            error: function (response) {
+                // alert("error !" + response);
+            }
+        });
+    }
+
+    function logallfiltrepro() {
+        $.ajax({
+            url: "{{ path('projet_log_filtre_all') }}",
+            type: 'POST',
+            dataType: 'html',
+            async: true,
+            data: {
+                projet: {{ projet.id }}
+            },
+            success: function (data) {
+                document.getElementById("log_filtre_projet").innerHTML = data;
+                $('.sidebare-filter').css('display', 'none');
+            },
+            error: function (response) {
+                // alert("error !" + response);
+            }
+        });
+    }
+</script>

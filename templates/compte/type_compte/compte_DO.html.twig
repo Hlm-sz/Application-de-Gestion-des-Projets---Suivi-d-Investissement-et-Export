@@ -1,0 +1,161 @@
+<div class="col-lg-12 content-infos">
+
+    <div class="item-details">
+
+        <div class="item-details-body">
+
+            <div class="tab-content ">
+
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-0">
+                                <label class="cs-label">Nom du compte</label>
+                                {# <input class="form-control" type="text" placeholder="Construction de site de Melloussa àanger"> #}
+
+                                {{ form_widget(form.nomCompte) }}
+                                {{ form_errors(form.nomCompte) }}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+
+                                        <label class="cs-label mt10 mb-0">Installéu Maroc</label>
+
+                                        {{ form_widget(form.categorie, {label:false,label_attr: {class: 'switch-custom'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                        <label class="cs-label">Type</label>
+                                        {#  <select class="form-control">
+                                            <option>Donneur d.Ordre</option>
+                                        </select> #}
+                                        {{ form_widget(form.type) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# End row first #}
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-3">
+                          <div class="form-group mb-0">
+                            {{ form_row(form.canal_aux, { 'attr': { } } ) }}
+                            {{ form_widget(form.canal, { 'attr': { } } ) }}
+                          </div>
+                        </div>
+                        <div class="col-lg-3">
+                            {{ form_row(form.canal_opt_n1_aux, { 'attr': { } } ) }}
+                            {{ form_widget(form.canal_opt_n1, { 'attr': { 'class': 'hidden-field' } } ) }}
+                        </div>
+                        <div id="divcanal_opt_n2_aux" class="col-lg-6">
+                            {{ form_row(form.canal_opt_n2_aux, { 'attr': { } } ) }}
+                            {{ form_widget(form.canal_opt_n2, { 'attr': { 'class': 'hidden-field' } } ) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group mb-4">
+                                <label class="cs-label">Pays de siè</label>
+                                {# <select class="form-control">
+                                    <option>Lorem ipsum</option>
+                                </select> #}
+                                {{ form_widget(form.paysSiege ,{'attr': {'class': 'form-group paysSiege'}}) }}
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="cs-label">Centre de désion</label>
+                                {#  <select class="form-control">
+                                    <option>France</option>
+                                </select> #}
+                                {{ form_widget(form.centreDecision ,{'attr': {'class': 'form-group centreDecision'}}) }}
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group mb-4">
+                                    <label class="cs-label">CA à.Export (Millions /Dhs) </label>
+                                    {#  <input type="text" class="form-control"> #}
+                                    {{ form_widget(form.CA_Export) }}
+
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="cs-label">Chiffre d.affaires (Milliers/DHs) </label>
+                                    {#  <input type="text" class="form-control" placeholder="200000"> #}
+                                    {{ form_widget(form.chiffreAffaires) }}
+                                    {#  {{ form_widget(form.Secteur) }} #}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-4 form-group mb-2">
+                                    <label class="cs-label">Pays d.implantations / Succursales </label>
+                                    {{ form_widget(form.paysImplantationSuccursales ,{'attr': {'class': 'form-group paysImplantationSuccursales'}})
+                                    }}
+                                </div>
+                                <div class="col-lg-4 form-group mb-2">
+                                    <label class="cs-label">Secteurs </label>
+                                    {{ form_widget(form.secteurs ,{'attr': {'class': 'form-group secteurs'}}) }}
+                                </div>
+                                <div class="col-lg-4 form-group mb-2">
+                                    <label class="cs-label">Ecosystè/Filiè </label>
+                                    {{ form_widget(form.ecosystemeFiliere ,{'attr': {'class': 'form-group ecosystemeFiliere'}})
+                                    }}
+                                </div>
+                            </div>
+
+                            {# <div class="form-group mb-4">
+                                <label class="cs-label">Description du projet</label>
+                                {{ form_widget(form.description_projet) }}
+                            </div> #}
+                            <div class="form-group">
+                                <label class="cs-label">Description de l'activité/label>
+                                {#  <textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea> #}
+                                {{ form_widget(form.description_activite,{attr: {rows: '10'} }) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="cs-label">Déil libre</label>
+                                {#  <textarea rows="5" class="form-control" placeholder="Lorem ipsum"></textarea> #}
+                                {{ form_widget(form.detailLibre,{attr: {rows: '10'} }) }}
+
+                            </div>
+                        </div>
+                    </div>{# End row second #}
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+{{ include('compte/form/hiden.html.twig') }}
+<script>
+    $(document).ready(function () {
+        $('.responsableCompte').select2();
+        $('.paysSiege').select2();
+        $('.paysImplantationSuccursales').select2();
+        $('.secteurs').select2();
+        $('.ecosystemeFiliere').select2();
+        $('.centreDecision').select2();
+
+    });
+
+</script>
+
+<script src="{{ asset('js/app_form_compte.js') }}"></script>
+{# {% for item in compte.secteurs %}
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        $("#compte_data_Secteur").val({{item.id}}).change();
+    });
+</script>
+{% endblock %}
+{% endfor %} #}

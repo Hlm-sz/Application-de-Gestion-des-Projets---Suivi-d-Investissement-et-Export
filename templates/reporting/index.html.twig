@@ -1,0 +1,1091 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reporting | CRM AMDIE {% endblock %}
+
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('reporting') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ "Reporting" | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block body %}
+{# <style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+<style type="text/css">
+    .highcharts-figure,
+    .highcharts-data-table table {
+        min-width: 310px;
+        max-width: 800px;
+        margin: 1em auto;
+    }
+
+    #container {
+        height: 400px;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #EBEBEB;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+</style> #}
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #e3e6f0;
+        border-radius: 0.35rem;
+    }
+
+    .card>hr {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .card>.list-group {
+        border-top: inherit;
+        border-bottom: inherit;
+    }
+
+    .card>.list-group:first-child {
+        border-top-width: 0;
+        border-top-left-radius: calc(0.35rem - 1px);
+        border-top-right-radius: calc(0.35rem - 1px);
+    }
+
+    .card>.list-group:last-child {
+        border-bottom-width: 0;
+        border-bottom-right-radius: calc(0.35rem - 1px);
+        border-bottom-left-radius: calc(0.35rem - 1px);
+    }
+
+    .card>.card-header+.list-group,
+    .card>.list-group+.card-footer {
+        border-top: 0;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        margin-bottom: 0.75rem;
+    }
+
+    .card-subtitle {
+        margin-top: -0.375rem;
+        margin-bottom: 0;
+    }
+
+    .card-text:last-child {
+        margin-bottom: 0;
+    }
+
+    .card-link:hover {
+        text-decoration: none;
+    }
+
+    .card-link+.card-link {
+        margin-left: 1.25rem;
+    }
+
+    .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #f8f9fc;
+        border-bottom: 1px solid #e3e6f0;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(0.35rem - 1px) calc(0.35rem - 1px) 0 0;
+    }
+
+    .card-footer {
+        padding: 0.75rem 1.25rem;
+        background-color: #f8f9fc;
+        border-top: 1px solid #e3e6f0;
+    }
+
+    .card-footer:last-child {
+        border-radius: 0 0 calc(0.35rem - 1px) calc(0.35rem - 1px);
+    }
+
+    .card-header-tabs {
+        margin-right: -0.625rem;
+        margin-bottom: -0.75rem;
+        margin-left: -0.625rem;
+        border-bottom: 0;
+    }
+
+    .card-header-pills {
+        margin-right: -0.625rem;
+        margin-left: -0.625rem;
+    }
+
+    .card-img-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1.25rem;
+        border-radius: calc(0.35rem - 1px);
+    }
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+        flex-shrink: 0;
+        width: 100%;
+    }
+
+    .card-img,
+    .card-img-top {
+        border-top-left-radius: calc(0.35rem - 1px);
+        border-top-right-radius: calc(0.35rem - 1px);
+    }
+
+    .card-img,
+    .card-img-bottom {
+        border-bottom-right-radius: calc(0.35rem - 1px);
+        border-bottom-left-radius: calc(0.35rem - 1px);
+    }
+
+    .card-deck .card {
+        margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 576px) {
+        .card-deck {
+            display: flex;
+            flex-flow: row wrap;
+            margin-right: -0.75rem;
+            margin-left: -0.75rem;
+        }
+
+        .card-deck .card {
+            flex: 1 0 0%;
+            margin-right: 0.75rem;
+            margin-bottom: 0;
+            margin-left: 0.75rem;
+        }
+    }
+
+    .card-group>.card {
+        margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 576px) {
+        .card-group {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .card-group>.card {
+            flex: 1 0 0%;
+            margin-bottom: 0;
+        }
+
+        .card-group>.card+.card {
+            margin-left: 0;
+            border-left: 0;
+        }
+
+        .card-group>.card:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .card-group>.card:not(:last-child) .card-img-top,
+        .card-group>.card:not(:last-child) .card-header {
+            border-top-right-radius: 0;
+        }
+
+        .card-group>.card:not(:last-child) .card-img-bottom,
+        .card-group>.card:not(:last-child) .card-footer {
+            border-bottom-right-radius: 0;
+        }
+
+        .card-group>.card:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .card-group>.card:not(:first-child) .card-img-top,
+        .card-group>.card:not(:first-child) .card-header {
+            border-top-left-radius: 0;
+        }
+
+        .card-group>.card:not(:first-child) .card-img-bottom,
+        .card-group>.card:not(:first-child) .card-footer {
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    .card-columns .card {
+        margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 576px) {
+        .card-columns {
+            -moz-column-count: 3;
+            column-count: 3;
+            -moz-column-gap: 1.25rem;
+            column-gap: 1.25rem;
+            orphans: 1;
+            widows: 1;
+        }
+
+        .card-columns .card {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+
+    .left-primary {
+        border-left: 0.25rem solid #080067 !important;
+    }
+
+    .border-bottom-primary {
+        border-bottom: 0.25rem solid #4e73df !important;
+    }
+
+    .border-left-secondary {
+        border-left: 0.25rem solid #858796 !important;
+    }
+
+    .border-bottom-secondary {
+        border-bottom: 0.25rem solid #858796 !important;
+    }
+
+    .border-left-success {
+        border-left: 0.25rem solid #1cc88a !important;
+    }
+
+    .border-bottom-success {
+        border-bottom: 0.25rem solid #1cc88a !important;
+    }
+
+    .border-left-info {
+        border-left: 0.25rem solid #36b9cc !important;
+    }
+
+    .border-bottom-info {
+        border-bottom: 0.25rem solid #36b9cc !important;
+    }
+
+    .border-left-warning {
+        border-left: 0.25rem solid #f6c23e !important;
+    }
+
+    .border-bottom-warning {
+        border-bottom: 0.25rem solid #f6c23e !important;
+    }
+
+    .border-left-danger {
+        border-left: 0.25rem solid #e74a3b !important;
+    }
+
+    .border-bottom-danger {
+        border-bottom: 0.25rem solid #e74a3b !important;
+    }
+
+    .border-left-light {
+        border-left: 0.25rem solid #f8f9fc !important;
+    }
+
+    .border-bottom-light {
+        border-bottom: 0.25rem solid #f8f9fc !important;
+    }
+
+    .border-left-dark {
+        border-left: 0.25rem solid #5a5c69 !important;
+    }
+
+    .border-bottom-dark {
+        border-bottom: 0.25rem solid #5a5c69 !important;
+    }
+
+    .progress-sm {
+        height: .5rem;
+    }
+
+    .bg-gray-100 {
+        background-color: #f8f9fc !important;
+    }
+
+    .bg-gray-200 {
+        background-color: #eaecf4 !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #dddfeb !important;
+    }
+
+    .bg-gray-400 {
+        background-color: #d1d3e2 !important;
+    }
+
+    .bg-gray-500 {
+        background-color: #b7b9cc !important;
+    }
+
+    .bg-gray-600 {
+        background-color: #858796 !important;
+    }
+
+    .bg-gray-700 {
+        background-color: #6e707e !important;
+    }
+
+    .bg-gray-800 {
+        background-color: #5a5c69 !important;
+    }
+
+    .bg-gray-900 {
+        background-color: #3a3b45 !important;
+    }
+
+    .o-hidden {
+        overflow: hidden !important;
+    }
+
+    .text-xs {
+        font-size: 0.9rem;
+        font-weight: 900 !important;
+    }
+
+    .text-lg {
+        font-size: 1.2rem;
+    }
+
+    .text-gray-100 {
+        color: #f8f9fc !important;
+    }
+
+    .text-gray-200 {
+        color: #eaecf4 !important;
+    }
+
+    .text-gray-300 {
+        color: #dddfeb !important;
+    }
+
+    .text-gray-400 {
+        color: #d1d3e2 !important;
+    }
+
+    .text-gray-500 {
+        color: #b7b9cc !important;
+    }
+
+    .text-gray-600 {
+        color: #858796 !important;
+    }
+
+    .text-gray-700 {
+        color: #6e707e !important;
+    }
+
+    .text-gray-800 {
+        color: #5a5c69 !important;
+    }
+
+    .text-gray-900 {
+        color: #3a3b45 !important;
+    }
+
+    .icon-circle {
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hell-dashboard {
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 10px;
+        background: #F8F9FF;
+        margin-top: 50px;
+        max-width: 85%;
+        margin: 40px auto;
+    }
+
+    .mb-4,
+    .my-4 {
+        margin-bottom: 1.5rem !important;
+        margin-top: 1.5rem !important;
+    }
+
+    .chart-area {
+        position: relative;
+        height: 14rem;
+        width: 100%;
+    }
+
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+        position: absolute;
+        direction: ltr;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        pointer-events: none;
+        visibility: hidden;
+        z-index: -1;
+    }
+    .mt32{
+            margin-top: 32px;
+    }
+    .w700{
+        width: 840px;
+        display: block;
+        margin: 0 auto;
+    }
+    .pareille{
+        margin-right: 10px;
+        color: rgba(0,0,0,.5);
+    }
+    .btn-pary{
+    color: #fff ! important;
+    background-color: #090068;
+    border-color: #090068;
+    }
+    .centerbtn{
+    text-align: center;
+    }
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="main">
+    <div class="row hell-dashboard">
+    <form action="{{ path('reporting') }}" method="post" class="w700">
+{{ form_start(form) }}
+             <div class="row align-items-start mb-4 container-fluid">
+
+                <div class="col-lg-4">
+                    <div class="form-group mb-4 d-flex justify-content-between centerbtn">
+                        <label class="cs-label pareille" for="event_mois">Début</label>
+                        {{ form_widget(form.date) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-4 d-flex justify-content-between centerbtn">
+                        <label class="cs-label pareille" for="event_annee">Fin</label>
+                        {{ form_widget(form.datef) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-4 btn-sbmt centerbtn">
+                        <label class="cs-label d-block" for="event_pays"></label>
+                        <input type="submit" class="btn btn-pary"/>
+
+                    </div>
+                </div>
+
+            </div>
+{{ form_end(form) }}
+</form>
+    </div>
+        <div class="row hell-dashboard">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Projets</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{count.projet}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-inbox fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Earnings (Annual) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    contacts</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{count.contact}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-bars fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tasks Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">comptes
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{count.compte}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    events</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{count.event}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-ticket fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row hell-dashboard">
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+                <img src="/images/dashboard.png" class="img-fluid">
+            </div>
+             <!-- Pie Chart -->
+            <div class="col-xl-6 col-lg-5 ">
+                <div class="card shadow mb-4 ">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body" style="height: 400px">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small">
+                            <span class="mr-2">
+                                <i class="fa fa-circle text-primary"></i> INVESTISSEMENT
+                            </span>
+                            <span class="mr-2">
+                                <i class="fa fa-circle text-success"></i> EXPORT
+                            </span>
+                            <span class="mr-2">
+                                <i class="fa fa-circle text-info"></i> SOURCING
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row hell-dashboard">
+            <!-- Area Chart -->
+             <div class="col-xl-4 col-lg-5">
+
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">INVESTISSEMENT</h6>
+                        {% if sumProjetByTypes[1] == 0 %}
+                        {% set iphi = 0 %}
+                        {% set iphd = 0 %}
+                        {% set iphf = 0 %}
+                        {% else %}
+                        {% set iphi = (reportingProjet[1][1] / sumProjetByTypes[1]) * 100 %}
+                        {% set iphd = (reportingProjet[2][1] / sumProjetByTypes[1]) * 100 %}
+                        {% set iphf = (reportingProjet[3][1] / sumProjetByTypes[1]) * 100 %}
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">Intérêt <span
+                                class="float-right">{{reportingProjet[1][1]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{iphi}}%" aria-valuenow="{{reportingProjet[1][1]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[1]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Décision <span
+                                class="float-right">{{reportingProjet[2][1]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{iphd}}%"
+                                aria-valuenow="{{reportingProjet[1][2]}}" aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[1]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Fermé <span
+                                class="float-right">{{reportingProjet[3][1]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar" style="width: {{iphf}}%" aria-valuenow="{{reportingProjet[1][2]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[1]}}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Area Chart -->
+             <div class="col-xl-4 col-lg-5">
+
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">EXPORT</h6>
+                        {% if sumProjetByTypes[1] == 0 %}
+                        {% set ephi = 0 %}
+                        {% set ephd = 0 %}
+                        {% set ephf = 0 %}
+                        {% else %}
+                        {% set ephi = (reportingProjet[1][2] / sumProjetByTypes[1]) * 100 %}
+                        {% set ephd = (reportingProjet[2][2] / sumProjetByTypes[1]) * 100 %}
+                        {% set ephf = (reportingProjet[3][2] / sumProjetByTypes[1]) * 100 %}
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">Intérêt <span
+                                class="float-right">{{reportingProjet[1][2]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ephi}}%" aria-valuenow="{{reportingProjet[1][2]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[2]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Décision <span
+                                class="float-right">{{reportingProjet[2][2]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ephd}}%"
+                                aria-valuenow="{{reportingProjet[2][2]}}" aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[2]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Fermé <span
+                                class="float-right">{{reportingProjet[3][2]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar" style="width: {{ephf}}%" aria-valuenow="{{reportingProjet[3][2]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[2]}}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Area Chart -->
+             <div class="col-xl-4 col-lg-5">
+
+                <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">SOURCING</h6>
+                        {% if sumProjetByTypes[1] == 0 %}
+                        {% set sphi = 0 %}
+                        {% set sphd = 0 %}
+                        {% set sphf = 0 %}
+                        {% else %}
+                        {% set sphi = (reportingProjet[1][3] / sumProjetByTypes[1]) * 100 %}
+                        {% set sphd = (reportingProjet[2][3] / sumProjetByTypes[1]) * 100 %}
+                        {% set sphf = (reportingProjet[3][3] / sumProjetByTypes[1]) * 100 %}
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">Intérêt<span
+                                class="float-right">{{reportingProjet[1][3]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{sphi}}%" aria-valuenow="{{reportingProjet[1][3]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[3]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Décision <span
+                                class="float-right">{{reportingProjet[2][3]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{sphd}}%"
+                                aria-valuenow="{{reportingProjet[2][3]}}" aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[3]}}"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Fermé <span
+                                class="float-right">{{reportingProjet[3][3]}}</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar" style="width: {{sphf}}%" aria-valuenow="{{reportingProjet[3][3]}}"
+                                aria-valuemin="0" aria-valuemax="{{sumProjetByTypes[3]}}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Chart.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chart-area.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chart-pie.js') }}"></script>
+    <script type="text/javascript">
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Investissement", "Export", "Sourcing "],
+                datasets: [{
+                    data: [{{sumProjetByTypes[1]}}, {{sumProjetByTypes[2]}}, {{sumProjetByTypes[3]}}],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+            },
+        });
+    </script>
+
+    {# <script src="{{ asset('plugin/Highcharts/code/highcharts.js') }}"></script>
+    <script src="{{ asset('plugin/Highcharts/code/modules/variable-pie.js') }}"></script>
+    <script src="{{ asset('plugin/Highcharts/code/modules/exporting.js') }}"></script>
+    <script src="{{ asset('plugin/Highcharts/code/modules/export-data.js') }}"></script>
+    <script src="{{ asset('plugin/Highcharts/code/modules/accessibility.js') }}"></script>
+    <figure class="highcharts-figure">
+        <div id="count_projets_by_type"></div>
+    </figure>
+
+    <figure class="highcharts-figure">
+        <div id="status_projet"></div>
+    </figure>
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
+
+    <figure class="highcharts-figure">
+        <div id="projet_type"></div>
+        <p class="highcharts-description">
+        </p>
+    </figure>
+
+    <script type="text/javascript">
+        Highcharts.chart('projet_type', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares in January, 2018'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Investissement',
+                    y: {{ sumProjetByTypes[1] }},
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Sourcing',
+                    y:{{ sumProjetByTypes[2] }}
+                }, {
+                    name: 'Export',
+                    y: {{ sumProjetByTypes[3] }}
+                }]
+            }]
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        Highcharts.chart('count_projets_by_type', {
+            chart: {
+                type: 'variablepie'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>{point.y}</b><br/>'
+            },
+            series: [{
+                minPointSize: 10,
+                innerSize: '80%',
+                zMin: 0,
+                name: 'countries',
+                data: [{
+                    name: 'Projets',
+                    y: {{ count.projet }}
+                }, {
+                    name: 'Comptes',
+                    y: {{ count.compte }}
+                }, {
+                    name: 'Contacts',
+                    y: {{ count.contact }},
+                }]
+            }]
+        });
+
+    </script>
+
+
+    <script type="text/javascript">
+        Highcharts.chart('status_projet', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'statistique des projet par statuts'
+            },
+            xAxis: {
+                categories: ['Intérêt', 'Décision', 'Fermé']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total des projets'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: ( // theme
+                            Highcharts.defaultOptions.title.style &&
+                            Highcharts.defaultOptions.title.style.color
+                        ) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: [{
+                name: 'INV',
+                data: [{{ reportingProjet[1][1] }},{{ reportingProjet[2][1] }}, {{ reportingProjet[3][1] }}]
+            }, {
+                name: 'DO',
+                data: [{{ reportingProjet[1][2] }}, {{ reportingProjet[2][2] }}, {{ reportingProjet[3][2] }}]
+            }, {
+                name: 'EXP',
+                data: [{{ reportingProjet[1][3] }},{{ reportingProjet[2][3] }}, {{ reportingProjet[3][3] }}]
+            }]
+        });
+    </script>
+    <script type="text/javascript">
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'statistique des projets par année'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'nbr projet'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'INV',
+                data: [
+                    {{ projetsByMonth[1][1] }},
+                    {{ projetsByMonth[1][2] }},
+                    {{ projetsByMonth[1][3] }},
+                    {{ projetsByMonth[1][4] }},
+                    {{ projetsByMonth[1][5] }},
+                    {{ projetsByMonth[1][6] }},
+                    {{ projetsByMonth[1][7] }},
+                    {{ projetsByMonth[1][8] }},
+                    {{ projetsByMonth[1][9] }},
+                    {{ projetsByMonth[1][10] }},
+                    {{ projetsByMonth[1][11] }},
+                    {{ projetsByMonth[1][12] }}
+                ]
+
+            }, {
+                name: 'EXP',
+                data: [
+                    {{ projetsByMonth[3][1] }},
+                    {{ projetsByMonth[3][2] }},
+                    {{ projetsByMonth[3][3] }},
+                    {{ projetsByMonth[3][4] }},
+                    {{ projetsByMonth[3][5] }},
+                    {{ projetsByMonth[3][6] }},
+                    {{ projetsByMonth[3][7] }},
+                    {{ projetsByMonth[3][8] }},
+                    {{ projetsByMonth[3][9] }},
+                    {{ projetsByMonth[3][10] }},
+                    {{ projetsByMonth[3][11] }},
+                    {{ projetsByMonth[3][12] }}
+                ]
+
+            }, {
+                name: 'DO',
+                data: [
+                    {{ projetsByMonth[2][1] }},
+                    {{ projetsByMonth[2][2] }},
+                    {{ projetsByMonth[2][3] }},
+                    {{ projetsByMonth[2][4] }},
+                    {{ projetsByMonth[2][5] }},
+                    {{ projetsByMonth[2][6] }},
+                    {{ projetsByMonth[2][7] }},
+                    {{ projetsByMonth[2][8] }},
+                    {{ projetsByMonth[2][9] }},
+                    {{ projetsByMonth[2][10] }},
+                    {{ projetsByMonth[2][11] }},
+                    {{ projetsByMonth[2][12] }}
+                ]
+
+            }]
+        });
+    </script> #}
+
+</div>
+{% endblock %}

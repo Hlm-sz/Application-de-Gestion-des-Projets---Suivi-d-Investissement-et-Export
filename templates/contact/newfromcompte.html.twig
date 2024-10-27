@@ -1,0 +1,259 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'contact.New_contact'| trans  }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('contact_index') }}">
+    <img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+    <div class="SousTitre">
+        <strong>AMDIE</strong>
+        |
+        {{ 'contact.Contacts'| trans | upper }}
+    </div>
+</a>
+{% endblock %}
+{% block navbar_right %}
+
+<a class="btn btn-blue" href="#" id="save_contact">
+    <i class="fa fa-save"></i>
+</a>
+{% endblock %}
+
+{% block navbar_left %}
+<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+    <i class="fa fa-arrow-left"></i>
+</a>
+<h4 class="navbar-text-color">{{'contact.New_contact'| trans}}</h4>
+{% endblock %}
+{% block third_header %}
+{{ include('contact/third_header/_third_header_new_contact.html.twig') }}
+
+{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/_style.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+
+{# <div class="card new-contact">
+		<div class="card-body">
+
+			{{ include('contact/_form.html.twig') }}
+		</div>
+	</div> #}
+<div class="item-details wrape-contact-details">
+    <div class="item-details-body item-details-event item-bg-none">
+
+
+        <div class="item-details-body item-details-contact item-bg-none event-details">
+
+
+
+
+            {{ form_start(form,{'attr':{'id':'form_contact'}}) }}
+
+
+
+            {# render each row and field in the embedded form, in this example it's rendering the experience (Exp) fiels as rows #}
+
+
+            <div class="item-details">
+                <div class="row">
+
+                    <div class="col-lg-8 content-info">
+                        <div class="header">
+                            <ul>
+                                <li class="active title-btn">
+                                    Informations primaires
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item-details">
+
+                            <div class="item-details-body item-details-contact item-bg-none">
+
+                                <div class="tab-content cs-tab-content">
+                                    <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                        <div class="row align-items-end mb-4">
+
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Prénom</label>
+                                                    {{ form_widget(form.prenom) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Nom</label>
+                                                    {{ form_widget(form.nom) }}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Tél</label>
+                                                    {{ form_widget(form.tel) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Email</label>
+                                                    {{ form_widget(form.email) }}
+                                                    {{ form_errors(form.email) }}
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Profil</label>
+                                                    {{ form_widget(form.profil) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                        <div class="row align-items-end mb-4">
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Canal</label>
+                                                    {{ form_widget(form.canal) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div
+                                                    class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                    <label class="cs-label mb-0">Exclusif</label>
+                                                    {{ form_widget(form.exclusif, {label:false,label_attr: {class: 'switch-custom'} }) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Langue principale</label>
+                                                    {{ form_widget(form.langugePrincipale) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="form-group mb-0">
+                                                    <label class="cs-label">Langue secondaire</label>
+                                                    {{ form_widget(form.langueSecondaire) }}
+                                                </div>
+                                            </div>
+                                            {# <div class="col-lg-3">
+                                            <div class="form-group mb-4">
+                                                <label class="cs-label">Géré par</label>
+                                                 {{ form_widget(form.responsableContact) }}
+                                            </div>
+                                        </div> #}
+                                            {# <div class="col-lg-3">
+                                            <div class="form-group mt-5">
+                                                <label class="cs-label">Organisation</label>
+                                                {{ form_widget(form.organisation) }}
+                                            </div>
+                                        </div> #}
+                                            <div class="col-lg-3">
+                                                <div class="form-group mt-5">
+                                                    <label class="cs-label">fonction</label>
+                                                    {{ form_widget(form.fonction) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 sidbar-compte">
+                        {# <div class="container">
+                        <div class="row"> #}
+                        <div class="comment">
+                            <div class="header">
+                                <ul>
+                                    <li class="active title-btn">
+                                        Organisation
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="wrapper-item-activite">
+                                <div class="item-activite">
+                                    <a href="#">
+                                        <div class="wrap-img-activite ">
+                                            {# <img src="{{ asset('images/img-compte.png') }}" alt=""class="img-compte ">  #}
+                                            <img src="{{ asset("uploads/"~ (compte.logo ? compte.logo.filename: 'logo_default.png')) }}"
+                                                alt="" class="img-compte ">
+                                        </div>
+                                    </a>
+                                    <div class="wrapper-content wrapper-compte">
+                                        <div class="content">
+                                            <div class="body">
+                                                <a href="{{ path('compte_detail',{id:compte.id}) }}">
+                                                    <span>{{ compte.nomCompte }}</span>
+                                                    <p>{% for secteur in compte.secteurs %}
+                                                        {{ secteur.nom ~' ' }}
+                                                        {% else %}
+                                                        {% endfor %}
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Sidebar compte -->
+            </div> <!-- End first Row Contacte -->
+        </div>
+        <button type="submit" class="btn btn-success" id="btn-submit" value="submit"
+            style="display: none;">Submit</button>
+
+        <script>
+            $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display", "none");
+        </script>
+
+        {# <button class="btn btn-btn-blue">{{ button_label|default('contact.Save'| trans) }}</button> #}
+        <div class="" style="display:none">
+                {{ form_widget(form.detailsLibres) }}
+        </div>
+        
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+
+    </div>
+</div>
+</div>
+
+<script src="{{ asset('js/contacts.js') }}"></script>
+
+
+
+{% block javascripts %}
+<script>
+    $("#save_contact").click(function () {
+        $("#btn-submit").click();
+    });
+</script>
+{% endblock %}
+{% for message in app.flashes('notice') %}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'vos changements ont été bien enregistrés.',
+        showConfirmButton: false,
+        timer: 3000
+    })
+</script>
+
+
+{% endfor %}
+{% endblock %}

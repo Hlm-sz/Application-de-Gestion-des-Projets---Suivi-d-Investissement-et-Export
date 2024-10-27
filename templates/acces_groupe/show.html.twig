@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AccesGroupe
+{% endblock %}
+
+{% block body %}
+	<h1>AccesGroupe</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Groupe</th>
+				<td>{{ acces_groupe.groupe.groupe }}</td>
+			</tr>
+			<tr>
+				<th>Acces</th>
+				<td>{{ acces_groupe.acces.nom }}</td>
+			</tr>
+			<tr>
+				<th>Is_acces</th>
+				<td>{{ acces_groupe.isAcces ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('acces_groupe_index') }}">back to list</a>
+
+	<a href="{{ path('acces_groupe_edit', {'id': acces_groupe.id}) }}">edit</a>
+
+	{{ include('acces_groupe/_delete_form.html.twig') }}
+{% endblock %}

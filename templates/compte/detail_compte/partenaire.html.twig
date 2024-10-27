@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ 'compte.Detail_compte'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('partenaire_list') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+	<div class="SousTitre">
+		<strong>AMDIE</strong>
+		|
+		{{ 'Partenaires' | upper }}
+	 
+	</div>
+</a>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+{# <a class="btn btn-blue" href="#">
+	<i class="fa  fa-plus"></i>
+</a> #}
+{% if is_granted('MODIFIER_PARTENAIRE', compte) %}
+<a class="btn btn-blue save-btn" id="btn_submit" href="#">
+	<i class="fa  fa-save"></i>
+</a>
+{% endif %}
+{% if is_granted('SUPPRIMER_PARTENAIRE', compte) %}
+<form method="post" id="delete-form" action="{{ path('partenaires_delete', {'id': compte.id}) }}">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compte.id) }}">
+	<button class="btn btn-blue" id="delete-item"><i class="fa fa-trash"></i></button>
+</form>
+{% endif %}
+{% if is_granted('EXTRACTIONS_PARTENAIRE', compte) %}
+<a class="btn btn-blue" href="{{ path('compte_pdf',{'id':compte.id}) }}">
+	<i class="fa  fa-download"></i>
+</a>
+{% endif %}
+
+{% endblock %}
+{% block navbar_left %}
+<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+	<i class="fa fa-arrow-left"></i>
+</a>
+{% endblock %}
+{% block third_header %}
+{{ form_start(form,{'attr':{'id':'form_compte'}}) }}
+{{ include('compte/detail_compte/third_header/_third_header.html.twig') }}
+
+{% endblock %}
+{% block body %}
+
+<div class="top-header">
+	<div class="container-fluid ">
+	 
+		<div class="row">
+			{{ include('compte/form/compte/_form_compte.html.twig', {'button_label': 'projet.Update'| trans }) }}
+
+			<div class="col-lg-4 sidbar-compte">
+				<div class="container">
+
+					<div class="row">
+						<div class="compte wrape-compte col-sm ">
+							<div class="min-compte">
+
+								<div class="profil">
+									<div class="thumb">
+										<img src="{{ asset("uploads/"~ (compte.logo ? compte.logo.filename: 'logo_default.png')) }}"
+											alt="" class="clip-circle">
+									</div>
+									<div class="upload-logo">
+										{# <a href="#" style="color:#080067" id="btn_upload">Upload Logo</a> #}
+										{# <a href="#" style="color:#080067" class="btn_upload">Logo</a> #} 
+										<p class="info_file">
+										</p>
+										<div class="form_file">
+											{{ form_widget(form.logo) }}
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="min-compte min-projet min-pc">
+								<div class="header">
+									<h3>Actions Partenaire</h3>
+								</div>
+								<div class="profil wrape-projects">
+									{% for projet in compte.projets %}
+									{% for key,proj in projet.status %}
+									<div class="projet">
+										<a href="{{ path('actions_detail',{'id':projet.id }) }}">
+											<h4 style="font-size: 18px;color: #8e8787d6;text-align: left;margin-left: 15px;">{{ projet.titre }}</h4>
+										</a>
+									</div>
+									{% endfor %}
+									{% endfor %}
+								</div>
+								<div> 
+									<div>
+										<a href="{{ path('projets_new_from_compte',{id : 4,compte: compte.id}) }}" type="button"  class="btn compte-contact">Ajouter Action partenaire</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm">
+							<div class="col-sm" style="background-color: #ffffff !important;height: 100%;margin-bottom: 10px;box-shadow: 0px 3px 6px #00000029;border-radius: 10px;padding-right: 0px !important;padding-left: 10px !important;">
+								<div class="header">
+									<h3>Contacts</h3>
+								</div>
+								<div class="eventliste">
+									<ul style="margin-top: 10px;">
+										{% for carte in contacts %}
+										<li style="display: flex;">
+											<a href="{{ path('contact_detail',{'id':carte.contact.id }) }}" style="display: flex;flex: 5;">
+												<span class="contact_name">
+													{{ carte.contact.prenom|upper ~' '~ carte.contact.nom|upper }}
+												</span>
+												<div class="info" style="font-size: 16px;color: #8e8787d6;display: inline-block;vertical-align: middle;">
+		
+													<label for="">{{ carte.contact.prenom|capitalize ~' '~ carte.contact.nom|capitalize }}</label>
+													<span style="display: block;font-size: 14px;">{{carte.fonction.nom}}</span>
+												</div>
+											</a>
+
+											{% if carte.isPrincipale %}
+											<a
+												href="{{ path('change_princibale',{'isprin':0,'contact':carte.contact.id,'compte':carte.compte.id}) }}">
+												<span class="isprince"><i class="fa fa-address-card "
+														aria-hidden="true"></i></span>
+											</a>
+											{% else %}
+											<a
+												href="{{ path('change_princibale',{'isprin':1,'contact':carte.contact.id,'compte':carte.compte.id}) }}">
+												<span class="prince"><i class="fa fa-address-card-o"
+														aria-hidden="true"></i></span>
+											</a>			
+												{% endif %}
+										</li>
+										{% endfor %}
+									</ul>
+									<div>
+									 <div class="form-group mt-2">
+										</div>
+										<a href="{{path('nouveau_contact_compte',{compte: compte.id})}}" type="button"  class="btn compte-contact">Ajouter un contact</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>  
+		<div class="row wrapper-g-projet ">
+			<div class="col-lg-8 wrapp-content-g-projet autre-info-compte">
+				
+				<div class="container-fluid user-operation">
+					<div class="row">
+						<div class="col-sm cree-par">
+							<span class="icon-user">
+								<img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+							</span>
+							<div class="info-user">
+								<strong>Créé par :</strong>
+								<span
+									class="name">{{ compte.CreePar ? compte.CreePar.prenom ~' '~compte.CreePar.nom : '' }}</span>
+							</div>
+							<div class="date-user">
+								{{ compte.dateCreation ? compte.dateCreation|date('d/m/Y'):'' }}
+							</div>
+						</div>
+						<div class="col-sm modifier-par">
+							<span class="icon-user">
+								<img src="{{ asset('images/icons/iconfinder_user.svg') }}" alt="">
+							</span>
+							<div class="info-user">
+								<strong>Modifié par :</strong>
+								<span
+									class="name">{{ compte.ModifiePar ? compte.ModifiePar.prenom ~' '~compte.ModifiePar.nom : ''}}</span>
+							</div>
+							<div class="date-user">
+								{{ compte.dateModification ? compte.dateModification|date('d/m/Y'): '' }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			 <div style="display: none;">
+			 	{{ form_widget(form.ecosystemeFiliere) }}
+			 </div>
+			{{ form_end(form) }}
+		 
+		</div> 
+		
+
+	</div>
+
+</div>
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+<script>
+	$("#btn_submit").click(function () {
+
+		$("#form_compte").submit();
+
+	});
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.contact_name').nameBadge({
+ 		border: {
+			color: '#ddd',
+			width: 1
+		},
+ 		colors: ['#c5c5c5'],
+ 		text: '#fff',
+ 		size: 36,
+ 		margin: 5,
+ 		middlename: true,
+ 		uppercase: false
+
+	});
+</script>
+
+{% endblock %}
+<script>
+	//$('#form_save').attr("disabled", false);
+	function fileInfo() {
+		var file = document.getElementById('compte_data_logo').files[0].name;
+		var message_erreur = '';
+		var fileName = file.split(".")[0];
+		var fileSize = document.getElementById('compte_data_logo').files[0].size;
+		var fileType = file.split(".")[1];
+		var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2) + 'MB';
+		var file_info = "Nom du fichier : " + fileName + (message_erreur ? message_erreur : '') +
+			"<br> Tailler du Fichier : " + sizeInMB + "<br> Format du fichier : " + fileType;
+
+		$(".info_file").html(file_info);
+	}
+
+	$("#btn_upload").click(function (e) {
+		e.preventDefault();
+		$('#compte_data_logo').trigger('click');
+	});
+
+	$().ready(function () {
+		if ($("#compte_type").val() == 1) {
+			$('.GPAC-compte li#exp-btn a').addClass('active');
+
+		} else if ($("#compte_type").val() == 4) {
+			$('.GPAC-compte li#p-btn a').addClass('active');
+		} else if ($("#compte_type").val() == 2) {
+			$('.GPAC-compte li#inv-btn a').addClass('active');
+		} else if ($("#compte_type").val() == 3) {
+			$('.GPAC-compte li#do-btn a').addClass('active');
+		}
+
+	});
+</script>
+<script>
+	$(document).ready(function () {
+		$('.objetcontact').select2();
+		$('input[id=compte_date_prospe]').val('');
+		$('select[id=compte_action_prospe]').val('');
+		$('input[id=compte_details_prospe]').val('');
+		$('input[id=compte_Eventsprospec]').val('');
+		$('textarea[id=compte_details_libres_prospe]').val('');
+
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,154 @@
+<div class="item-details">
+	<div class="item-details-header">
+		<div class="d-flex align-items-center">
+			<span class="item-logo">
+				<div class="namecontact">{{ partenaire.nom|upper }}</div>
+			</span>
+			<div class="item-title d-flex align-items-center">
+				<span>
+					{{ partenaire.nom|capitalize }}
+				</span>
+			</div>
+			<div class="wrape-open-project">
+				<div class="item-details-header open-project wrap-btn-open-project">
+					<div class=" align-items-center pull-right">
+						<a href="{{ path('partenaire_detail',{'id': partenaire.id}) }}" class="btn btn-blue open-btn-blue btn-sm">Ouvrir partenaire</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="item-details-body " style="box-shadow: 0px 3px 6px #00000029">
+		<div class="container-fluid item-details-header-body item-contact-header">
+			<div class="row">
+				<div class="col-sm">
+					<ul class="nav nav-tabs cs-nav-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#item-details-project" role="tab" aria-selected="true">Informations primaires</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm">
+					<div class="wrape-type-project"></div>
+				</div>
+				<div class="col-sm "></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 content-info">
+				<div class="item-details">
+					<div class="item-details-body">
+						<div class="tab-content cs-tab-content">
+							<div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+								{{ form_start(form) }}
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											<label class="cs-label">Nom du Partenaire</label>
+											{{ form_widget(form.nom) }}
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											<label class="cs-label">Type</label>
+											{{ form_widget(form.type) }}
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="form-group mb-2 d-flex justify-content-between align-items-center">
+											<label class="cs-label">Engagement</label>
+											{{ form_widget(form.EngagementPart, {label:false,label_attr: {class: 'switch-custom'} }) }}
+										</div>
+									</div>
+								</div>
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											<label class="cs-label">Type d’Engagement</label>
+											{{ form_widget(form.TypeEngagement) }}
+										</div>
+										<div class="form-group mb-0">
+											<label class="cs-label">Pays cible</label>
+											{{ form_widget(form.payscible) }}
+										</div>
+										<div class="form-group mb-0">
+											<label class="cs-label">Pays d'origine</label>
+											{{ form_widget(form.paysorigine) }}
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div class="form-group mb-2">
+											<label class="cs-label mb-0">Description de l’activité</label>
+											{{ form_widget(form.description_partenaire) }}
+										</div>
+									</div>
+								</div>
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-4">
+										<div class="form-group mb-0">
+											<label class="cs-label">Secteur</label>
+											{{ form_widget(form.Secteur) }}
+										</div>
+										<div class="form-group mb-0">
+											<label class="cs-label">Présentation</label>
+											{{ form_widget(form.presentation) }}
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div class="form-group mb-2">
+											<label class="cs-label mb-0">Détails libres</label>
+											{{ form_widget(form.detail_libre) }}
+										</div>
+									</div>
+								</div>
+								<div class="row align-items-end mb-4">
+									<div class="col-lg-4">
+										<div class="form-group mb-4" style="display: none">
+											<label class="cs-label mb-0">
+												{{ form_label(form.responsableContact) }}</label>
+											{{ form_widget(form.responsableContact) }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display", "none");
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.namecontact').nameBadge({
+// boder options
+border: {
+color: '#ddd',
+width: 1
+},
+
+// an array of background colors.
+colors: ['#c5c5c5'],
+
+// text color
+text: '#fff',
+
+// avatar size
+size: 45,
+
+// avatar margin
+margin: 5,
+
+// disable middle name
+middlename: true,
+
+// force uppercase
+uppercase: false
+
+});
+</script>

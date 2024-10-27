@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des regions
+{% endblock %}
+{% block sous_title %}Regions
+{% endblock %}
+{% block navbar_right %}
+	<li class="nav-item">
+		<a href="{{ path('regions_new') }}" class="btn btn-float text-default btn-blue">
+			<i class="icon-add"></i>
+			<span>
+				{{'compte.Create_new'| trans}}</span>
+		</a>
+	</li>
+{% endblock %}
+{% block navbar_left %}{% endblock %}
+{% block body %}
+
+	<div class="card">
+
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+
+						<th>Nom</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for region in regions %}
+						<tr>
+
+							<td>{{ region.nom }}</td>
+							<td>
+								<a href="{{ path('regions_show', {'id': region.id}) }}">show</a>
+								<a href="{{ path('regions_edit', {'id': region.id}) }}">edit</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="2">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="pagination justify-content-end" style="margin:2%">
+				{{ knp_pagination_render(regions) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

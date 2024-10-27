@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'role.Detail_role'| trans }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('role_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'role.titre_role'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block navbar_right %}
+	<a class="btn btn-blue" href="{{ path('role_edit', {'id': role.id}) }}">{{ 'role.Edit'| trans }}</a>
+	{{ include('role/_delete_form.html.twig') }}
+{% endblock %}
+{% block navbar_left %}
+	<a class="btn btn-blue" href="{{ path('role_index') }}">{{ 'role.Back_to_list'| trans }}</a>
+	<h4 class="navbar-text-color">{{ 'role.Detail_role'| trans }}</h4>
+{% endblock %}
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'role.Role'| trans }}</th>
+						<td>{{ role.role }}</td>
+					</tr>
+					<tr>
+						<th>Permissions</th>
+						<td>
+							{% for permission in role.permissions %}
+								{{  permission.nom  }}
+								<br>
+							{% else %}
+								{{ '' }}
+							{% endfor %}
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+{% endblock %}

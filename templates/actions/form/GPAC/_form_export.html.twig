@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group mb-4">
+            <label class="cs-label">{{ form_label(form.statut_projet) }}</label>
+            {{ form_widget(form.statut_projet) }}
+        </div>
+        <div class="form-group mb-4">
+            <label class="cs-label">{{ form_label(form.type_requete) }}</label>
+            {{ form_widget(form.type_requete) }}
+        </div>
+        <div class="form-group">
+            <label class="cs-label">{{ form_label(form.donneur_ordre) }}</label>
+            {{ form_widget(form.donneur_ordre) }}
+
+            <label class="cs-label">{{ form_label(form.programme_appui) }}</label>
+            {{ form_widget(form.programme_appui) }}
+        </div>
+    </div>
+    <div class="col-md-8">
+
+        <div class="form-group mb-4">
+            <label class="cs-label">{{ form_label(form.montant_projet) }}</label>
+            {{ form_widget(form.montant_projet) }}
+        </div>
+
+
+        <div class="form-group">
+            <label class="cs-label">{{ form_label(form.requetes_compte) }}</label>
+            {{ form_widget(form.requetes_compte) }}
+        </div>
+
+
+        <div class="form-group">
+            <label class="cs-label">{{ form_label(form.informations_supplementaires) }}</label>
+            {{ form_widget(form.informations_supplementaires) }}
+        </div>
+    </div>
+
+</div>

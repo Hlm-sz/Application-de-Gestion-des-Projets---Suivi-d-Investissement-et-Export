@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'email.listes_emails'| trans }}
+{% endblock %}
+{% block sous_title %}
+	{{ 'email.Emails'| trans | upper }}
+{% endblock %}
+{% block navbar_right %}
+	<a href="{{ path('new_email') }}" class="btn btn-float text-default btn-blue">
+            <i class="fa fa-plus"></i>
+    </a>
+{% endblock %}
+
+{% block body %}
+
+<div class="row main">
+	<div class="col-md-1  wrape-filter-project">
+		<div class="filter-project">
+			<a class="btn-filtre">
+				<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+			</a>
+			<div class="sidebare-filter mail">
+				{{ form_start(form,{'action': path('emails_filtre'), 'method': 'GET','attr':{'id':'form_filtre'}}) }}
+					{{ form_widget(form) }}
+					<button style="width: 100%" class="btn btn-btn-blue" id="filtre">Filtre</button>
+					{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-11 main-projects">
+		<div class="row wrapper">
+			<div class="col-lg-3 wrape-list-project">
+				<div class="items-container-header">
+					<h3>Emails ({{emails |length}}) </h3>
+				</div>
+				<div class="scroll_container_project">
+					<div class="scroll_content_project">
+						<ul id="list-project ">
+							{% for email in emails %}
+							<li class="list-contacts scroll-btn" data-id="{{ email.id }}">
+								<div class="content-list-comptes">
+									<div class="content">
+										<span class="item-logo">
+											<div class="name">{{ email.id }}</div>
+										</span>
+										<span class="item-title ">
+											{{ email.objet|capitalize }}
+										</span>
+										<span class="item-date">
+											{{ email.dateEnvoi ? email.dateEnvoi|date('d/m/Y'):'' }}
+										</span>
+
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 pl-2 body-container">
+			{# <a class="cross" href="#" display="hidden">X</a> #}
+				<div id="item-details-wrapper" style="margin-left: 15px;">
+					<div class="item-details-empty">
+					<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+					<h3>Merci de sélectionner un Email</h3>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div> {#  End main-projects #}
+</div> {#  End Main Row #}
+
+<button class="scroltop" style="display:none;">
+	<i class="fa fa-angle-double-up"></i>
+	</button>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.name').nameBadge({
+
+		// boder options
+		border: {
+			color: '#ddd',
+			width: 1
+		},
+
+		// an array of background colors.
+		colors: ['#c5c5c5'],
+
+		// text color
+		text: '#fff',
+
+		// avatar size
+		size: 36,
+
+		// avatar margin
+		margin: 5,
+
+		// disable middle name
+		middlename: true,
+
+		// force uppercase
+		uppercase: false
+
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('.select-contacts').select2();
+	});
+	$(document).ready(function() {
+		$('.select-pays').select2();
+	});
+	$(document).ready(function() {
+		$('.select-secteurs').select2();
+	});
+	$(document).ready(function() {
+		$('.select-events').select2();
+	});
+</script>
+
+{% endblock %}

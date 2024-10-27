@@ -1,0 +1,47 @@
+{# Start header third #}
+	<div class="third-header col-md-12">
+		<div class="row">
+			<div class="col-md-8">
+				<ul class="etapes steps">
+					
+						<li>
+						{% if event.isValide %}
+							<a href="{{ path('event_change_activation',{'isactive':0,'event':event.id}) }}" class="{{ event.isvalide == true ? 'active' : '' }}">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label for="">
+									<i class="fa fa-sort-asc" aria-hidden="true"></i>
+									{{ 'event.Valide'| trans }}
+							</label>
+						{% else %}
+							<a href="{{ path('event_change_activation',{'isactive':1,'event':event.id}) }}" class="{{ event.isvalide == true ? 'active' : '' }}">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label for="">
+									<i class="fa fa-sort-asc" aria-hidden="true"></i>
+									{{ 'event.Valide'| trans }}
+							</label>
+						{% endif %}
+						</li>
+					<div class="last-step pull-right">
+					
+					</div>
+					
+				</ul>
+			</div>
+			<div class="col-md-2">
+				{# <ul class="GPAC" id="type-event">
+					<li data-val="Investissement" title="Investissement" class={{ event.typeEvenement != "Export" ? "active" : "" }} >
+					    <a  class="" href="">I</a>
+					</li>
+					<li data-val="Export"  class={{ event.typeEvenement == "Export" ? "active" : "" }}>
+					    <a  class="" title="Export" href="">E</a>	
+					</li>
+                    
+					
+				</ul> #}
+			</div>
+			
+		</div>
+	</div>
+	{# Enddddd #}

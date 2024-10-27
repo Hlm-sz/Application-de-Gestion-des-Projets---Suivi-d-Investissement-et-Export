@@ -1,0 +1,56 @@
+<div class="content-info">
+    <div class="header">
+    <ul class="form-interet">
+		<li class="active title-btn">Phase Intérêt</li>
+    </ul>
+    </div>
+    
+    <div class="item-details " >
+
+        <div class="item-details-body ">
+
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayedex">
+                <div class="tab-panel fade show active" role="tabpanel">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-0">
+                                    {{ form_label(form.date_interet) }}
+                                    {{ form_widget(form.date_interet) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                             <div class="form-group mb-0">
+                                    {{ form_label(form.action_interet) }}
+                                    {{ form_widget(form.action_interet) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-4">
+                                {# <label class="cs-label">{{ form_label(form.Event_interet) }}</label>
+                                {{ form_widget(form.Event_interet) }} #}
+                                 <label class="cs-label">Event</label>
+                                Event Event
+                            </div>
+                              <div class="form-group mb-4">
+                                <label class="cs-label">{{ form_label(form.details_interet) }}</label>
+                                {{ form_widget(form.details_interet) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group mb-4">
+                                <label class="cs-label">{{ form_label(form.details_libres_interet) }}</label>
+                                {{ form_widget(form.details_libres_interet,{'attr':{'rows':5}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {#  End tab-content One #}
+           
+        </div> {# End Iteme detail Body #}
+    </div>
+
+</div>
+
+

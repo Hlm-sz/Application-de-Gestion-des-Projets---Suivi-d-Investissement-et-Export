@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{'contact.listes_contact'| trans}}
+{% endblock %}
+
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('contact_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{'contact.Contacts'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+
+{% block navbar_right %}
+<li class="nav-item">
+	<a href="{{ path('contact_importer') }}" class="btn btn-float text-default btn-blue">
+		<i class="fa fa-upload"></i>
+	</a>
+	<a href="{{ path('contact_new') }}" class="btn btn-float text-default btn-blue">
+		<i class="fa fa-plus"></i>
+	</a>
+</li>
+{% endblock %}
+
+{% block navbar_left %}
+
+{% endblock %}
+{% block body %}
+
+<div class="row main">
+	<div class="col-md-1  wrape-filter-project">
+		<div class="filter-project">
+			<a class="btn-filtre">
+			
+				<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+			</a>
+			<div class="sidebare-filter ">
+				{{ form_start(form,{'action': path('contact_filtre'),'attr':{'id':'form_filtre'}}) }}
+						<div class="row">
+					<div class="col-12">
+						<div class="form-group mb-4">
+						<label class="cs-label"></label>
+						<label class="cs-label">Contact</label>
+
+                        {{ form_widget(form.search ,{'attr': {'class': 'form-group wi87PO search'}}) }}
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group mb-4">
+						<label class="cs-label">Canal</label>
+
+							{{ form_widget(form.canal ,{'attr': {'class': 'form-group wi87PO canal'}}) }}
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group mb-4">
+							<label class="cs-label">Profil</label>
+							{{ form_widget(form.profil ,{'attr': {'class': 'form-group wi87PO profil'}}) }}
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="form-group mb-4">
+						<label class="cs-label">Période de création</label>
+							{{ form_widget(form.startdate ,{'attr': {'class': 'form-group wi87PO startdate'}}) }}
+						</div>
+					</div>	
+					<div class="col-12">
+						<div class="form-group mb-4">
+							{{ form_widget(form.enddate ,{'attr': {'class': 'form-group wi87PO enddate'}}) }}
+						</div>
+					</div>
+					</div>
+					<button style="width: 100%" class="btn btn-btn-blue" id="filtre">Filtre</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-11 main-projects">
+		<div class="row wrapper">
+			<div class="col-lg-3 wrape-list-project">
+				<div class="items-container-header">
+					<h3>Contacts </h3>
+				</div>
+				<div class="scroll_container_project">
+					<div class="scroll_content_project parent-ajax">
+						<ul id="list-project ">
+							{% for contact in contacts %}
+							<li class="list-contacts" data-id="{{ contact.id }}"
+								data-source="{{ path('contact_show', {'id': contact.id }) }}">
+
+								<div class="content-list-comptes">
+									<div class="content">
+										{# <span class="item-logo">
+											<img src="{{ asset("uploads/"~ (project.compte.logo ? project.compte.logo.filename: 'logo_default.png')) }}" alt="" class="img-fluid">
+										</span> #}
+										<span class="item-logo">
+											<div class="name">{{ contact.prenom|upper ~' '~ contact.nom|upper }}</div>
+										</span>
+										<span class="item-title ">
+											{{ contact.Prenom|capitalize }} {{ contact.Nom }}
+										</span>
+										 <span class="item-date">
+                                            {{ contact.dateCreation ? contact.dateCreation|date('d/m/Y'):'' }}
+                                        </span>
+										{# {% if contact.isActive == 0 %}
+										<span class="badge badge-warning flori">Activer</span>
+										{% endif %} #}
+									</div>
+									{# <div class="d-flex justify-content-between align-items-center">
+										<span class="item-options"></span>
+										<span class="item-date">{{ project.dateCreation ? project.dateCreation|date('d/m/Y'):'' }}</span>
+									</div> #}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-9  body-container">
+				{# <div class="container">
+						<div class="item-details-empty">
+							<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+							<h3>Aucun projet trouvé</h3>
+						</div>
+					</div> #}
+				<div id="item-details-wrapper" style="margin-left: 15px;">
+					<div class="item-details-empty">
+						<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+						<h3>Merci de sélectionner un contact</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {#  End main-projects #}
+</div> {#  End Main Row #}
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.name').nameBadge({
+
+		// boder options
+		border: {
+			color: '#ddd',
+			width: 1
+		},
+
+		// an array of background colors.
+		colors: ['#c5c5c5'],
+
+		// text color
+		text: '#fff',
+
+		// avatar size
+		size: 45,
+
+		// avatar margin
+		margin: 5,
+
+		// disable middle name
+		middlename: true,
+
+		// force uppercase
+		uppercase: false
+
+	});
+</script>
+<script>
+$(document).ready(function() {
+    $('.search').select2();
+	$('.canal').select2();
+    $('.profil').select2();
+});
+</script>
+{% endblock %}

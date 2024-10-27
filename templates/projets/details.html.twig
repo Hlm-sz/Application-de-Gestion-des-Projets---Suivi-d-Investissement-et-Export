@@ -1,0 +1,439 @@
+<div class="item-details">
+    {#
+            <div class="col-sm">
+                <div class="item-details-header open-project pull-right">
+                    <div class="d-flex align-items-center ">
+                        <button type="button" class="btn btn-primary btn-sm">Ouvrir projet</button>
+                    </div>
+                </div>
+            </div>
+
+             #}
+    <div class="item-details-header">
+        <div class="d-flex align-items-center">
+            <span class="item-logo">
+                <img src="{{ asset("uploads/"~ (projet.compte.logo ? projet.compte.logo.filename: 'logo_default.png')) }}"
+                    alt="" class="clip-circle">
+            </span>
+            <h3 class="item-title">{{ projet.compte.nomCompte }}</h3>
+            <div class="wrape-open-project">
+                <div class="item-details-header open-project wrap-btn-open-project">
+                    <div class=" align-items-center pull-right">
+                        <a href="{{ path('projets_detail',{'id': projet.id}) }}"
+                            class="pull-right btn btn-blue open-btn-blue btn-sm">Ouvrir projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-details-body header-projet">
+        <div class="container-fluid item-details-header-body item-details-header-body-project">
+            <div class="row">
+                <div class="col-sm col-sm-4">
+                    <ul class="nav nav-tabs cs-nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#item-details-project" role="tab"
+                                aria-selected="true">Projet</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm col-sm-4">
+                    <div class="wrape-type-project">
+                        <ul class="type-project">
+                            <li>
+                                <span {{ (projet.typeProjet.id == 3)?'class="active"':''  }}>E</span>
+                            </li>
+                            <li>
+                                <span {{ (projet.typeProjet.id == 1)?'class="active"':''  }}>I</span>
+                            </li>
+                            <li>
+                                <span {{ (projet.typeProjet.id == 2)?'class="active"':''  }}>S</span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                {# <div class="col-sm ">
+                    <div class="wrape-open-project">
+                        <div class="item-details-header open-project ">
+                            <div class=" align-items-center ">
+                                <a href="{{ path('projets_detail',{'id': projet.id}) }}" class="btn btn-blue open-btn-blue btn-sm">Ouvrir projet</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> #}
+            </div>
+        </div>
+        <div class="tab-content  wrape-cs-tab-content ">
+            <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                {% if projet.TypeProjet.id == 1 %}
+                <div class="col-lg-12 content-info">
+                    {{ form_start(form) }}
+                    <div class="item-details">
+
+                        <div class="item-details-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="form-group mb-0">
+
+                                                {{ form_label(form.Denomination_projet) }}
+                                                {{ form_widget(form.Denomination_projet,{'attr':{'disabled':'disabled'},'value' : projet.titre} ) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Confidentiel</label>
+                                                        <span class="lock" alt="Confidentiel" title="Confidentiel">
+                                                            <img src="{{ asset('images/icons/lock.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Confidentiel) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Confidentiel, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Stratégique</label>
+                                                        <span class="trace" alt="Prioritaire" title="Prioritaire">
+                                                            <img src="{{ asset('images/icons/Trace.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Prioritaire) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Prioritaire, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group mb-4">
+                                                <label class="cs-label">{{ form_label(form.Secteur) }}</label>
+                                                {{ form_widget(form.Secteur,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label class="cs-label">{{ form_label(form.Localisation) }}</label>
+                                                {{ form_widget(form.Localisation,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                             <div class="form-group mb-4">
+                                                <label class="cs-label">{{ form_label(form.Province) }}</label>
+                                                {{ form_widget(form.Province,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                            <div class="form-group" style="display:none">
+                                                <label class="cs-label">{{ form_label(form.Documents) }}</label>
+                                                <label class="cs-input-file mb-2">
+                                                    {{ form_widget(form.Documents,{'attr':{'class':'file'}}) }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-4">
+                                                <label
+                                                    class="cs-label">{{ form_label(form.Description_projet) }}</label>
+                                                {{ form_widget(form.Description_projet,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="cs-label">{{ form_label(form.details_libres) }}</label>
+                                                {{ form_widget(form.details_libres,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                            <div class="form-group" style="display: none">
+                                                <label class="cs-label">{{ form_label(form.pays_invest) }}</label>
+                                                {{ form_widget(form.pays_invest) }}
+                                            </div>
+                                            {{ include('projets/detail_form/invest.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                {% elseif projet.TypeProjet.id == 2 %}
+
+
+                <div class="col-lg-12 content-info">
+                    {{ form_start(form) }}
+                    <div class="item-details">
+
+                        <div class="item-details-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="form-group mb-0">
+
+                                                {{ form_label(form.intitule_projet) }}
+                                                {{ form_widget(form.intitule_projet,{'attr':{'disabled':'disabled'},'value' : projet.titre}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Confidentiel</label>
+                                                        <span class="lock" alt="Confidentiel" title="Confidentiel">
+                                                            <img src="{{ asset('images/icons/lock.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Confidentiel) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Confidentiel, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Stratégique</label>
+                                                        <span class="trace" alt="Prioritaire" title="Prioritaire">
+                                                            <img src="{{ asset('images/icons/Trace.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Prioritaire) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Prioritaire, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group" style="display:none">
+                                                <label class="cs-label">{{ form_label(form.Documents) }}</label>
+                                                <label class="cs-input-file mb-2">
+                                                    {{ form_widget(form.Documents,{'attr':{'class':'file'}}) }}
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                              <label class="cs-label">{{ form_label(form.secteur_sou) }}</label>
+								                {{ form_widget(form.secteur_sou ,{'attr': {'class': 'form-group secteur_sou','disabled':'disabled'}}) }}
+								            </div>
+                                            <div class="form-group mb-0">
+                                                {{ form_label(form.zone_cible) }}
+                                                {{ form_widget(form.zone_cible,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                            <div class="form-group mb-0">
+                                                {{ form_label(form.pays_command) }}
+                                                {{ form_widget(form.pays_command,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-4">
+                                                <label
+                                                    class="cs-label">{{ form_label(form.Description_projet) }}</label>
+                                                {{ form_widget(form.Description_projet,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="cs-label">{{ form_label(form.details_libres) }}</label>
+                                                {{ form_widget(form.details_libres,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{ include('projets/detail_form/sourcing.html.twig') }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                {% elseif projet.TypeProjet.id == 4 %}
+
+
+                <div class="col-lg-12 content-info">
+                    {{ form_start(form) }}
+                    <div class="item-details">
+
+                        <div class="item-details-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Nom de l’action</label>
+
+                                                {{ form_widget(form.Nomaction) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Responsable de l’Action (AMDIE)</label>
+                                                {{ form_widget(form.ResponsableAction,{'value' : app.user.nomcomplet}) }}
+                                            </div>
+                                        </div>
+                                        {# <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Partenaire</label>
+                                                {{ form_widget(form.PartenaireAction) }}
+                                            </div>
+                                        </div> #}
+                                        <div class="col-lg-3">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Interlocuteur Principal (Partenaire)</label>
+                                                {{ form_widget(form.InterlocuteurPrincipal) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-4">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Date</label>
+                                                {{ form_widget(form.Date_interaction) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Action</label>
+                                                {{ form_widget(form.Action_interaction) }}
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Objet</label>
+                                                {{ form_widget(form.Objet_interaction) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-2">
+                                                <label class="cs-label">Détails</label>
+                                                {{ form_widget(form.Detail_interaction) }}
+                                            </div>
+                                        </div>
+                                          <div style="display:none">
+                                             {{ form_widget(form.gere_par)}}
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {# {{ include('projets/detail_form/sourcing.html.twig') }} #}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                {% else %}
+                <div class="col-lg-12 content-info">
+                    {{ form_start(form) }}
+
+                    <div class="item-details">
+
+                        <div class="item-details-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="form-group mb-0">
+
+                                                {{ form_label(form.intitule_projet) }}
+                                                {{ form_widget(form.intitule_projet,{'attr':{'disabled':'disabled'},'value' : projet.titre}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Confidentiel</label>
+                                                        <span class="lock" alt="Confidentiel" title="Confidentiel">
+                                                            <img src="{{ asset('images/icons/lock.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Confidentiel) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Confidentiel, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div
+                                                        class="form-group mb-2 d-flex justify-content-between align-items-center">
+                                                        <label class="cs-label mb-0">Stratégique</label>
+                                                        <span class="trace" alt="Prioritaire" title="Prioritaire">
+                                                            <img src="{{ asset('images/icons/Trace.svg') }}"
+                                                                alt=""></span>
+                                                        {# <label class="cs-checkbox">
+                                                                {{ form_widget(form.Prioritaire) }}
+                                                                <span>&nbsp;</span>
+                                                            </label> #}
+                                                        {{ form_row(form.Prioritaire, {'attr':{'disabled':'disabled'},label_attr: {class: 'switch-custom'} }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group" style="display:none">
+                                                <label class="cs-label">{{ form_label(form.Documents) }}</label>
+                                                <label class="cs-input-file mb-2">
+                                                    {{ form_widget(form.Documents,{'attr':{'class':'file'}}) }}
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                              <label class="cs-label">{{ form_label(form.secteur_expo) }}</label>
+								                {{ form_widget(form.secteur_expo ,{'attr': {'class': 'form-group secteur_expo','disabled':'disabled'}}) }}
+								            </div>
+                                            <div class="form-group mb-0">
+                                                {{ form_label(form.zone_cible) }}
+                                                {{ form_widget(form.zone_cible,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                            <div class="form-group mb-0">
+                                                {{ form_label(form.pays_command) }}
+                                                {{ form_widget(form.pays_command,{'attr':{'disabled':'disabled'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group mb-4">
+                                                <label
+                                                    class="cs-label">{{ form_label(form.Description_projet) }}</label>
+                                                {{ form_widget(form.Description_projet,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="cs-label">{{ form_label(form.details_libres) }}</label>
+                                                {{ form_widget(form.details_libres,{'attr':{'rows':5,'disabled':'disabled'}})
+                                                }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ include('projets/detail_form/expo.html.twig') }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $("#projet_data_Confidentiel,#projet_data_Prioritaire").css("display", "none");
+</script>

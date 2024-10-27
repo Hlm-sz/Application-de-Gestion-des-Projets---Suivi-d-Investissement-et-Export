@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{'compte.Liste_compte'| trans}}
+{% endblock %}
+
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('partenaire_list') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'Partenaires' | upper }}
+	</div>
+</a>
+{% endblock %}
+{% block header_search %}
+{% if secteur_active %}
+<form class="form-inline" action="{{ path('compte_index',{'id':secteur_active.id}) }}" method="get">
+	{% else %}
+	<form class="form-inline" action="{{ path('compte_index') }}" method="get">
+		{% endif %}
+		{# <input class="form-control mr-sm-2" name="search" type="search" placeholder="Chercher" aria-label="Chercher"> #}
+	</form>
+	{% endblock %}
+{% block navbar_right %}
+
+<li class="nav-item">
+	<div class="dropdown" style="margin-right: 20px">
+		{% if is_granted('EXTRACTIONS_PARTENAIRE', compte) %}
+			<a class="btn btn-blue" href="{{ path('partenaires_export') }}">
+				<i class="fa fa-download"></i>
+			</a>
+		{% endif %}
+		
+		{# <a href="{{ path('compte_importer') }}" class="btn btn-float text-default btn-blue">
+			<i class="fa fa-upload"></i>
+		</a> #}
+
+		{% if is_granted('CREATION_DE_PARTENAIRE', compte) %}
+			<a class="btn btn-blue" href="{{ path('part_new',{id : 4 }) }}"><i class="fa fa-plus"></i></a>
+		{% endif %}
+	</div>
+</li>
+
+{% endblock %}
+{% block navbar_left %}
+<li class="nav-item nav-item-secteur">
+		<div class="dropdown">
+			<button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				<span
+					style="border-bottom: 3px solid {{ secteur_active ? secteur_active.color : 'white' }}">{{ secteur_active ? secteur_active.nom : 'Secteurs' }}</span>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				{% if secteur_active %}
+				<a class="dropdown-item list-secteurs" href="#" data-secteur="">Secteurs</a>
+				{% endif %}
+
+				{% for secteur in secteurs %}
+
+				{% if secteur_active and secteur_active.id == secteur.id %}
+				<a class="dropdown-item d-none list-secteurs" data-secteur="{{ secteur.id }}"
+					href="#">{{ secteur.nom }}</a>
+				{% else %}
+				<a class="dropdown-item list-secteurs" data-secteur="{{ secteur.id }}" href="#">{{ secteur.nom }}</a>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</li>
+{% endblock %}
+{% block body %}
+<div class="row main">
+	<div class="col-md-1  wrape-filter-project">
+		<div class="filter-project">
+			<a class="btn-filtre">
+				<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+			</a>
+			<div class="sidebare-filter ">
+				{{ form_start(form,{'attr':{'id':'form_filtre'}}) }}
+					{{ form_widget(form) }}
+					<button style="width: 100%" class="btn btn-btn-blue" id="filtre">Filtre</button>
+					{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-11 main-projects">
+		<div class="row wrapper">
+			<div class="col-lg-3 wrape-list-project">
+				<div class="items-container-header">
+					<h3>Partenaires ({{ comptes|length }})</h3>
+				</div>
+				<div class="scroll_container_project">
+					<div class="scroll_content_project parent-ajax">
+						<ul id="list-compte">
+							{% for compte in comptes %}
+							<li  class="list-compte scroll-btn" data-id="{{ compte.id }}"
+								data-source="{{ path('compte_show', {'id': compte.id }) }}">
+
+								<div class="content-list-comptes">
+									<div class="content content_pro">
+										<span class="item-logo">
+											<img src="{{ asset("uploads/"~ (compte.logo ? compte.logo.filename: 'logo_default.png')) }}"
+												alt="" class="img-fluid">
+										</span>
+										<span class="item-title">
+												{{ compte.nomCompte }}
+										</span>
+										 <span class="item-date">
+                                            {{ compte.dateCreation ? compte.dateCreation|date('d/m/Y'):'' }}
+                                        </span>
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-9  body-container">
+				{# <div class="container">
+						<div class="item-details-empty">
+							<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+							<h3>Aucun projet trouvé</h3>
+						</div>
+					</div> #}
+				<div id="item-details-wrapper" style="margin-left: 15px;">
+					<div class="item-details-empty">
+						<img src="{{ asset('images/dashboard.png') }}" class="img-fluid">
+						<h3>Merci de sélectionner un partenaire</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {#  End main-projects #}
+</div> {#  End Main Row #}
+
+	<button class="scroltop">
+	<i class="fa fa-angle-double-up"></i>
+	</button>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(document).on('click', '.list-secteurs', function (e) {
+				e.preventDefault();
+				var secteur = $(this).data('secteur');
+				$('#secteur').val(secteur);
+				//console.log(source);
+				$("#telecharger").remove();
+				$('#form_filtre').submit();
+			})
+			$(document).on('click', '.download', function (e) {
+				e.preventDefault();
+				$('#form_filtre').append(
+					'<input type="hidden" id="telecharger" name="telecharger" value="1">');
+				$('#form_filtre').submit();
+			})
+			$(document).on('click', '.tri', function (e) {
+				e.preventDefault();
+				var tri = $(this).data('tri');
+				$('#tri').val(tri);
+				$("#telecharger").remove();
+				// console.log(tri);
+				$('#form_filtre').submit();
+			})
+			$("#filtre").click(function (e) {
+				e.preventDefault();
+				$("#telecharger").remove();
+				changeAutocomplate();
+				$("#form_filtre").submit();
+
+			});
+
+			function changeAutocomplate() {
+				if ($('#compte_filtre').val() == '') {
+					//alert($('#compte_filtre').val());
+					$('#compte').val('');
+				}
+				if ($('#user_filtre').val() == '') {
+					//alert($('#user_filtre').val());
+					$('#gerePar').val('');
+				}
+
+			}
+
+		})
+	</script>
+
+
+{% endblock %}

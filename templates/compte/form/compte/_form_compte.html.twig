@@ -1,0 +1,110 @@
+
+
+<div class="col-lg-8 content-info info-compte ">
+
+    <div class="header">
+        
+        <ul class="form-project">
+            <li class=" active title-btn linkInfo" id="#info-primaire" onclick="openInfo(event, 'info-prim')">Informations Primaires</li>
+           {#  <li class="title-btn linkInfo" id="#info-invest" onclick="openInfo(event, 'info-invest')">Information Investissement</li> #}
+        </ul>
+    </div>
+    <div class="item-details">
+
+        <div class="item-details-body  ">
+
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-prim">
+            
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+
+                    {% if compte.type.id == 1 %}
+                         {{ include('compte/type_compte/compte_export.html.twig') }}
+
+                    {% elseif compte.type.id == 2 %}
+                                               {{ include('compte/type_compte/compte_investisement.html.twig') }}
+
+
+                        {% elseif compte.type.id == 3 %}
+                            {{ include('compte/type_compte/compte_DO.html.twig') }}
+
+                            {% elseif compte.type.id == 4 %}
+                                 {{ include('compte/type_compte/compte_partenaire.html.twig') }}
+
+                                {% else %}
+                                                           {{ include('compte/type_compte/compte_investisement.html.twig') }}
+
+
+                    {% endif %}
+
+
+
+                    {#  {{ include('compte/type_compte/compte_DO.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+
+                    {#  {{ include('compte/type_compte/compte_partenaire.html.twig', {'button_label': 'projet.Update'| trans }) }} #}
+
+
+                </div>
+            </div>
+            {# <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-invest">
+            
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                    
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-6">
+                            <div class="form-group mb-0">
+                                <label class="cs-label">pays_implantation_succursales</label>
+                           
+                                
+                                {{ form_widget(form.pays_implantation_succursales) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            
+                               
+                                    <div class="form-group mb-2 d-flex justify-content-between align-items-center">    
+                                        <label class="cs-label mb-0">ecosystemeFiliere</label>
+                                       
+                                        {{ form_widget(form.ecosystemeFiliere) }}
+                                    </div>       
+                        </div>
+                    </div>
+              
+                    
+                    
+                    
+                </div>
+            </div> #}
+
+        </div>
+    </div>
+
+</div>
+
+
+{# <script>
+    $(document).ready(function(){
+        $(".selectjs").select2({
+            placeholder:"Type  First Name or last name",
+            minimumInputLength: 2,
+            ajax:{
+                url: "getStudent.php",
+                dataType: "json",
+                type : "GET",
+                delay: 250,
+                data: function(params){
+                    return {
+                        q: params.term
+                    }
+                },
+                processResults: function(data){
+                    return {
+                        results : data
+                    };
+                },
+                cache:true
+            }
+        });
+        console.log(data)
+    });
+
+</script> #}

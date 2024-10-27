@@ -1,0 +1,334 @@
+login:
+    your_ar: Vous êtes authentifié ....
+    sign_in: Connectez-vous
+    password: Mot de passe
+    sign: Connecter
+
+user:
+    titre_user: Utilisateurs
+    liste_user: Liste des utilisateurs
+    Create_new: Nouveau
+    Prenom: Prénom
+    Nom: Nom
+    Email: Email
+    Groupe: Groupe
+    Action: Action
+    Chercher: Chercher
+    Edit: Modifier
+    Message_tabe: aucun enregistrement trouvé
+    Password: Mot de passe
+    Save: Enregistrer
+    Back_to_list: Revenir
+    New_user: Nouveau utilisateur
+    Edit_user: Modifier un utilisateur
+    Message_delete_user: Nouveau utilisateur
+    Delete: Supprimer
+    Update: Actualiser
+    Detail_user: Détails d'utilisateur   
+
+groupe:
+    titre_groupe: Groupes
+    Groupe: Groupe
+    Roles: Rôles
+    Restrictions: Restrictions
+    Save: Enregistrer
+    listes_groupes: Liste des groupes
+    New_groupe: Nouveau groupe
+    Edit_groupe: Modifier un groupe
+    Message_delete_user: Nouveau utilisateur
+    Create_new: Nouveau
+    Acces: Permissions
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de groupe 
+    Back_to_list: Revenir
+    Message_tabe: aucun enregistrement trouvé
+    Update: Actualiser
+
+    
+role:
+    Liste_roles: Liste des rôles
+    Create_new: Nouveau
+    Role: Rôle
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    titre_role: Rôles
+    Message_table: aucun enregistrement trouvé
+    Save: Enregistrer
+    Back_to_list: Revenir
+    New_role: Nouveau rôle
+    Edit_role: Modifier un rôle
+    Message_delete_role: Nouveau rôle
+    Delete: Supprimer
+    Detail_role: Détails de rôle  
+    Message_tabe: aucun enregistrement trouvé
+    Update: Actualiser
+    Restrictions: Restrictions
+
+restriction:
+    Restriction: Restrictions
+    Liste_restriction: Liste des restrictions
+    Create_new: Nouveau
+    Nom: Nom
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    titre_restriction: Restrictions
+    Back_to_list: Revenir
+    Delete: Supprimer
+    Update: Actualiser
+    New_restriction: Nouvelle restriction 
+    Edit_restriction: Modifier une restriction
+    Message_delete_restriction: Supprimer une restriction
+    Detail_restriction: Détails de restriction  
+    Message_table: aucun enregistrement trouvé
+    Save: Enregistrer
+    Active: Active
+
+acces:
+    Liste_Acces: Liste des permissions
+    Create_new: Nouveau
+    Acces: Permissions
+    Permission: Permission
+    Nom: Nom
+    Nom_constant: Nom de Constante
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    titre_Acces: Permissions
+    Back_to_list: Revenir
+    Delete: Supprimer
+    Update: Actualiser
+    New_acces: Nouvelle permission
+    Edit_acces: Modifier de permission
+    Message_delete_acces: Nouvelle permission
+    Detail_acces: Détails de permission  
+    Message_table: aucun enregistrement trouvé
+    Save: Enregistrer
+    Active: Active
+
+secteur:
+    Liste_secteur: Liste des secteurs
+    Create_new: Nouveau
+    Secteur: Secteurs
+    Nom: Nom
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    titre_secteur: Secteurs
+    Back_to_list: Revenir
+    Delete: Supprimer
+    Update: Actualiser
+    New_secteur: Nouveau secteur
+    Edit_secteur: Modifier un secteur
+    Message_delete_secteur: Nouveau
+    Detail_secteur: Détails un secteur  
+    Message_table: aucun enregistrement trouvé
+    Save: Enregistrer
+
+compte:
+    Liste_compte: Liste des comptes
+    NomCompte: Nom du Compte
+    InstalleMaroc: Installé au Maroc
+    Categorie: Catégorie
+    CentreDecision: Centre de décision
+    ChiffreAffaires: Chiffre d'affaires
+    DetailLibre: Détail Libre
+    Signalement: Signalement
+    Type: Type
+    PaysSiege: Pays du Siège
+    paysImplantationSuccursales: Pays d’Implantations / Succursales
+    Secteurs: Secteurs
+    ResponsableCompte: Responsable du Compte
+    EtatCompte: État
+    EcosystemeFiliere: Ecosystème / Filière
+    Create_new: Nouveau
+    Compte: Comptes
+    Nom: Nom
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    titre_secteur: Comptes
+    Back_to_list: Revenir
+    Delete: Supprimer
+    Update: Actualiser
+    New_compte: Nouveau compte
+    Edit_compte: Modifier un compte
+    Message_delete_compte: 
+    Detail_compte: Détails de compte  
+    Message_table: aucun enregistrement trouvé
+    Save: Enregistrer
+    Logo: Logo
+
+canal:
+    titre_groupe: Canaux
+    Canal: Canaux
+    Canals: Canaux
+    Nom: Canal
+    Save: Enregistrer
+    listes_canal: Liste des canaux
+    New_canal: Nouveau canal
+    Edit_canal: Modifier un canal
+    Message_delete_canal: Un nouveau canal
+    Create_new: Nouveau
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de canal
+    Back_to_list: Revenir
+    Message_tabe: aucun enregistrement trouvé
+    Update: Actualiser   
+
+
+profil:
+    titre_profil: Profil contact
+    Profil: Profil
+    Profils: Profils
+    Save: Enregistrer
+    listes_profil: Liste des profils
+    New_profil: Un nouveau profil
+    Edit_profil: Modifier un profil
+    Message_delete_profil: Un nouveau profil
+    Create_new: Nouveau
+    Nom: Profil
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de profil
+    Back_to_list: Revenir
+    Message_table: aucun enregistrement trouvé
+    Update: Actualiser   
+
+contact:
+    titre_contact: Contacts
+    Contact: Contact
+    Contacts: Contacts
+    Restrictions: Restrictions
+    Save: Enregistrer
+    listes_contact: Liste des contacts
+    New_contact: Nouveau contact
+    Edit_contact: Modifier un contact
+    Message_delete_contact: Nouveau contact
+    Create_new: Nouveau
+    Nom: Nom
+    Prenom: Prénom
+    Statut: Statut
+    Profil: Profil
+    Canal: Canal
+    Exclusif: Exclusif
+    Commentaire: Commentaire
+    RespContact: Géré par
+    LanguePrincipale: Langue principale
+    LangueSecondaire: Langue secondaire
+    DetailsLibres: Détails libres
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de contact 
+    Back_to_list: Revenir
+    Message_table: aucun enregistrement trouvé
+    Update: Actualiser
+    Archiver: Archiver
+    liste_contact_archives: Liste des contacts archivés
+    Tel: Tél
+    Email: Email
+
+carteVisite:
+    titre_cv: Cartes visite
+    CarteVisite: Carte visite
+    CarteVisites: Cartes visite
+    Save: Enregistrer
+    listes_carte: Liste des cartes visite
+    New_carte: Nouvelle carte visite
+    Edit_carte: Modifier un carte visite
+    Message_delete_carte: Nouvelle carte visite
+    Create_carte: Nouveau
+    Nom: Profil
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de carte visite
+    Back_to_list: Revenir
+    Message_table: aucun enregistrement trouvé
+    Update: Actualiser   
+    Fonction: Fonction
+    Tel: Tél
+    Tel.2: Tél.2
+    Web: Web
+    Adresse: Adresse
+    Email: Email
+    Compte: Compte
+    Contact: Contact
+
+projet:
+    titre_projet: Projets
+    Profil: Projet
+    Projects: Projets
+    Save: Enregistrer
+    listes_projet: Liste des projets
+    New_projet: Nouveau projet
+    Edit_projet: Modifier un projet
+    Message_delete_profil: Nouveau projet
+    Create_new: Nouveau
+    Nom: Profil
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Detail: Détails de projet
+    Back_to_list: Revenir
+    Message_table: aucun enregistrement trouvé
+    Update: Actualiser
+    type: Type
+    compte: Compte
+    actions: Actions
+    Gere_par: Géré par
+    Etat_projet: Etat
+    GPAC: GPAC
+    titre_invistisement: Projet investissement
+    titre_sourcing: Projet sourcing
+    titre_export: Projet export
+
+event:
+    Nom_event: Nom de l’événement 
+    Mois: Mois
+    Annee: Année
+    Pays: Pays
+    Secteur: Secteur
+    Format_participation: Format de participation
+    Organisateur: Organisateur
+    Partenaires: Partenaires
+    Type_evenement: Type d’événement
+    Description: Description
+    Comptes: Comptes
+    Event: Event
+    Events: Events
+    Actions: Actions
+    Show: Afficher
+    Edit: Modifier
+    Delete: Supprimer
+    Save: Enregistrer
+    Update: Actualiser
+    Valide: Validé
+    Novalide: Non validé
+
+partenaire:
+    titre_partenaire: Partenaires
+    Partenaire: Partenaire
+    Partenaires: Partenaires
+    Restrictions: Restrictions
+    Save: Enregistrer
+    listes_partenaire: Liste des partenaires
+    New_partenaire: Nouveau partenaire
+    Edit_partenaire: Modifier un partenaire
+    Message_delete_partenaire: Nouveau partenaire
+    Create_new: Nouveau
+    Detail_partenaire: Détails de partenaire  
+

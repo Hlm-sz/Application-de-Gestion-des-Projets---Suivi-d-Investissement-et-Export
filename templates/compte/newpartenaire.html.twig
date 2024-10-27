@@ -1,0 +1,95 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}
+{{'compte.New_compte'| trans}}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('partenaire_list') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{ 'Partenaires' | upper }}
+	</div>
+</a>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+{# <a class="btn btn-blue" href="#">
+	<i class="fa  fa-plus"></i>
+</a>
+<a class="btn btn-blue" href="#">
+	<i class="fa  fa-download"></i>
+</a> #}
+<a class="btn btn-blue save-btn" id="btn_submit" href="#">
+	<i class="fa  fa-save"></i>
+</a>
+{% endblock %}
+{% block navbar_left %}
+	<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+		<i class="fa fa-arrow-left"></i>
+	</a>
+	<h4 class="navbar-text-color">{{'Nouveau partenaire'}}</h4>
+{% endblock %}
+{% block third_header %}
+{{ form_start(form,{'attr':{'id':'form_compte'}}) }}
+
+{% endblock %}
+{% block body %}
+	<div class="item-details wrape-contact-details">
+		<div class="item-details-body item-details-event item-bg-none">
+			<div class="item-details-body item-details-contact item-bg-none event-details">
+				{{ form_start(form,{'attr':{'id':'form_partenaire'}}) }}
+				{{ include('compte/partenaire/_form.html.twig') }}
+				<button type="submit" class="btn btn-success" id="btn-submit" value="submit" style="display: none;">Submit</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+<script>
+	{# $("#btn_submit").click(function () {
+
+		$("#form_compte").submit();
+
+	}); #}
+	$("#btn_submit").one('click', function() {
+    	$("#btn-submit").click();
+	});
+</script>
+{% endblock %}
+<script>
+ 	function fileInfo() {
+		var file = document.getElementById('compte_data_logo').files[0].name;
+		var message_erreur = '';
+		var fileName = file.split(".")[0];
+		var fileSize = document.getElementById('compte_data_logo').files[0].size;
+		var fileType = file.split(".")[1];
+		var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2) + 'MB';
+		var file_info = "Nom du fichier : " + fileName + (message_erreur ? message_erreur : '') +
+			"<br> Tailler du Fichier : " + sizeInMB + "<br> Format du fichier : " + fileType;
+		$(".info_file").html(file_info);
+	}
+	$(".btn_upload").click(function (e) {
+		e.preventDefault();
+		$('#compte_data_logo').trigger('click');
+	});
+</script>
+{% endblock %}
+

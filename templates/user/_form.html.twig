@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button class="btn btn-btn-blue">{{ button_label|default('user.Save'| trans) }}</button>
+{{ form_end(form) }}
+<script>
+$(document).ready(function() {
+ 	$('#edit_user_secteurs').select2();
+});
+</script>

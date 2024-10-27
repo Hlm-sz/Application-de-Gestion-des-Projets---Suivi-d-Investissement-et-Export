@@ -1,0 +1,5 @@
+<form method="post" id="delete-form" action="{{ path('canal_delete', {'id': canal.id}) }}">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ canal.id) }}">
+	<button class="btn btn-blue" id="delete-item">{{'canal.Delete'| trans}}</button>
+</form>

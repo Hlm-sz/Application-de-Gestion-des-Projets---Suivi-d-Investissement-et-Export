@@ -1,0 +1,147 @@
+{{ form_start(form, {'attr': {'id': 'form_event'}}) }}
+             <div class="row align-items-start mb-4">
+                <div class="col-lg-6">
+              
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block required" for="event_nom">Nom de l’événement</label>
+                        {{ form_widget(form.nom) }} 
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block required" for="event_mois">Mois</label>
+
+                        {{ form_widget(form.mois) }} 
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block required" for="event_annee">Année</label>
+
+                        {{ form_widget(form.annee) }} 
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block  required" for="event_pays">Pays</label>
+                        {{ form_widget(form.pays ,{'attr': {'class': 'form-group pays'}}) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-4  required" for="event_secteur">
+                        <label class="cs-label d-block">Secteur</label>
+                        {{ form_widget(form.secteur ,{'attr': {'class': 'form-group sec'}}) }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group mb-4  required" for="event_formatParticipation">
+                        <label class="cs-label d-block">Format de participation</label>
+
+                        {{ form_widget(form.formatParticipation) }} 
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="form-group mb-4  required" for="event_partenaires">
+                        <label class="cs-label d-block">Partenaires</label>
+                         {{ form_widget(form.partenaires ,{'attr': {'class': 'form-group part'}}) }}
+                    </div>
+                     <div class="form-group mb-4  required" for="event_Organisateur">
+                        <label class="cs-label d-block">Organisateur</label>
+
+                         {{ form_widget(form.Organisateur) }} 
+                    </div>
+                    <div class="form-group mb-4  required" for="event_Nombre_Procpects_Invesstisseur">
+                        <label class="cs-label d-block">Nombre Procpects Invesstisseur</label>
+
+                         {{ form_widget(form.nombre_procpects_invesstisseur) }}
+                    </div>     
+                    <div class="form-group mb-4  required" for="event_nombre_business_dev_investisseur">     
+                         <label class="cs-label d-block">Nombre de BtoB (Business Dev – Investisseur)</label>
+
+                         {{ form_widget(form.nombre_business_dev_investisseur) }}
+                    </div>
+                    <div class="form-group mb-4  required" for="event_nombre_prospects_do">     
+                        <label class="cs-label d-block">Nombre de prospects DO</label>
+
+                        {{ form_widget(form.nombre_prospects_do) }}
+                   </div>
+                   <div class="form-group mb-4  required" for="event_nombre_entreprises_accompagnees">     
+                    <label class="cs-label d-block">Nombre d’entreprises accompagnées</label>
+
+                    {{ form_widget(form.nombre_entreprises_accompagnees) }}
+                   </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-4  required" for="event_typeEvenement">
+                        <label class="cs-label d-block">Type d’événement</label>
+                        {# <div class="radio-holder"> #}
+                            {{ form_widget(form.typeEvenement ,{'attr': {'class': 'form-group te'}}) }}
+                        {# </div> #}
+                         
+                    </div>
+                     {#<div class="form-group mb-4  required" for="comptes">#}
+                    {#   <label class="cs-label d-block">Comptes</label>#}
+                        {# <div class="radio-holder"> #}
+                     {#      {{ form_widget(form.comptes ,{'attr': {'class': 'form-group comptes'}}) }}#}
+                        {# </div> #}
+                         
+                    {#</div>#}
+                    <div class="form-group mb-4  required" for="listeInvestisseur">
+                        <label class="cs-label d-block">Liste Investisseurs</label>
+                        {# <div class="radio-holder"> #}
+                            {{ form_widget(form.listeInvestisseurs ,{'attr': {'class': 'form-group comptes'}}) }}
+                        {# </div> #}
+                         
+                    </div>
+                    <div class="form-group mb-4  required" for="listeExportateur">
+                        <label class="cs-label d-block">Liste Exportateurs</label>
+                        {# <div class="radio-holder"> #}
+                            {{ form_widget(form.listeExportateurs ,{'attr': {'class': 'form-group comptes'}}) }}
+                        {# </div> #}
+                         
+                    </div>
+                    <div class="form-group mb-4  required" for="listeDo">
+                        <label class="cs-label d-block">Liste DO</label>
+                        {# <div class="radio-holder"> #}
+                            {{ form_widget(form.listeDO ,{'attr': {'class': 'form-group comptes'}}) }}
+                        {# </div> #}
+                         
+                    </div>
+                    
+                    
+
+                    <div class="form-group mb-4  required" for="event_nombre_business_dev_do">     
+                        <label class="cs-label d-block">Nombre de BtoB (Business Dev – DO) </label>
+    
+                        {{ form_widget(form.nombre_business_dev_do) }}
+                    </div>
+                    <div class="form-group mb-4  required" for="event_nombre_exportateur_do">     
+                        <label class="cs-label d-block">Nombre de BtoB (Exportateur – DO)</label>
+    
+                        {{ form_widget(form.nombre_exportateur_do) }}
+                    </div>   
+                </div>
+                <div class="col-lg-4">
+                 <div class="form-group mb-4  required" for="event_partenaires">
+                        <label class="cs-label d-block">Document</label>
+                         {{ form_widget(form.documet) }}
+                           
+                    {# <span class="" id="{{data.id}}" onclick="confirmeRemProjet(this.id)">
+                        <i class="fa fa-trash"></i>
+                    </span> #}
+                    
+                    </div>
+                </div>    
+                <div class="col-lg-8">
+                    <div class="form-group mb-4">
+                        <label class="cs-label d-block">Description</label>
+
+                         {{ form_widget(form.description,{attr: {rows: '10'} }) }}
+ 
+                    </div>
+                </div>
+            </div>
+
+{{ form_end(form) }} 

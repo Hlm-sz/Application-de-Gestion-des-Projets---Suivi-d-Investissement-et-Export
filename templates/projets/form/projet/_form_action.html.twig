@@ -1,0 +1,109 @@
+<div class="col-lg-8 content-info">
+
+    <div class="header">
+        <ul class="form-project form-project-invest">
+            <li class=" active title-btn linkInfo capitalize" id="#info-primaire" onclick="openInfo(event, 'info-prim')">Action Partenaire</li>
+            <li class="title-btn linkInfo capitalize" id="#info-invest" onclick="openInfo(event, 'info-invest')">Action Réalisée</li>
+        </ul>
+    </div>
+     <div class="item-details" >
+        <div class="item-details-body ">
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-prim">
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                     <div class="container-fluid">
+                     <div class="row align-items-end mb-4">
+                            <div class="col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Nom de l’action</label>
+                                    {{ form_widget(form.Nomaction) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Responsable de l’Action (AMDIE)</label>
+                                    {{ form_widget(form.ResponsableAction,{'value' : app.user.nomcomplet}) }}
+                                </div>
+                            </div>
+                            {# <div class="col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Partenaire</label>
+                                    {{ form_widget(form.PartenaireAction) }}
+                                </div>
+                            </div> #}
+                            <div class="col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Interlocuteur Principal</label>
+                                    {{ form_widget(form.InterlocuteurPrincipal ,{'attr': {'class': 'form-group InterlocuteurPrincipal'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-end mb-4">
+                            <div class="col-lg-4">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Date</label>
+                                    {{ form_widget(form.Date_interaction) }}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Action</label>
+                                    {{ form_widget(form.Action_interaction) }}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Objet</label>
+                                    {{ form_widget(form.Objet_interaction) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group mb-2">
+                                    <label class="cs-label">Détails</label>
+                                    {{ form_widget(form.Detail_interaction) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {#  End tab-content One #}
+            <div class="tab-content cs-tab-content no-left-padding no-right-padding info-displayed" id="info-invest">
+                <div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+                   <div class="container-fluid">
+                    <div class="row align-items-end mb-4">
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="cs-label">Date</label>
+                                {{ form_widget(form.Date_reali) }}
+                            </div>
+                            <div class="form-group mb-2">
+                                <label class="cs-label">Action</label>
+                                {{ form_widget(form.Action_realise) }}
+                            </div>
+                            <div class="form-group mb-2">
+                                <label class="cs-label">Objet</label>
+                                {{ form_widget(form.ObjetComptes) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group mb-2">
+                                <label class="cs-label">Détails</label>
+                                {{ form_widget(form.detail_libre_realise) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div> {#  End tab-content Tow #}
+
+        </div> {# End Iteme detail Body #}
+    </div>
+
+</div>
+ <div class="form-group" style="display: none">
+     {{ form_widget(form.statut_projet) }}
+ </div>
+
+<script>
+$(document).ready(function() {
+	$('.InterlocuteurPrincipal').select2({
+		width: '100%'
+	});	
+});
+</script>

@@ -1,0 +1,70 @@
+{# Start header third #}
+<div class="third-header col-md-12">
+	<div class="row">
+		<div class="col-md-7">
+			<ul class="etapes steps">
+				{# <li>
+					<a href="" class="active">
+						<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+					</a>
+					<label for="">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						Compte
+					</label>
+				</li>  #}
+				<div class="last-step pull-right">
+				</div>
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<ul class="GPAC">
+				{# <li>
+					<a class="" href="">EXC</a>
+					<label for="">
+						<i class="fa fa-sort-asc" aria-hidden="true"></i>
+						Exclusive
+					</label>
+				</li> #}
+			</ul>
+		</div>
+		<div class="col-md-2">
+		{% if app.user.groupe.id==13 %}
+		<ul class="img-profil">
+			<li>
+				<img src="{{  asset('images/image-profile.png')  }}" alt="">
+				<div class="info-profil">
+					<strong>Géré par :</strong><br>
+					<span>{{ form_widget(form.responsableContact) }}</span>
+				</div>
+				<div class="param-profil">
+					<span></span>
+				</div>
+			</li>
+		</ul>
+		{% else %}
+			<ul class="img-profil" style="display:none">
+				<li>
+					<img src="{{  asset('images/image-profile.png')  }}" alt="">
+					<div class="info-profil">
+						<strong>Géré par :</strong><br>
+
+						{% if app.user.groupe.id ==29 %}
+							<span>{{ form_widget(form.responsableContact) }}</span>
+						{% else %}
+							<span style="display: none">
+							{{ form_widget(form.responsableContact) }}
+							</span>
+
+						{% endif %}
+					</div>
+					<div class="param-profil">
+						<span></span>
+					</div>
+				</li>
+			</ul>
+	{% endif %}
+
+		</div> <!-- End Profil -->
+	</div>
+</div>
+{# Enddddd #}

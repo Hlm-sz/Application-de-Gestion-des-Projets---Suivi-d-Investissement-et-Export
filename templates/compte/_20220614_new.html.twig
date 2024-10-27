@@ -1,0 +1,304 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}
+{{'compte.New_compte'| trans}}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('compte_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{{'compte.Compte'| trans | upper }}
+	</div>
+</a>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/_style.css') }}">
+{% endblock %}
+{% block navbar_right %}
+{# <a class="btn btn-blue" href="#">
+	<i class="fa  fa-plus"></i>
+</a>
+<a class="btn btn-blue" href="#">
+	<i class="fa  fa-download"></i>
+</a> #}
+<a class="btn btn-blue save-btn" id="btn_compte" href="#">
+	<i class="fa  fa-save"></i>
+</a>
+{% endblock %}
+{% block navbar_left %}
+	<a class="btn btn-blue" href="{{ app.request.headers.get('referer') }}">
+		<i class="fa fa-arrow-left"></i>
+	</a>
+	<h4 class="navbar-text-color">{{'compte.New_compte'| trans}}</h4>
+{% endblock %}
+{% block third_header %}
+{{ form_start(form,{'attr':{'id':'form_compte'}}) }}
+
+{% endblock %}
+
+
+{% block body %}
+<div class="top-header">
+	<div class="container-fluid ">
+		<div class="row">
+			<div class="col-lg-12 content-info">
+
+				<div class="header">
+					<ul class="form-project form-project-interet">
+						<li class="title-btn linkInteret capitalize active" id="#autre-info"
+							onclick="openInteret(event, 'autre-info')">Informations Primaires</li>
+ 						<li class="title-btn linkInteret capitalize" id="#prospection"
+							onclick="openInteret(event, 'prospection')">Autres informations</li>
+ 					</ul>
+				</div>
+				<div class="item-details">
+
+					<div class="item-details-body">
+
+					<div class="tab-content cs-tab-content no-left-padding no-right-padding infophases"
+					 id="autre-info">
+					 <div class="tab-pane fade show active" id="item-details-interet" role="tabpanel">
+						 <div class="container-fluid">
+						 <div class="row align-items-end mb-4">
+							 <div class="col-lg-3">
+								 <div class="form-group mb-0">
+									 {{ form_label(form.nomCompte) }}
+									 {{ form_widget(form.nomCompte) }} 
+{{ form_errors(form.nomCompte) }}
+
+								 </div>
+							 </div>
+							 <div class="col-lg-3">
+								 <div class="form-group mb-0">
+									 {{ form_label(form.type) }}
+									 {{ form_widget(form.type ,{'attr': {'class': 'form-group sebis'}}) }}
+
+								 </div>
+							 </div>
+							 <div class="col-lg-3">
+								 <div class="form-group mb-0">
+									 {{ form_label(form.responsableCompte) }}
+									{{ form_widget(form.responsableCompte ,{'attr': {'class': 'form-group responsableCompte'}}) }}
+
+								 </div>
+							 </div>
+							 <div class="col-lg-3">
+								 <div class="form-group mb-0">
+									 {{ form_label(form.logo) }}
+									 {{ form_widget(form.logo) }}
+								 </div>
+							 </div>
+
+						 </div>
+
+						 <div class="row align-items-end mb-4">
+							 <div class="col-lg-6">
+								 <div class="row">
+									 <div class="col-lg-6">
+										 <div class="form-group mb-4">
+											 {{ form_label(form.paysSiege) }}
+											 {{ form_widget(form.paysSiege ,{'attr': {'class': 'form-group paysSiege'}}) }}
+
+										 </div>
+										 <div class="form-group mb-4">
+											 {{ form_label(form.paysImplantationSuccursales) }}
+											 {{ form_widget(form.paysImplantationSuccursales ,{'attr': {'class': 'form-group paysImplantationSuccursales'}}) }}
+
+										 </div>
+									 </div>
+									 <div class="col-lg-6">
+										 <div class="form-group mb-4">
+											 {{ form_label(form.secteurs) }}
+											 {{ form_widget(form.secteurs ,{'attr': {'class': 'form-group secteurs'}}) }}
+										 </div>
+										 <div class="form-group mb-4">
+											 {{ form_label(form.ecosystemeFiliere) }}
+											 {{ form_widget(form.ecosystemeFiliere ,{'attr': {'class': 'form-group ecosystemeFiliere'}}) }}
+
+										 </div>
+
+									 </div>
+								 </div>
+							 </div>
+							 <div class="col-lg-6">
+								 <div class="form-group mb-4">
+									 {{ form_label(form.centreDecision) }}
+									 {{ form_widget(form.centreDecision) }}
+								 </div>
+								 {# <div class="form-group mb-4">
+									 {{ form_label(form.description_projet) }}
+									 {{ form_widget(form.description_projet) }}
+								 </div> #}
+							 </div>
+						 </div>
+						 <div class="row mb-4">
+							 <div class="col-lg-6">
+								 <div class="row">
+									 <div class="col-lg-6">
+										 <div class="form-group mb-4">
+											 {{ form_label(form.etatCompte) }}
+											 {{ form_widget(form.etatCompte) }}
+										 </div>
+										 <div class="form-group mb-4">
+											 {{ form_label(form.CA_Export) }}
+											 {{ form_widget(form.CA_Export) }}
+										 </div>
+										 <div class="form-group mb-4">
+											 {{ form_label(form.chiffreAffaires) }}
+											 {{ form_widget(form.chiffreAffaires) }}
+										 </div>
+									 </div>
+									 <div class="col-lg-6">
+
+										 <div class="form-group mb-4">
+											 {{ form_label(form.description_activite) }}
+											 {{ form_widget(form.description_activite) }}
+										 </div>
+										 <div class="form-group mb-4">
+											 <div class="form-group mb-2 d-flex justify-content-between align-items-center">
+											 <label class="cs-label mt10 mb-0">Installé au Maroc</label>
+											 {{ form_widget(form.categorie, {label:false,label_attr: {class: 'switch-custom'} }) }}
+											 {#  <label class="cs-checkbox">
+												 <input type="checkbox">
+												 <span>&nbsp;</span>
+											 </label> #}
+											 </div>
+										 </div>
+										 <div class="form-group mb-4">
+											 {# {{ form_label(form.effectif) }}
+											 {{ form_widget(form.effectif) }} #}
+										 </div>
+									 </div>
+								 </div>
+							 </div>
+							 <div class="col-lg-6">
+								 <div class="form-group mb-4">
+									 {{ form_label(form.detailLibre) }}
+									 {{ form_widget(form.detailLibre,{attr: {rows: '10'} }) }}
+								 </div>
+								 <div class="form-group mb-4">
+									 {# {{ form_label(form.presentation) }}
+									 {{ form_widget(form.presentation) }} #}
+								 </div>
+								 <div class="form-group mb-4">
+									 {# {{ form_label(form.origine_capital) }}
+									 {{ form_widget(form.origine_capital) }} #}
+								 </div>
+							 </div>
+						 </div>
+						 <div class="row mb-4">
+							 <div class="col-lg-6">
+								 <div class="row">
+									 <div class="col-lg-6">
+										 <div class="form-group mb-4">
+											 {# {{ form_label(form.Actionnaires) }}
+											 {{ form_widget(form.Actionnaires) }} #}
+										 </div>
+										 <div class="form-group mb-4">
+											 {# {{ form_label(form.tag3) }}
+											 {{ form_widget(form.tag3) }} #}
+										 </div>
+
+									 </div>
+									 <div class="col-lg-6">
+
+										 <div class="form-group mb-4">
+											 {# {{ form_label(form.Adresse) }}
+											 {{ form_widget(form.Adresse) }} #}
+										 </div>
+
+									 </div>
+								 </div>
+							 </div>
+							 <div class="col-lg-6">
+								 <div class="form-group mb-4">
+									 {# {{ form_label(form.Documents) }}
+									 {{ form_widget(form.Documents) }} #}
+								 </div>
+								 <div class="form-group mb-4">
+									 {# {{ form_label(form.Documents_1) }}
+									 {{ form_widget(form.Documents_1) }} #}
+								 </div>
+							 </div>
+						 </div>
+						 </div>
+					 </div>
+				 </div>
+
+						<div class="tab-content cs-tab-content no-left-padding no-right-padding infophases" id="prospection" style="display: none;">
+							<div class="tab-pane fade show active" id="item-details-project" role="tabpanel">
+								<div class="container-fluid">
+								{{ include('compte/form/autre_information/_form_compte.html.twig', {'button_label': 'projet.Update'| trans }) }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success" id="btn-submitcompte" value="submit" style="display: none;">Submit</button>
+
+				</div>
+				{{ include('compte/form/hiden.html.twig') }}
+				
+			</div>
+		</div> 
+		{{ form_end(form) }}
+	</div>
+
+</div>
+{% block javascripts %}
+ 
+<script>
+ 	{# $("#btn_submit").click(function () {
+
+		$("#form_compte").submit();
+
+	}); #}
+	$("#btn_compte").one('click', function() {
+    	$("#btn-submitcompte").click();
+	});
+</script>
+<script>
+$(document).ready(function() {
+	$("#compte_etatCompte option[value='10']").remove();
+	$("#compte_etatCompte option[value='11']").remove();
+	$("#compte_etatCompte option[value='12']").remove();
+	$("#compte_etatCompte option[value='13']").remove();
+	$('.secteurs').attr('required', 'required');
+    $('.responsableCompte').select2();
+	$('.paysSiege').select2();
+	$('.paysImplantationSuccursales').select2();
+	$('.secteurs').select2();
+	$('.sebis').select2();
+
+	$('.ecosystemeFiliere').select2();	
+});
+</script>
+
+
+{% endblock %}
+<script>
+ 	function fileInfo() {
+		var file = document.getElementById('compte_data_logo').files[0].name;
+		var message_erreur = '';
+		var fileName = file.split(".")[0];
+		var fileSize = document.getElementById('compte_data_logo').files[0].size;
+		var fileType = file.split(".")[1];
+		var sizeInMB = (fileSize / (1024 * 1024)).toFixed(2) + 'MB';
+		var file_info = "Nom du fichier : " + fileName + (message_erreur ? message_erreur : '') +
+			"<br> Tailler du Fichier : " + sizeInMB + "<br> Format du fichier : " + fileType;
+
+		$(".info_file").html(file_info);
+	}
+
+	$(".btn_upload").click(function (e) {
+		e.preventDefault();
+		$('#compte_data_logo').trigger('click');
+ 	});
+	 
+</script>
+{% endblock %}

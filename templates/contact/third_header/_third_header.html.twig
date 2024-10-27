@@ -1,0 +1,101 @@
+{# Start header third #}
+<div class="third-header col-md-12">
+	<div class="row">
+		{% if is_granted('QUALIFIER_UN_CONTACT', contact) %}
+			<div class="col-md-7">
+				{# <ul class="etapes steps">
+					<li>
+						{% if contact.isPartenaire %}
+							<a href="{{ path('contact_change_part',{'ispart':0,'contact':contact.id}) }}">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								Compte
+							</label>
+						{% else %}
+							<a href="" class="active">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								Compte
+							</label>
+						{% endif %}
+					</li>
+					<div class="last-step pull-right">
+						{% if is_granted('VALIDER_UN_CONTACT', contact) %}
+							<li id="prioritaire-btn">
+								{% if contact.isActive %}
+
+									<a href="#" class="active" data-toggle="modal" data-target="#exampleModal">
+										<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+									</a>
+									<label class="active" for="">
+										<i class="fa fa-sort-asc" aria-hidden="true"></i>
+										Valider
+									</label>
+								{% else %}
+									<a href="#" data-toggle="modal" data-target="#exampleModal">A</a>
+									<label for="">
+										<i class="fa fa-sort-asc" aria-hidden="true"></i>
+										Valider
+									</label>
+								{% endif %}
+							</li>
+						{% endif %}
+					</div>
+				</ul> #}
+				<ul class="GPAC">
+					<li>
+						{% if contact.exclusif %}
+							<a href="{{ path('contact_change_exlusif',{'isexlusif':0,'contact':contact.id}) }}" class="active-exc active">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt="">
+							</a>
+							<label class="active" for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								Exclusive
+							</label>
+						{% else %}
+							<a href="{{ path('contact_change_exlusif',{'isexlusif':1,'contact':contact.id}) }}" id="exc">
+								<img src="{{ asset('images/icons/confirm.svg') }}" alt=""></a>
+							<label for="">
+								<i class="fa fa-sort-asc" aria-hidden="true"></i>
+								Exclusive
+							</label>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				
+			</div>
+			<div class="col-md-2 mt100">
+
+				<ul class="img-profil">
+					<li>
+						<img src="{{ contact.responsableContact ? (contact.responsableContact.photo ? asset('uploads/'~contact.responsableContact.photo) : asset('uploads/a9e55327d7c661eaab1fdd1cfccac35b.png') ) : asset('uploads/a9e55327d7c661eaab1fdd1cfccac35b.png') }}" alt="">
+						<div class="info-profil">
+							<strong>Géré par :</strong><br>
+							{% if app.user.groupe.id ==29 %}
+							<span>{{ form_widget(form.responsableContact,{option:contact.responsableContact}) }}</span>
+							{% else %}
+								<span style="display: none">{{ form_widget(form.responsableContact,{option:contact.responsableContact}) }}</span>
+								{% if contact.responsableContact is not empty %}
+								<span>{{contact.responsableContact.nom}} {{contact.responsableContact.prenom}}</span>
+									{% else %}
+										<span></span>
+								{% endif %}
+							{% endif %}
+						</div>
+						<div class="param-profil">
+							<span></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- End Profil -->
+		</div>
+	{% endif %}
+</div>
+{# Enddddd #}

@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ "Emailing" }}
+{% endblock %}
+{% block sous_title %}
+<a class="navbar-brand" href="{{ path('emails_index') }}">
+	<img src="{{ asset('images/amdie.png') }}" width="30" height="30" class="d-inline-block align-top"
+		alt="logo">
+		<div class="SousTitre">
+		<strong>AMDIE</strong>
+	|
+	{# {{ 'event.Events'| trans | upper }} #}
+	{{ " Emailing " }}
+
+	</div>
+</a>
+{% endblock %}
+{% block navbar_right %}
+	{# <a href="{{ path('new_email') }}" class="btn btn-float text-default btn-blue">
+            <i class="fa fa-plus"></i>
+    </a> #}
+	<a href="#" id="send">
+		<button type="button" class="btn btn-blue">
+		<i class="fa fa-send"></i></button></a>
+{% endblock %}
+
+
+{% block body %}
+<div class="row main">
+	<div class="col-md-1  wrape-filter-project">
+		<div class="filter-project">
+			<a class="btn-filtre">
+				<img class="img-filtre" src="{{ asset('images/icons/filter-project.svg') }}" alt="">
+			</a>
+			<div class="sidebare-filter mail">
+				{{ form_start(form,{methods:'GET','attr':{'id':'form_filtre'}}) }}
+					{{ form_widget(form) }}
+					<button style="width: 100%" class="btn btn-btn-blue" id="filtre">Filtre</button>
+					{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-11 main-projects">
+		<div class="row wrapper">
+			<div class="col-lg-3 wrape-list-project">
+				<div class="items-container-header">
+					<h3>Contacts</h3>
+				</div>
+				<div class="scroll_container_project">
+					<div class="scroll_content_project">
+						<ul id="list-project ">
+							{% for c in contact %}
+							<li class="list-contacts" data-id="{{ c.id }}">
+								<div class="content-list-comptes">
+									<div class="content">
+										<span class="item-logo">
+											<div class="name">{{ c.prenom|upper ~' '~ c.nom|upper }}</div>
+										</span>
+										<span class="item-title ">
+											{{ c.Prenom|capitalize }} {{ c.Nom }}
+										</span>
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-7 body-container">
+				<div id="item-details-wrapper" style="margin-left: 15px;">
+                        <div class="items-container-header">
+                            <h3>Nouveau Email </h3>
+                        </div>
+					    <div class="form_mail">
+                             <!-- start form -->
+                            {{ form_start(formemail,{'attr':{'id':'form_mail'}}) }}
+                            {{ form_row(formemail.objet,{'attr':{'id':'form_mail'}}) }}
+                            {{ form_row(formemail.type,{'attr':{'id':'form_mail'}}) }}
+							{{ form_row(formemail.contact,{'attr':{'id':'form_mail'}}) }}
+                            {{ form_end(formemail,{'attr':{'id':'form_mail'}}) }}
+                            <!-- end form -->
+                        </div>
+				</div>
+			</div>
+			{# <div class="col-lg-2">
+				<div class="row wrapper">
+					<div class="items-container-header-button">
+						<a class="btn btn-blue" href="{{ path('sendtome') }}" id="sendtome">
+							<button type="button" class="btn btn-danger">Me l'envoyer</button>
+						</a>
+
+						<a href="#" id="send">
+							<button type="button" class="btn btn-success">Envoyer</button></a>
+                    </div>
+				</div>
+			</div> #}
+		</div>
+	</div> {#  End main-projects #}
+</div> {#  End Main Row #}
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+<script>
+	$("#send").click(function () {
+
+		$("#form_mail").submit();
+
+	});
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{ asset('js/jquery.nameBadges.js') }}"></script>
+<script>
+	$('.name').nameBadge({
+
+		// boder options
+		border: {
+			color: '#ddd',
+			width: 1
+		},
+
+		// an array of background colors.
+		colors: ['#c5c5c5'],
+
+		// text color
+		text: '#fff',
+
+		// avatar size
+		size: 45,
+
+		// avatar margin
+		margin: 5,
+
+		// disable middle name
+		middlename: true,
+
+		// force uppercase
+		uppercase: false
+
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('.select-contacts').select2();
+	});
+	$(document).ready(function() {
+		$('.select-pays').select2();
+	});
+	$(document).ready(function() {
+		$('.select-secteurs').select2();
+	});
+	$(document).ready(function() {
+		$('.select-events').select2();
+});
+</script>
+
+{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
+        <script src="{{ asset('js/ckeditor.js') }}"></script>
+{% endblock %}

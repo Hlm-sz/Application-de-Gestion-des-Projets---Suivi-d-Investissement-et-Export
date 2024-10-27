@@ -1,0 +1,98 @@
+--- forms-compte.yml	2023-02-06 12:14:00.648320467 +0100
++++ /home/administrateur/Documents/liv2/public/forms/forms-compte.yml	2023-02-06 12:02:45.000000000 +0100
+@@ -5,7 +5,30 @@
+       '1':
+         'name': 'form-compte'
+         fields:
+-
++          '101':
++            'name': "canal"
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '102':
++            'name': 'canal_opt_n1'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '103':
++            'name': 'canal_opt_n2'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
+           # '4':
+           #   'name': 'pays_siege'
+           #   'type': 'EntityType'
+@@ -271,7 +294,30 @@
+       '1':
+         'name': 'form-compte'
+         fields:
+-
++          '101':
++            'name': "canal"
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '102':
++            'name': 'canal_opt_n1'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '103':
++            'name': 'canal_opt_n2'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
+           # '4':
+           #   'name': 'pays_siege'
+           #   'type': 'EntityType'
+@@ -533,7 +579,30 @@
+       '1':
+         'name': 'form-compte'
+         fields:
+-
++          '101':
++            'name': "canal"
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '102':
++            'name': 'canal_opt_n1'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
++          '103':
++            'name': 'canal_opt_n2'
++            'type': 'TextareaType' 
++            'options':
++              'mapped': false
++              'required': false
++              'attr':
++                 'rows': 1
+           # '4':
+           #   'name': 'pays_siege'
+           #   'type': 'EntityType'
